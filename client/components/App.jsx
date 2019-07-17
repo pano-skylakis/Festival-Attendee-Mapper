@@ -1,4 +1,6 @@
 import React from 'react'
+import Map from './Map'
+import Stats from './Stats'
 import Splash from './Splash'
 
 import Nav from './Nav'
@@ -20,6 +22,8 @@ class App extends React.Component {
                 <div>
                 <h1>Welcome!!</h1>
                 <Splash/>
+                <Stats/>
+                <Map/>
                 <Graph/>
                 <Nav/>
                 </div>

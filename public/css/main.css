@@ -1,7 +1,5 @@
 body {
-  background-color: #4f9abd;
-  background-image: url("https://images.unsplash.com/photo-1468234560893-89c00b6385c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2693&q=80");
-  background-size: cover; }
+  background-color: #4f9abd; }
 
 .tracking-in-contract {
   margin-top: 20%;
@@ -44,3 +42,16 @@ body {
     transform: translateY(-30px); }
   60% {
     transform: translateY(-15px); } }
+
+.splash {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1468234560893-89c00b6385c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2693&q=80");
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0; }
+
+.the-rest {
+  position: absolute;
+  top: 100vh; }

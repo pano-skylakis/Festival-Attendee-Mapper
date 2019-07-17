@@ -16,6 +16,9 @@ class App extends React.Component {
             <React.Fragment>
                 <div>
                 <Splash/>
+                <div className='the-rest'>
+                <p>hrllo</p>
+                </div>
                 </div>
             </React.Fragment>
         );

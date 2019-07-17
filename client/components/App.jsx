@@ -1,4 +1,5 @@
 import React from 'react'
+import Splash from './Splash'
 
 class App extends React.Component {
     constructor(props) {
@@ -13,7 +14,10 @@ class App extends React.Component {
     render() { 
         return (  
             <React.Fragment>
+                <div>
                 <h1>Welcome!!</h1>
+                <Splash/>
+                </div>
             </React.Fragment>
         );
     }

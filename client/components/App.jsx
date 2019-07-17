@@ -1,4 +1,6 @@
 import React from 'react'
+import Map from './Map'
+import Stats from './Stats'
 import Splash from './Splash'
 
 class App extends React.Component {
@@ -14,10 +16,10 @@ class App extends React.Component {
     render() { 
         return (  
             <React.Fragment>
-                <div>
                 <h1>Welcome!!</h1>
                 <Splash/>
-                </div>
+                <Stats/>
+                <Map/>
             </React.Fragment>
         );
     }

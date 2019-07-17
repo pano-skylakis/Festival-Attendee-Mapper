@@ -1,1 +1,1 @@
-#react-webpack-express boilerplate
+# Festival Attendee Mapper

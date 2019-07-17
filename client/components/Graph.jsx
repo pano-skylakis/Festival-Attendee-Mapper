@@ -13,7 +13,9 @@ class Graph extends React.Component {
     render() { 
         return (  
             <>
-                <h1>Graph</h1>
+                <div>
+                    <h1>Graph</h1>
+                </div>
             </>
         );
     }

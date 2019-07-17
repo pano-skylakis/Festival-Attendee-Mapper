@@ -17,6 +17,8 @@ class App extends React.Component {
         return (  
             <>
                 <h1>Welcome!!</h1>
+                <Graph/>
+                <Nav/>
             </>
         );
     }

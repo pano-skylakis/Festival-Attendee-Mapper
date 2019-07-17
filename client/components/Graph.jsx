@@ -1,9 +1,6 @@
 import React from 'react'
 
-import Nav from './Nav'
-import Graph from './Graph'
-
-class App extends React.Component {
+class Graph extends React.Component {
     constructor(props) {
         super(props)
         
@@ -16,10 +13,10 @@ class App extends React.Component {
     render() { 
         return (  
             <>
-                <h1>Welcome!!</h1>
+                <h1>Graph</h1>
             </>
         );
     }
 }
  
-export default App;
+export default Graph;

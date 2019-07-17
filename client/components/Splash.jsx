@@ -12,7 +12,7 @@ class App extends React.Component {
 
     render() { 
         return (  
-            <React.Fragment>
+            <React.Fragment className="splash">
                 <h1 className="tracking-in-expand middle">Festival Attendee Mapper</h1>
             </React.Fragment>
         );

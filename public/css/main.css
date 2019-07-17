@@ -1,8 +1,13 @@
 body {
-  background-color: #4f9abd; }
+  background-color: #4f9abd;
+  background-image: url("/nasa-Q1p7bh3SHj8-unsplash.jpg");
+  background-size: cover; }
 
 .tracking-in-expand {
-  animation: tracking-in-expand 2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards; }
+  animation: tracking-in-expand 2.8s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  font-family: 'Lora', serif;
+  font-size: 3em;
+  color: white; }
 
 @keyframes tracking-in-expand {
   0% {

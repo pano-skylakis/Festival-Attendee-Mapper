@@ -1,9 +1,20 @@
+//colours
+
+//media queries
+
 body {
     background-color: rgb(79, 154, 189);
+    background-image:  url("/nasa-Q1p7bh3SHj8-unsplash.jpg");
+    background-size: cover;
 }
 
+//splash component
+
 .tracking-in-expand {
-	animation: tracking-in-expand 2s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;ç
+    animation: tracking-in-expand 2.8s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards;
+    font-family: 'Lora', serif;
+    font-size: 3em;
+    color: white;
 }
 
 @keyframes tracking-in-expand {
@@ -22,3 +33,10 @@ body {
 .middle {
     text-align: center;
 }
+
+// .splash {
+//     // background-image: url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1652&q=80");
+// }
+
+//other components
+

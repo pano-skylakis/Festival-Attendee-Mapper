@@ -13,7 +13,7 @@ class Nav extends React.Component {
         return (  
             <>
                 <div>
-                    <h1>Nav</h1>
+                    <h1>Nav Component</h1>
                     <button>Location 1</button>
                     <button>Location 2</button>
                     <button>Location 3</button>

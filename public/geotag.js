@@ -1,7 +1,7 @@
 const options = {
   enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 20
+  timeout: 60000,
+  maximumAge: 0
 };
 
 function success(pos) {

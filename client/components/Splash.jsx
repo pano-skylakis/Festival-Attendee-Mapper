@@ -1,4 +1,6 @@
 import React from 'react'
+import Logo from './Logo'
+import Loading from './Loading'
 
 class App extends React.Component {
     constructor(props) {
@@ -14,6 +16,8 @@ class App extends React.Component {
         return (  
             <React.Fragment className="splash">
                 <h1 className="tracking-in-expand middle">Festival Attendee Mapper</h1>
+                <Logo/>
+                <Loading/>
             </React.Fragment>
         );
     }

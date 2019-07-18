@@ -13,7 +13,6 @@ class App extends React.Component {
         this.state = {
             geoTags: []
         }
-        this.outOfBoundsChecker = this.outOfBoundsChecker.bind(this)
     }
 
     componentDidMount(){
@@ -36,6 +35,34 @@ class App extends React.Component {
         }.bind(this), 3000)
     }
 
+    saveLocation =(pos) => {
+        let crd = pos.coords;
+        const locationTag ={}
+    
+
+       if(this.outOfBoundsChecker(crd.latitude, crd.longitude)){
+        locationTag.latitude = crd.latitude
+        locationTag.longitude = crd.longitude
+        locationTag.accuracy = crd.accuracy
+        locationTag.timestamp = Date.now()
+        
+        
+        this.setState({
+            geoTags: locationTag
+        })
+        addGeoLocationApi(this.state.geoTags[0])
+
+       } else {
+        locationTag.latitude = crd.latitude
+        locationTag.longitude = crd.longitude
+        locationTag.accuracy = crd.accuracy
+        locationTag.timestamp = Date.now()
+        console.log(crd)
+
+        // in production this else statement will be removed
+       }
+    }
+
     outOfBoundsChecker = (lat, long) => {
         const eastLong = 174.780310
         const westLong = 174.772497
@@ -47,34 +74,6 @@ class App extends React.Component {
             return true
         }
         return false
-    }
-
-    
-    // addGeoLocationApi(this.state.geoTags[0])
-
-
-    saveLocation =(pos) => {
-        let crd = pos.coords;
-        const locationTag ={}
-    
-    
-       if(this.outOfBoundsChecker(crd.latitude, crd.longitude)){
-        locationTag.latitude = crd.latitude
-        locationTag.longitude = crd.longitude
-        locationTag.accuracy = crd.accuracy
-        locationTag.timestamp = Date.now()
-        console.log(locationTag)
-        
-        // this.setState({
-        //     geoTags: [locationTag]
-        // })
-        // call api, save locationTag to DB
-       }else{
-        locationTag.latitude = crd.latitude
-        locationTag.longitude = crd.longitude
-        locationTag.accuracy = crd.accuracy
-        locationTag.timestamp = Date.now()
-       }
     }
 
     render() { 

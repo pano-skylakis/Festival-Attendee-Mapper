@@ -44,7 +44,7 @@ class App extends React.Component {
         locationTag.latitude = crd.latitude
         locationTag.longitude = crd.longitude
         locationTag.accuracy = crd.accuracy
-        locationTag.timestamp = Date.now()
+        // locationTag.timestamp = Date.now()
         
         
         this.setState({
@@ -56,7 +56,7 @@ class App extends React.Component {
         locationTag.latitude = crd.latitude
         locationTag.longitude = crd.longitude
         locationTag.accuracy = crd.accuracy
-        locationTag.timestamp = Date.now()
+        // locationTag.timestamp = Date.now()
         console.log(crd)
 
         // in production this else statement will be removed
@@ -82,7 +82,7 @@ class App extends React.Component {
                 <div>
                 <Splash/>
                     <div className='content'>
-                        <Test/>
+                        {/* <Test/> */}
                         <ul>
                             {this.state.geoTags.map(tag =>{
                             return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>

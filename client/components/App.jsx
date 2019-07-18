@@ -59,6 +59,7 @@ saveLocation =(pos) => {
                             return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>
                             })}
                         </ul>
+
                         <Footer/>
                     
                 

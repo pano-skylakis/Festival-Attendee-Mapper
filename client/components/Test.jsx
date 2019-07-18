@@ -5,7 +5,7 @@ class Test extends React.Component {
     render() { 
         return ( 
             <div className='test'>
-                <p className='test-paragraph'>
+                <p className='test-paragraph enter'>
                     Deep v post-ironic cliche, man braid man bun readymade quinoa cronut migas organic woke gentrify slow-carb fanny pack. 
                     DIY kitsch ramps, prism succulents dreamcatcher pinterest kale chips green juice scenester ennui literally skateboard. 
                     Poutine neutra copper mug, mlkshk pop-up godard literally ennui woke iceland cardigan. Meh copper mug locavore fingerstache 
@@ -16,7 +16,6 @@ class Test extends React.Component {
                     fashion axe adaptogen pork belly. Taiyaki polaroid poke, put a bird on it bespoke tumeric +1 fanny pack. IPhone farm-to-table
                      bespoke lomo bushwick ethical.
                 </p>
-         
             </div>
          );
     }

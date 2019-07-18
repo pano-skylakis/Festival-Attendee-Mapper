@@ -1,9 +1,10 @@
-//colours
+//variables
+// $brand-primary: #ddd; >>> example
 
 //media queries
 
 body {
-background-color: white
+background-color: #ddd;
 }
 
 //splash component
@@ -88,11 +89,8 @@ background-color: white
 
 
 .test-paragraph {
-
    margin-left: 20vw;
    margin-right: 20vw;
    margin-top: 30vh;
-   margin-bottom: 30vh
-
+   margin-bottom: 30vh;
 }
-

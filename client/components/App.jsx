@@ -4,17 +4,17 @@ import { success, error, options, locationTag } from '../../public/geotag'
 class App extends React.Component {
     constructor(props) {
         super(props)
-        
+
         this.state = {
             geoTags: [],
         }
     }
 
-    componentDidMount(){
-        this.geolocate()        
+    componentDidMount() {
+        this.geolocate()
     }
 
-    
+
 
     geolocate = () => {
         const error = () => {
@@ -52,10 +52,9 @@ saveLocation =(pos) => {
                    return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>
                 })}
                 </ul>
-
             </React.Fragment>
         );
     }
 }
- 
+
 export default App;

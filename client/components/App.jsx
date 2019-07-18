@@ -1,4 +1,7 @@
 import React from 'react'
+import Splash from './Splash'
+import Test from './test'
+import Footer from './Footer'
 
 class App extends React.Component {
     constructor(props) {
@@ -49,11 +52,21 @@ saveLocation =(pos) => {
     render() { 
         return (   
             <React.Fragment>
-                <ul>
-                {this.state.geoTags.map(tag =>{
-                   return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>
-                })}
-                </ul>
+                <div>
+                <Splash/>
+                    <div className='content'>
+                        <Test/>
+                        
+                        <ul>
+                            {this.state.geoTags.map(tag =>{
+                            return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>
+                            })}
+                        </ul>
+                        <Footer/>
+                    
+                
+                    </div>
+                </div>
             </React.Fragment>
         );
     }

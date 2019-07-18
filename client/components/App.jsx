@@ -1,6 +1,6 @@
 import React from 'react'
 import Splash from './Splash'
-import Test from './test'
+// import Test from './test'
 import Footer from './Footer'
 
 import { addGeoLocationApi } from '../api/geoLocationApi';

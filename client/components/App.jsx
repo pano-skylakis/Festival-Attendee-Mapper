@@ -15,8 +15,7 @@ class App extends React.Component {
         return (  
             <React.Fragment>
                 <div>
-                <h1>Welcome!!</h1>
-                <Splash/>
+                    <Splash/>
                 </div>
             </React.Fragment>
         );

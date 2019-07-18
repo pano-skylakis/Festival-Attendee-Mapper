@@ -16,8 +16,8 @@ class App extends React.Component {
         return (  
             <React.Fragment className="splash">
                 <h1 className="tracking-in-expand middle">Festival Attendee Mapper</h1>
-                <Logo/>
-                <Loading/>
+                {/* <Logo/>
+                <Loading/> */}
             </React.Fragment>
         );
     }

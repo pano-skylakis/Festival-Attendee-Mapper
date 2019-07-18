@@ -67,8 +67,9 @@ class App extends React.Component {
             geoTags: locationTag
         })
         addGeoLocationApi(this.state.geoTags)
-       }
        this.getLocations()
+       }
+       console.log("Out of bounds!")
     }
 
     outOfBoundsChecker = (lat, long) => {

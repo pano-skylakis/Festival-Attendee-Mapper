@@ -5,8 +5,7 @@ import Splash from './Splash'
 // import Test from './test'
 import Footer from './Footer'
 
-import { addGeoLocationApi } from '../api/geoLocationApi';
-import ApiTest from './ApiTest';
+import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
 
 
 class App extends React.Component {
@@ -14,7 +13,7 @@ class App extends React.Component {
         super(props)
 
         this.state = {
-
+            locs: []
         }
     }
 
@@ -27,11 +26,28 @@ class App extends React.Component {
             console.log("New User Set: " + userStorage.userId)
         }
         this.geoLocate()
-
+        this.getLocations()
     }
 
 
+        // Get Locations from Database
+    getLocations = () => {
+            getGeoLocationsApi()
+                .then(locations => {
+                    this.refreshLocations(locations)
+                })
+        }
+    
+        refreshLocations = (locations) => {
+            this.setState({
+                locs: locations || []
+            })
+            console.log(this.state.locs)
+        }
 
+
+
+        // Track Locations
     geoLocate = () => {
         const error = () => {
             console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -61,6 +77,7 @@ class App extends React.Component {
                 geoTags: locationTag
             })
             addGeoLocationApi(this.state.geoTags)
+            this.getLocations()
         }
         console.log("Out of bounds!")
     }
@@ -84,10 +101,7 @@ class App extends React.Component {
                 <div>
                     <Splash />
                     <div className='content'>
-                        {/* <Test/> */}
-                        <ApiTest />
-                        <Footer />
-
+                    <Footer/>
                     </div>
                 </div>
             </React.Fragment>

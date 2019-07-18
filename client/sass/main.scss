@@ -1,10 +1,12 @@
-//variables
-// $brand-primary: #ddd; >>> example
+//colours
+$color-white:white;
+$color-grey: rgba(44, 44, 44, 0.89);
+$color-orange: FF9C00;
 
 //media queries
 
 body {
-background-color: #ddd;
+background-color: #0d0d0d;
 }
 
 //splash component
@@ -13,11 +15,12 @@ background-color: #ddd;
     margin-top: 20%;
     animation: tracking-in-contract 2.4s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
     font-family: 'Raleway', sans-serif;
-    font-size: 3.1em;
+    font-size: 3em;
     font-weight: semi-bold;
     color:black;
 }
 
+  
 @keyframes tracking-in-contract {
     0% {
       letter-spacing: 1em;
@@ -30,6 +33,7 @@ background-color: #ddd;
       letter-spacing: normal;
       opacity: 1;
     }
+
   }
   
   
@@ -79,8 +83,11 @@ background-color: #ddd;
 }
 
 .content {
+    left:0;
+    font-family: 'Raleway', sans-serif;
     position: absolute;
     top: 100vh;
+    background-color: white;
 }
 
 //other components
@@ -92,5 +99,20 @@ background-color: #ddd;
    margin-left: 20vw;
    margin-right: 20vw;
    margin-top: 30vh;
-   margin-bottom: 30vh;
+   margin-bottom: 30vh
+
 }
+
+//footer component 
+
+.footer {
+
+    background-color:$color-grey;
+    color: rgb(197, 197, 197);
+    left: 0;
+    right: 0;
+    padding: 5vw 40vw 5vw 5vw;
+    box-shadow: 0px 12px 47px 0px rgba(0,0,0,0.75);
+}
+
+

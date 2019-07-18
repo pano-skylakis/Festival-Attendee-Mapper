@@ -1,6 +1,7 @@
 import React from 'react'
 import Splash from './Splash'
 import Test from './test'
+import Footer from './Footer'
 
 class App extends React.Component {
     constructor(props) {
@@ -19,6 +20,7 @@ class App extends React.Component {
                 <Splash/>
                     <div className='content'>
                         <Test/>
+                        <Footer/>
                     </div>
                 </div>
             </React.Fragment>

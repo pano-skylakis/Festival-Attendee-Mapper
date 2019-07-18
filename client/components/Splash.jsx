@@ -15,7 +15,7 @@ class App extends React.Component {
     render() { 
         return (  
             <div className="splash">
-                <h1 className="tracking-in-contract middle">Festival Attendee Mapper</h1>
+                <h1 className="tracking-in-contract middle">Festival&nbsp;Attendee&nbsp;Mapper</h1>
                 <div class="arrow bounce"></div>            
             </div>
         );

@@ -1,22 +1,32 @@
 import React from 'react'
-import { success, error, options, locationTag } from '../../public/geotag'
+import Splash from './Splash'
+import Test from './test'
+import Footer from './Footer'
 
 class App extends React.Component {
     constructor(props) {
         super(props)
-        
+
         this.state = {
             geoTags: [],
         }
         this.outOfBoundsChecker = this.outOfBoundsChecker.bind(this)
     }
 
+<<<<<<< HEAD
     componentDidMount(){
         this.geolocate() 
         console.log(this.outOfBoundsChecker(-41.277843, 174.778833))       
+||||||| merged common ancestors
+    componentDidMount(){
+        this.geolocate()        
+=======
+    componentDidMount() {
+        this.geolocate()
+>>>>>>> 18d22e34d4759d17b5c8fa264247d83b2bf775c2
     }
 
-    
+
 
     geolocate = () => {
         const error = () => {
@@ -48,10 +58,13 @@ outOfBoundsChecker(lat, long){
 saveLocation =(pos) => {
     let crd = pos.coords;
     const locationTag ={}
+   
 
     locationTag.latitude = crd.latitude
     locationTag.longitude = crd.longitude
-    locationTag.accuracy = crd.accuracy,
+    locationTag.accuracy = crd.accuracy
+    locationTag.timestamp = Date.now()
+    console.log(locationTag)
 
 
     // Set state
@@ -63,15 +76,24 @@ saveLocation =(pos) => {
     render() { 
         return (   
             <React.Fragment>
-                <ul>
-                {this.state.geoTags.map(tag =>{
-                   return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>
-                })}
-                </ul>
-
+                <div>
+                <Splash/>
+                    <div className='content'>
+                        <Test/>
+                        
+                        <ul>
+                            {this.state.geoTags.map(tag =>{
+                            return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>
+                            })}
+                        </ul>
+                        <Footer/>
+                    
+                
+                    </div>
+                </div>
             </React.Fragment>
         );
     }
 }
- 
+
 export default App;

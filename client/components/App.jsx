@@ -2,7 +2,7 @@ import React from 'react'
 import Splash from './Splash'
 // import Test from './test'
 import Footer from './Footer'
-import SimpleExample from './Map'
+import Map from './Map'
 
 import { addGeoLocationApi } from '../api/geoLocationApi';
 import ApiTest from './ApiTest';
@@ -74,8 +74,8 @@ class App extends React.Component {
                 <Splash/>
                     <div className='content'>
                         {/* <Test/> */}
-                        <ApiTest />
-                        <SimpleExample/>
+                        <ApiTest/>
+                        <Map/>
                         <Footer/>
                 
                     </div>

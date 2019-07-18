@@ -17,8 +17,16 @@ class App extends React.Component {
     
 
     geolocate = () => {
+        const error = () => {
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+          }
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 60000,
+            maximumAge: 0
+          };
         setInterval(function(){
-            navigator.geolocation.getCurrentPosition(this.saveLocation)
+            navigator.geolocation.getCurrentPosition(this.saveLocation, error, options)
         }.bind(this), 3000)
     }
 
@@ -29,12 +37,6 @@ saveLocation =(pos) => {
     locationTag.latitude = crd.latitude
     locationTag.longitude = crd.longitude
     locationTag.accuracy = crd.accuracy,
-    
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-    console.log(Date.now().toString())
 
     // Set state
     this.setState({
@@ -43,11 +45,11 @@ saveLocation =(pos) => {
 }
 
     render() { 
-        return (  
+        return (   
             <React.Fragment>
                 <ul>
                 {this.state.geoTags.map(tag =>{
-                   return <li>Lat: {tag.latitude} Long: {tag.longitude}</li>
+                   return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>
                 })}
                 </ul>
 

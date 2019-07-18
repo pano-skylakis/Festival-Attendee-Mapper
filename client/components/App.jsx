@@ -3,14 +3,16 @@ import Splash from './Splash'
 import Test from './test'
 import Footer from './Footer'
 
+import { addGeoLocationApi } from '../api/geoLocationApi';
+
+
 class App extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            geoTags: [],
+            geoTags: []
         }
-        this.outOfBoundsChecker = this.outOfBoundsChecker.bind(this)
     }
 
     componentDidMount(){
@@ -33,45 +35,46 @@ class App extends React.Component {
         }.bind(this), 3000)
     }
 
-
-outOfBoundsChecker(lat, long){
-    const eastLong = 174.780310
-    const westLong = 174.772497
-    const northLat = -41.290972
-    const southLat = -41.297387
-   
-
-    if(lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong){
-        return true
-    }
-    return false
-}
-saveLocation =(pos) => {
-    console.log(pos)
-    let crd = pos.coords;
-    const locationTag ={}
-
-   if(this.outOfBoundsChecker(crd.latitude, crd.longitude)){
-    locationTag.latitude = crd.latitude
-    locationTag.longitude = crd.longitude
-    locationTag.accuracy = crd.accuracy
-    locationTag.timestamp = Date.now()
-
-    // call api, save locationTag to DB
-   }else{
-    locationTag.latitude = crd.latitude
-    locationTag.longitude = crd.longitude
-    locationTag.accuracy = crd.accuracy
-    locationTag.timestamp = Date.now()
-   }
-
+    saveLocation =(pos) => {
+        let crd = pos.coords;
+        const locationTag ={}
     
 
-    // Set state
-    this.setState({
-        geoTags: [...this.state.geoTags, locationTag]
-    })
-}
+       if(this.outOfBoundsChecker(crd.latitude, crd.longitude)){
+        locationTag.latitude = crd.latitude
+        locationTag.longitude = crd.longitude
+        locationTag.accuracy = crd.accuracy
+        locationTag.timestamp = Date.now()
+        
+        
+        this.setState({
+            geoTags: locationTag
+        })
+        addGeoLocationApi(this.state.geoTags[0])
+
+       } else {
+        locationTag.latitude = crd.latitude
+        locationTag.longitude = crd.longitude
+        locationTag.accuracy = crd.accuracy
+        locationTag.timestamp = Date.now()
+        console.log(crd)
+
+        // in production this else statement will be removed
+       }
+    }
+
+    outOfBoundsChecker = (lat, long) => {
+        const eastLong = 174.780310
+        const westLong = 174.772497
+        const northLat = -41.290972
+        const southLat = -41.297387
+    
+    
+        if(lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong){
+            return true
+        }
+        return false
+    }
 
     render() { 
         return (   
@@ -80,7 +83,6 @@ saveLocation =(pos) => {
                 <Splash/>
                     <div className='content'>
                         <Test/>
-                        
                         <ul>
                             {this.state.geoTags.map(tag =>{
                             return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>

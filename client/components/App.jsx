@@ -53,14 +53,14 @@ saveLocation =(pos) => {
                 <Splash/>
                     <div className='content'>
                         <Test/>
-                        <Footer/>
-                    
-                
+                        
                         <ul>
                             {this.state.geoTags.map(tag =>{
                             return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>
                             })}
                         </ul>
+                        <Footer/>
+                    
                 
                     </div>
                 </div>

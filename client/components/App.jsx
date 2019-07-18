@@ -2,7 +2,6 @@ import React from 'react'
 const uuidv4 = require('uuid/v4')
 
 import Splash from './Splash'
-// import Test from './test'
 import Footer from './Footer'
 
 import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
@@ -66,21 +65,7 @@ class App extends React.Component {
         let crd = pos.coords;
         const locationTag = {}
 
-<<<<<<< HEAD
-       if(this.outOfBoundsChecker(crd.latitude, crd.longitude)){
-        locationTag.latitude = crd.latitude
-        locationTag.longitude = crd.longitude
-        locationTag.accuracy = crd.accuracy
-        
-        this.setState({
-            geoTags: locationTag
-        })
-        addGeoLocationApi(this.state.geoTags)
-       this.getLocations()
-       }
-       console.log("Out of bounds!")
-=======
-
+    
         if (this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
             locationTag.latitude = crd.latitude
             locationTag.longitude = crd.longitude
@@ -94,7 +79,6 @@ class App extends React.Component {
             this.getLocations()
         }
         console.log("Out of bounds!")
->>>>>>> 13313a7de7bd34058698652fc6fc9340a218478f
     }
 
     outOfBoundsChecker = (lat, long) => {

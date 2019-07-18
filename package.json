@@ -13,7 +13,8 @@
     "server": "node server",
     "start": "webpack && node server",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "scss": "node-sass --watch client/sass -o public/css"
+    "scss": "node-sass --watch client/sass -o public/css",
+    "postinstall": "webpack && knex migrate:latest"
   },
   "babel": {
     "presets": [

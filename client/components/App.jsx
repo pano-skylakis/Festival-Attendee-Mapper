@@ -14,13 +14,12 @@ class App extends React.Component {
     }
 
     componentDidMount(){
-        this.geolocate() 
-        console.log(this.outOfBoundsChecker(-41.277843, 174.778833))       
+        this.geoLocate() 
     }
 
 
 
-    geolocate = () => {
+    geoLocate = () => {
         const error = () => {
             console.warn(`ERROR(${err.code}): ${err.message}`);
           }
@@ -34,30 +33,39 @@ class App extends React.Component {
         }.bind(this), 3000)
     }
 
-outOfBoundsChecker(lat, long){
-    const maxLong = 185.22685558
-    const minLong = 185.22624135
-    const maxLat = -41.29017383
-    const minLat = -41.29675161
 
-    if(lat <= maxLat && lat >= minLat && long <= maxLong && long >= minLong){
+outOfBoundsChecker(lat, long){
+    const eastLong = 174.780310
+    const westLong = 174.772497
+    const northLat = -41.290972
+    const southLat = -41.297387
+   
+
+    if(lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong){
         return true
     }
     return false
-
-
 }
 saveLocation =(pos) => {
+    console.log(pos)
     let crd = pos.coords;
     const locationTag ={}
-   
 
+   if(this.outOfBoundsChecker(crd.latitude, crd.longitude)){
     locationTag.latitude = crd.latitude
     locationTag.longitude = crd.longitude
     locationTag.accuracy = crd.accuracy
     locationTag.timestamp = Date.now()
-    console.log(locationTag)
 
+    // call api, save locationTag to DB
+   }else{
+    locationTag.latitude = crd.latitude
+    locationTag.longitude = crd.longitude
+    locationTag.accuracy = crd.accuracy
+    locationTag.timestamp = Date.now()
+   }
+
+    
 
     // Set state
     this.setState({

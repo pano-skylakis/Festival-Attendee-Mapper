@@ -8,10 +8,12 @@ class App extends React.Component {
         this.state = {
             geoTags: [],
         }
+        this.outOfBoundsChecker = this.outOfBoundsChecker.bind(this)
     }
 
     componentDidMount(){
-        this.geolocate()        
+        this.geolocate() 
+        console.log(this.outOfBoundsChecker(-41.277843, 174.778833))       
     }
 
     
@@ -30,6 +32,19 @@ class App extends React.Component {
         }.bind(this), 3000)
     }
 
+outOfBoundsChecker(lat, long){
+    const maxLong = 185.22685558
+    const minLong = 185.22624135
+    const maxLat = -41.29017383
+    const minLat = -41.29675161
+
+    if(lat <= maxLat && lat >= minLat && long <= maxLong && long >= minLong){
+        return true
+    }
+    return false
+
+
+}
 saveLocation =(pos) => {
     let crd = pos.coords;
     const locationTag ={}
@@ -37,6 +52,7 @@ saveLocation =(pos) => {
     locationTag.latitude = crd.latitude
     locationTag.longitude = crd.longitude
     locationTag.accuracy = crd.accuracy,
+
 
     // Set state
     this.setState({

@@ -13,17 +13,9 @@ class App extends React.Component {
         this.outOfBoundsChecker = this.outOfBoundsChecker.bind(this)
     }
 
-<<<<<<< HEAD
     componentDidMount(){
         this.geolocate() 
         console.log(this.outOfBoundsChecker(-41.277843, 174.778833))       
-||||||| merged common ancestors
-    componentDidMount(){
-        this.geolocate()        
-=======
-    componentDidMount() {
-        this.geolocate()
->>>>>>> 18d22e34d4759d17b5c8fa264247d83b2bf775c2
     }
 
 

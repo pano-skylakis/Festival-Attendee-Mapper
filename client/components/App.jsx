@@ -4,6 +4,7 @@ import Splash from './Splash'
 import Footer from './Footer'
 
 import { addGeoLocationApi } from '../api/geoLocationApi';
+import ApiTest from './ApiTest';
 
 
 class App extends React.Component {
@@ -11,7 +12,7 @@ class App extends React.Component {
         super(props)
 
         this.state = {
-            geoTags: []
+            
         }
     }
 
@@ -44,22 +45,11 @@ class App extends React.Component {
         locationTag.latitude = crd.latitude
         locationTag.longitude = crd.longitude
         locationTag.accuracy = crd.accuracy
-        // locationTag.timestamp = Date.now()
-        
         
         this.setState({
             geoTags: locationTag
         })
-        addGeoLocationApi(this.state.geoTags[0])
-
-       } else {
-        locationTag.latitude = crd.latitude
-        locationTag.longitude = crd.longitude
-        locationTag.accuracy = crd.accuracy
-        // locationTag.timestamp = Date.now()
-        console.log(crd)
-
-        // in production this else statement will be removed
+        addGeoLocationApi(this.state.geoTags)
        }
     }
 
@@ -83,13 +73,8 @@ class App extends React.Component {
                 <Splash/>
                     <div className='content'>
                         {/* <Test/> */}
-                        <ul>
-                            {this.state.geoTags.map(tag =>{
-                            return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>
-                            })}
-                        </ul>
+                        <ApiTest />
                         <Footer/>
-                    
                 
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import Splash from './Splash'
+import Test from './test'
 
 class App extends React.Component {
     constructor(props) {
@@ -15,7 +16,10 @@ class App extends React.Component {
         return (  
             <React.Fragment>
                 <div>
-                    <Splash/>
+                <Splash/>
+                    <div className='content'>
+                        <Test/>
+                    </div>
                 </div>
             </React.Fragment>
         );

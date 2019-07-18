@@ -3,12 +3,15 @@ import Splash from './Splash'
 import Test from './test'
 import Footer from './Footer'
 
+import { addGeoLocationApi } from '../api/geoLocationApi';
+
+
 class App extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            geoTags: [],
+            geoTags: []
         }
     }
 
@@ -32,22 +35,23 @@ class App extends React.Component {
         }.bind(this), 3000)
     }
 
-saveLocation =(pos) => {
-    let crd = pos.coords;
-    const locationTag ={}
-   
+    saveLocation =(pos) => {
+        let crd = pos.coords;
+        const locationTag ={}
+    
 
-    locationTag.latitude = crd.latitude
-    locationTag.longitude = crd.longitude
-    locationTag.accuracy = crd.accuracy
-    locationTag.timestamp = Date.now()
-    console.log(locationTag)
+        locationTag.latitude = crd.latitude
+        locationTag.longitude = crd.longitude
+        locationTag.accuracy = crd.accuracy
+        locationTag.timestamp = Date.now()
 
-    // Set state
-    this.setState({
-        geoTags: [...this.state.geoTags, locationTag]
-    })
-}
+        // Set state
+        this.setState({
+            geoTags: [locationTag]
+        })
+        
+        addGeoLocationApi(this.state.geoTags[0])
+    }
 
     render() { 
         return (   
@@ -56,7 +60,6 @@ saveLocation =(pos) => {
                 <Splash/>
                     <div className='content'>
                         <Test/>
-                        
                         <ul>
                             {this.state.geoTags.map(tag =>{
                             return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>

@@ -17,38 +17,40 @@ class App extends React.Component {
 
 
     geolocate = () => {
-        setInterval(function () {
-            navigator.geolocation.getCurrentPosition(this.saveLocation)
+        const error = () => {
+            console.warn(`ERROR(${err.code}): ${err.message}`);
+          }
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 60000,
+            maximumAge: 0
+          };
+        setInterval(function(){
+            navigator.geolocation.getCurrentPosition(this.saveLocation, error, options)
         }.bind(this), 3000)
     }
 
-    saveLocation = (pos) => {
-        let crd = pos.coords;
-        const locationTag = {}
+saveLocation =(pos) => {
+    let crd = pos.coords;
+    const locationTag ={}
 
-        locationTag.latitude = crd.latitude
-        locationTag.longitude = crd.longitude
-        locationTag.accuracy = crd.accuracy,
+    locationTag.latitude = crd.latitude
+    locationTag.longitude = crd.longitude
+    locationTag.accuracy = crd.accuracy,
 
-            console.log('Your current position is:');
-        console.log(`Latitude : ${crd.latitude}`);
-        console.log(`Longitude: ${crd.longitude}`);
-        console.log(`More or less ${crd.accuracy} meters.`);
-        console.log(Date.now().toString())
+    // Set state
+    this.setState({
+        geoTags: [...this.state.geoTags, locationTag]
+    })
+}
 
-        // Set state
-        this.setState({
-            geoTags: [...this.state.geoTags, locationTag]
-        })
-    }
-
-    render() {
-        return (
+    render() { 
+        return (   
             <React.Fragment>
                 <ul>
-                    {this.state.geoTags.map(tag => {
-                        return <li>Lat: {tag.latitude} Long: {tag.longitude}</li>
-                    })}
+                {this.state.geoTags.map(tag =>{
+                   return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>
+                })}
                 </ul>
             </React.Fragment>
         );

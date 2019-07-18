@@ -3,7 +3,7 @@
 //media queries
 
 body {
-    background-color: rgb(79, 154, 189);
+background-color: white
 }
 
 //splash component
@@ -76,10 +76,25 @@ body {
     left: 0;
 }
 
-.the-rest {
+.content {
     position: absolute;
     top: 100vh;
 }
 
 //other components
+
+//test
+
+.test {
+
+}
+
+.test-paragraph {
+
+   margin-left: 20vw;
+   margin-right: 20vw;
+   margin-top: 30vh;
+   margin-bottom: 30vh
+
+}
 

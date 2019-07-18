@@ -1,5 +1,5 @@
 body {
-  background-color: #4f9abd; }
+  background-color: white; }
 
 .tracking-in-contract {
   margin-top: 20%;
@@ -52,6 +52,12 @@ body {
   top: 0;
   left: 0; }
 
-.the-rest {
+.content {
   position: absolute;
   top: 100vh; }
+
+.test-paragraph {
+  margin-left: 20vw;
+  margin-right: 20vw;
+  margin-top: 30vh;
+  margin-bottom: 30vh; }

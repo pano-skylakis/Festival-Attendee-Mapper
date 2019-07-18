@@ -1,12 +1,17 @@
-const options = {
+ export const options = {
   enableHighAccuracy: true,
   timeout: 60000,
   maximumAge: 0
 };
 
-function success(pos) {
+
+export function success(pos) {
   let crd = pos.coords;
 
+  locationTag.latitude = crd.latitude
+  locationTag.longitude = crd.longitude
+  locationTag.accuracy = crd.accuracy,
+  
   console.log('Your current position is:');
   console.log(`Latitude : ${crd.latitude}`);
   console.log(`Longitude: ${crd.longitude}`);
@@ -14,9 +19,9 @@ function success(pos) {
   console.log(Date.now().toString())
 }
 
-function error(err) {
+export function error(err) {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 }
 
 
-navigator.geolocation.watchPosition(success, error, options)
+// navigator.geolocation.watchPosition(success, error, options)

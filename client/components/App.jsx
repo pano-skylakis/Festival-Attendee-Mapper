@@ -1,5 +1,4 @@
 import React from 'react'
-import { success, error, options, locationTag } from '../../public/geotag'
 
 class App extends React.Component {
     constructor(props) {
@@ -33,10 +32,13 @@ class App extends React.Component {
 saveLocation =(pos) => {
     let crd = pos.coords;
     const locationTag ={}
+   
 
     locationTag.latitude = crd.latitude
     locationTag.longitude = crd.longitude
-    locationTag.accuracy = crd.accuracy,
+    locationTag.accuracy = crd.accuracy
+    locationTag.timestamp = Date.now()
+    console.log(locationTag)
 
     // Set state
     this.setState({

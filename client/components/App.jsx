@@ -17,20 +17,11 @@ class App extends React.Component {
 
         this.state = {
             locs: [],
-            renderLine: false,
-            renderBar: false,
+            barGraph: true,
+            lineGraph: false,
+            scatterGraph: false
         }
     }
-
-    showLineGraph(props) {
-        const renderLine = props.renderLine;
-        if (renderLine) {
-            return <LineGraph />
-        }
-        return <BarGraph />
-    }
-
-    
 
     componentDidMount() {
         let userStorage = window.localStorage;
@@ -55,7 +46,7 @@ class App extends React.Component {
     
         refreshLocations = (locations) => {
             this.setState({
-                locs: locations || []
+                locs: locations || [],
             })
             console.log(this.state.locs)
         }
@@ -116,11 +107,13 @@ class App extends React.Component {
                 <div>
                     <Splash />
                     <div className='content'>
-                        <Map/> 
-                        <div className="graph-container">   
-                            <BarGraph />
-                            <LineGraph />
-                            <ScatterGraph />
+                        <div className="graph-container">
+                            <Map />
+                            <div className="graph-padding">
+                                {this.state.barGraph && <BarGraph />}
+                                {this.state.LineGraph && <LineGraph />}
+                                {this.state.ScatterGraph && <ScatterGraph />}
+                            </div>
                         </div> 
                         <Footer/>
                     </div>

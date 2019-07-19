@@ -70,20 +70,21 @@ body {
   padding: 5vw 40vw 5vw 5vw;
   box-shadow: 0px 12px 47px 0px rgba(0, 0, 0, 0.75); }
 
-.bar-margin {
-  margin-bottom: 50px;
-  margin-left: 5%;
-  margin-top: 5%; }
-
-.line-margin {
-  margin-bottom: 50px;
-  margin-right: 5%;
-  margin-top: 5%; }
+.graph-padding {
+  padding-bottom: 50px;
+  padding-right: 5%;
+  padding-top: 5%; }
 
 .graph-container {
   justify-content: space-around;
-  display: flex; }
+  display: flex;
+  align-items: center; }
 
 .leaflet-container {
   height: 700px;
   width: 40%; }
+
+.map-margin {
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border: solid 3px #E67E22; }

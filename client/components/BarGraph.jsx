@@ -14,7 +14,7 @@ class BarGraph extends React.Component {
     render() { 
         return (  
             <>
-                <div className="bar-margin enter">
+                <div className="bar-margin">
                             <Chart
                                 width={'500px'}
                                 height={'300px'}

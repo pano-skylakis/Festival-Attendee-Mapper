@@ -8,7 +8,17 @@ function addGeoLocation(coords, db = connection) {
     return db('geolocation').insert(coords)
 }
 
+function getTotalUniqueUsers(db = connection){
+    return db('geolocation')
+    .distinct()
+    .pluck('user')
+    .then(user=>{
+        return user.length
+    })
+}
+
 module.exports = {
     getGeoLocations,
-    addGeoLocation
+    addGeoLocation,
+    getTotalUniqueUsers,
 }

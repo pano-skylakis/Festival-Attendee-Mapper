@@ -75,7 +75,7 @@ class App extends React.Component {
                     <div className='content'>
                         {/* <Test/> */}
                         <ApiTest/>
-                        <Map/>
+                        <Map/> 
                         <Footer/>
                 
                     </div>

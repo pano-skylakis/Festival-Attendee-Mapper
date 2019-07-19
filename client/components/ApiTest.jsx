@@ -35,7 +35,7 @@ class ApiTest extends Component {
     
     render() {
         return (
-            <h1>Yo</h1>
+            <p class="enter">Yo</p>
         );
     }
 }

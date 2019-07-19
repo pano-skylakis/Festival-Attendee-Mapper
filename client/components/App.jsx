@@ -1,11 +1,13 @@
 import React from 'react'
+const uuidv4 = require('uuid/v4')
+
 import Splash from './Splash'
-// import Test from './test'
 import Footer from './Footer'
 import Map from './Map'
+import BarGraph from './BarGraph'
+import LineGraph from './LineGraph'
 
-import { addGeoLocationApi } from '../api/geoLocationApi';
-import ApiTest from './ApiTest';
+import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
 
 
 class App extends React.Component {
@@ -13,45 +15,73 @@ class App extends React.Component {
         super(props)
 
         this.state = {
-            
+            locs: []
         }
     }
 
-    componentDidMount(){
-        this.geoLocate() 
+    componentDidMount() {
+        let userStorage = window.localStorage;
+        if (userStorage.userId){
+            console.log("Existing user found: " + userStorage.userId)
+        }else{
+            userStorage.userId = uuidv4()
+            console.log("New User Set: " + userStorage.userId)
+        }
+        this.geoLocate()
+        this.getLocations()
     }
 
 
+        // Get Locations from Database
+    getLocations = () => {
+            getGeoLocationsApi()
+                .then(locations => {
+                    this.refreshLocations(locations)
+                })
+        }
+    
+        refreshLocations = (locations) => {
+            this.setState({
+                locs: locations || []
+            })
+            console.log(this.state.locs)
+        }
 
+
+
+        // Track Locations
     geoLocate = () => {
         const error = () => {
             console.warn(`ERROR(${err.code}): ${err.message}`);
-          }
+        }
         const options = {
             enableHighAccuracy: true,
             timeout: 60000,
             maximumAge: 0
-          };
-        setInterval(function(){
+        };
+        setInterval(function () {
             navigator.geolocation.getCurrentPosition(this.saveLocation, error, options)
         }.bind(this), 3000)
     }
 
-    saveLocation =(pos) => {
+    saveLocation = (pos) => {
         let crd = pos.coords;
-        const locationTag ={}
-    
+        const locationTag = {}
 
-       if(this.outOfBoundsChecker(crd.latitude, crd.longitude)){
-        locationTag.latitude = crd.latitude
-        locationTag.longitude = crd.longitude
-        locationTag.accuracy = crd.accuracy
-        
-        this.setState({
-            geoTags: locationTag
-        })
-        addGeoLocationApi(this.state.geoTags)
-       }
+    
+        if (this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
+            locationTag.latitude = crd.latitude
+            locationTag.longitude = crd.longitude
+            locationTag.accuracy = crd.accuracy
+            locationTag.user  = window.localStorage.userId
+
+            this.setState({
+                geoTags: locationTag
+            })
+            addGeoLocationApi(this.state.geoTags)
+            this.getLocations()
+        }
+        console.log("Out of bounds!")
     }
 
     outOfBoundsChecker = (lat, long) => {
@@ -59,25 +89,26 @@ class App extends React.Component {
         const westLong = 174.772497
         const northLat = -41.290972
         const southLat = -41.297387
-    
-    
-        if(lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong){
+
+
+        if (lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong) {
             return true
         }
         return false
     }
 
-    render() { 
-        return (   
+    render() {
+        return (
             <React.Fragment>
                 <div>
-                <Splash/>
+                    <Splash />
                     <div className='content'>
-                        {/* <Test/> */}
-                        <ApiTest/>
                         <Map/> 
+                        <div className="graph-container">   
+                            <BarGraph />
+                            <LineGraph />
+                        </div> 
                         <Footer/>
-                
                     </div>
                 </div>
             </React.Fragment>

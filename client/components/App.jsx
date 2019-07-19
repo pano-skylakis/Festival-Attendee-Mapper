@@ -3,12 +3,11 @@ const uuidv4 = require('uuid/v4')
 
 import Splash from './Splash'
 import Footer from './Footer'
-import Map from './Map'
+import PrimaryMap from './Map'
 import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
 
 import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
-// import MapExample from './HeatMap';
 
 
 class App extends React.Component {
@@ -104,8 +103,7 @@ class App extends React.Component {
                 <div>
                     <Splash />
                     <div className='content'>
-                        <Map/> 
-                        {/* <MapExample/> */}
+                        <PrimaryMap/> 
                         <div className="graph-container">   
                             <BarGraph />
                             <LineGraph />

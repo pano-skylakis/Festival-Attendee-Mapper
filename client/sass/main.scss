@@ -111,14 +111,6 @@ body {
     box-shadow: 0px 12px 47px 0px rgba(0,0,0,0.75);
 }
 
-<<<<<<< HEAD
-//map component
-
-.leaflet-container {
-  height: 500px;
-  width: 50%;
-}
-=======
 .bar-margin {
   margin-bottom: 50px;
   margin-left: 5%;
@@ -135,4 +127,8 @@ body {
   justify-content: space-around;
   display: flex;
 }
->>>>>>> c7f4dd75e7ec138b4f5db64f83aad67ba0b65d5f
+
+.leaflet-container {
+  height: 700px;
+  width: 40%;
+}

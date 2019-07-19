@@ -70,12 +70,6 @@ body {
   padding: 5vw 40vw 5vw 5vw;
   box-shadow: 0px 12px 47px 0px rgba(0, 0, 0, 0.75); }
 
-<<<<<<< HEAD
-  .leaflet-container {
-    height: 700px;
-    width: 40%;
-  }
-=======
 .bar-margin {
   margin-bottom: 50px;
   margin-left: 5%;
@@ -89,4 +83,7 @@ body {
 .graph-container {
   justify-content: space-around;
   display: flex; }
->>>>>>> c7f4dd75e7ec138b4f5db64f83aad67ba0b65d5f
+
+.leaflet-container {
+  height: 700px;
+  width: 40%; }

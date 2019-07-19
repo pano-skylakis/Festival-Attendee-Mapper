@@ -1,24 +1,32 @@
 import React from 'react'
 import Splash from './Splash'
-import Test from './test'
+// import Test from './test'
 import Footer from './Footer'
+import BarGraph from './BarGraph'
+import LineGraph from './LineGraph'
+
+import { addGeoLocationApi } from '../api/geoLocationApi';
+import ApiTest from './ApiTest';
+
+
+
 
 class App extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            geoTags: [],
+            
         }
     }
 
-    componentDidMount() {
-        this.geolocate()
+    componentDidMount(){
+        this.geoLocate() 
     }
 
 
 
-    geolocate = () => {
+    geoLocate = () => {
         const error = () => {
             console.warn(`ERROR(${err.code}): ${err.message}`);
           }
@@ -32,22 +40,35 @@ class App extends React.Component {
         }.bind(this), 3000)
     }
 
-saveLocation =(pos) => {
-    let crd = pos.coords;
-    const locationTag ={}
-   
+    saveLocation =(pos) => {
+        let crd = pos.coords;
+        const locationTag ={}
+    
 
-    locationTag.latitude = crd.latitude
-    locationTag.longitude = crd.longitude
-    locationTag.accuracy = crd.accuracy
-    locationTag.timestamp = Date.now()
-    console.log(locationTag)
+       if(this.outOfBoundsChecker(crd.latitude, crd.longitude)){
+        locationTag.latitude = crd.latitude
+        locationTag.longitude = crd.longitude
+        locationTag.accuracy = crd.accuracy
+        
+        this.setState({
+            geoTags: locationTag
+        })
+        addGeoLocationApi(this.state.geoTags)
+       }
+    }
 
-    // Set state
-    this.setState({
-        geoTags: [...this.state.geoTags, locationTag]
-    })
-}
+    outOfBoundsChecker = (lat, long) => {
+        const eastLong = 174.780310
+        const westLong = 174.772497
+        const northLat = -41.290972
+        const southLat = -41.297387
+    
+    
+        if(lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong){
+            return true
+        }
+        return false
+    }
 
     render() { 
         return (   
@@ -55,16 +76,14 @@ saveLocation =(pos) => {
                 <div>
                 <Splash/>
                     <div className='content'>
-                        <Test/>
+                        {/* <ApiTest /> */}
                         
-                        <ul>
-                            {this.state.geoTags.map(tag =>{
-                            return <li>Lat: {tag.latitude} Long: {tag.longitude} Accurate to: {tag.accuracy} meters</li>
-                            })}
-                        </ul>
-
+                        <div className="graph-container">   
+                            <BarGraph />
+                            <LineGraph />
+                        </div> 
+                        
                         <Footer/>
-                    
                 
                     </div>
                 </div>

@@ -7,7 +7,6 @@ import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
 
 import { addGeoLocationApi } from '../api/geoLocationApi';
-import ApiTest from './ApiTest';
 
 
 
@@ -107,7 +106,7 @@ class App extends React.Component {
             <React.Fragment>
                 <div>
                     <Splash />
-                    <div className='content'>                        
+                    <div className='content'>
                         <div className="graph-container">   
                             <BarGraph />
                             <LineGraph />

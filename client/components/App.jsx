@@ -2,7 +2,6 @@ import React from 'react'
 const uuidv4 = require('uuid/v4')
 
 import Splash from './Splash'
-// import Test from './test'
 import Footer from './Footer'
 
 import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
@@ -66,7 +65,7 @@ class App extends React.Component {
         let crd = pos.coords;
         const locationTag = {}
 
-
+    
         if (this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
             locationTag.latitude = crd.latitude
             locationTag.longitude = crd.longitude

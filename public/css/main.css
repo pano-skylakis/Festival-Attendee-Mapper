@@ -71,7 +71,7 @@ body {
   box-shadow: 0px 12px 47px 0px rgba(0, 0, 0, 0.75); }
 
 .graph-padding {
-  padding-bottom: 50px;
+  padding-bottom: 18vh;
   padding-right: 5%;
   padding-top: 5%; }
 
@@ -81,10 +81,11 @@ body {
   align-items: center; }
 
 .leaflet-container {
-  height: 700px;
-  width: 40%; }
+  height: 60vh;
+  width: 45vw; }
 
 .map-margin {
   margin-top: 5%;
   margin-bottom: 5%;
-  border: solid 3px #E67E22; }
+  border-radius: 4px;
+  box-shadow: 0px 0px 14px -6px rgba(0, 0, 0, 0.75); }

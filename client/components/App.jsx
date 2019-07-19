@@ -8,6 +8,7 @@ import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
 
 import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
+// import MapExample from './HeatMap';
 
 
 class App extends React.Component {
@@ -104,6 +105,7 @@ class App extends React.Component {
                     <Splash />
                     <div className='content'>
                         <Map/> 
+                        {/* <MapExample/> */}
                         <div className="graph-container">   
                             <BarGraph />
                             <LineGraph />

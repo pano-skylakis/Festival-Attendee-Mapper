@@ -3,8 +3,8 @@ exports.up = function(knex) {
   return knex.schema.createTable('geolocation', table => {
       table.increments('id').primary()
       table.timestamp('timestamp').defaultTo(knex.fn.now())
-      table.float('latitude')
-      table.float('longitude')
+      table.decimal('latitude')
+      table.decimal('longitude')
       table.string('user')
   })
 };

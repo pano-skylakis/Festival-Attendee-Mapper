@@ -87,3 +87,10 @@ body {
 .leaflet-container {
   height: 700px;
   width: 40%; }
+
+.temp-button {
+  background-color: #ddd;
+  height: 50px;
+  width: 50%; }
+  .temp-button:hover {
+    cursor: pointer; }

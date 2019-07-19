@@ -7,7 +7,7 @@ import PrimaryMap from './Map'
 import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
 
-import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
+import { addGeoLocationApi, getGeoLocationsApi, getGeoLocationByTimeApi } from '../api/geoLocationApi';
 
 
 class App extends React.Component {
@@ -98,11 +98,16 @@ class App extends React.Component {
     //     return false
     // }
 
+    handleClick = (e) => {
+        getGeoLocationByTimeApi(e.target.dataset.greater, e.target.dataset.less)
+    }
+
     render() {
         return (
             <React.Fragment>
                 <div>
                     <Splash />
+                    <button className='temp-button' onClick={this.handleClick} data-greater={1563548700} data-less={1563552300}>2pm - 3pm</button>
                     <div className='content'>
                         <PrimaryMap/> 
                         <div className="graph-container">   

@@ -8,7 +8,12 @@ function addGeoLocation(coords, db = connection) {
     return db('geolocation').insert(coords)
 }
 
+function getGeoLocationsByTime(timeGreaterThan, timeLessThan, db = connection) {
+    return db('geolocation').where('timestamp', '>', timeGreaterThan).andWhere('timestamp', '<', timeLessThan)
+}
+
 module.exports = {
     getGeoLocations,
-    addGeoLocation
+    addGeoLocation,
+    getGeoLocationsByTime
 }

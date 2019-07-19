@@ -16,7 +16,7 @@ class BarGraph extends React.Component {
         return (  
             <>
                 <div className="bar-margin">
-                            <h3 className="middle">Attendees by Year</h3>
+                            <h3 className="padding-title">Attendees by Year</h3>
                             <Chart className="chart"
                                 width={'40vw'}
                                 height={'40vh'}
@@ -56,9 +56,8 @@ class BarGraph extends React.Component {
                                 // For tests
                                 rootProps={{ 'data-testid': '1' }}
                                 />
-                              
                             </div>
-                            <Buttons/>
+                            
             </>
         );
     }

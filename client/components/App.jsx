@@ -7,6 +7,7 @@ import Map from './Map'
 import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
 import ScatterGraph from './ScatterGraph'
+import Buttons from './Buttons'
 
 import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
 
@@ -19,7 +20,6 @@ class App extends React.Component {
             locs: [],
             barGraph: true,
             lineGraph: false,
-            scatterGraph: false
         }
     }
 
@@ -101,6 +101,20 @@ class App extends React.Component {
         return false
     }
 
+    handleClick = () => {
+        if(this.state.barGraph) {
+            this.setState({
+                barGraph: false,
+                lineGraph: true,
+            })
+        } else if(this.state.lineGraph){
+            this.setState({
+                barGraph: true,
+                lineGraph: false,
+            })
+        }
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -111,8 +125,8 @@ class App extends React.Component {
                             <Map />
                             <div className="graph-padding">
                                 {this.state.barGraph && <BarGraph />}
-                                {this.state.LineGraph && <LineGraph />}
-                                {this.state.ScatterGraph && <ScatterGraph />}
+                                {this.state.lineGraph && <LineGraph />}
+                                <p onClick={this.handleClick} className="toggle-button">Another Graph</p>
                             </div>
                         </div> 
                         <Footer/>

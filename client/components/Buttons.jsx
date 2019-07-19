@@ -12,8 +12,8 @@ class BarGraph extends React.Component {
 
     render() { 
         return (  
-         <div className="buttons">
-             <div className="button-one"></div>
+         <div>
+            
          </div>
           
         )

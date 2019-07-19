@@ -5,6 +5,7 @@ import Splash from './Splash'
 import Footer from './Footer'
 import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
+import ScatterGraph from './ScatterGraph'
 
 import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
 
@@ -14,9 +15,21 @@ class App extends React.Component {
         super(props)
 
         this.state = {
-            locs: []
+            locs: [],
+            renderLine: false,
+            renderBar: false,
         }
     }
+
+    showLineGraph(props) {
+        const renderLine = props.renderLine;
+        if (renderLine) {
+            return <LineGraph />
+        }
+        return <BarGraph />
+    }
+
+    
 
     componentDidMount() {
         let userStorage = window.localStorage;
@@ -105,6 +118,7 @@ class App extends React.Component {
                         <div className="graph-container">   
                             <BarGraph />
                             <LineGraph />
+                            <ScatterGraph />
                         </div> 
                         <Footer/>
                     </div>

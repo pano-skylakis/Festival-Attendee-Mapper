@@ -1,25 +1,27 @@
 import React from 'react'
-
-
+import { Map as LeafletMap, TileLayer } from 'react-leaflet'
 
 class Map extends React.Component {
-    constructor(props) {
-        super(props)
-        
-        this.state = {
+  constructor() {
+    super()
 
-        }
+    this.state = {
+      lat: -41.293699,
+      lng: 174.775497,
+      zoom: 16
     }
+  }
 
-
-    render() { 
-        return (  
-            <React.Fragment>
-                <h2>Hi I'm a map!!</h2>
-            </React.Fragment>
-        );
-    }
+  render() {
+    const position = [this.state.lat, this.state.lng];
+    return (
+      <LeafletMap center={position} zoom={this.state.zoom}>
+        <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
+      </LeafletMap>
+    );
+  }
 }
- 
+  
+
 export default Map;
 

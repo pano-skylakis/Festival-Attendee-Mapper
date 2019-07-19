@@ -109,9 +109,9 @@ class App extends React.Component {
     handleDateChange = e => {
         console.log(e.target.value)
         let date = e.target.value
-        let unixTimestamp = moment(`${date}`).unix()
+        let unixTimestamp = moment(`${e.target.value}`).unix()
         console.log(unixTimestamp)
-        // this.setState({currentDate: e.target.value})
+        this.setState({currentDate: e.target.value})
     }
 
 

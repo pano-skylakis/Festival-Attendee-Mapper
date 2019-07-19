@@ -17,7 +17,8 @@ class App extends React.Component {
         super(props)
 
         this.state = {
-            locs: []
+            locs: [],
+            sliderValue: '12'
         }
     }
 
@@ -115,6 +116,12 @@ class App extends React.Component {
     }
 
 
+    handleSliderChange = e => {
+        console.log(e.target.value)
+        this.setState({sliderValue: e.target.value})
+    }
+
+
     render() {
         return (
             <React.Fragment>
@@ -122,6 +129,9 @@ class App extends React.Component {
                     <Splash />
                     <input type="date" onChange={this.handleDateChange}/>
                     <button className='temp-button' onClick={this.handleClick} data-greater={1563548700} data-less={1563552300}>2pm - 3pm</button>
+                    <div className="slidecontainer">
+                        <input type="range" min="00" max="23" value={this.state.sliderValue} className="slider" id="myRange" onChange={this.handleSliderChange}/>
+                    </div>
                     <div className='content'>
                         <PrimaryMap/> 
                         <div className="graph-container">   

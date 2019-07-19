@@ -6,11 +6,6 @@ import Footer from './Footer'
 import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
 
-import { addGeoLocationApi } from '../api/geoLocationApi';
-
-
-
-
 import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
 
 

@@ -1,4 +1,6 @@
 import React from 'react'
+import moment from 'moment'
+
 const uuidv4 = require('uuid/v4')
 
 import Splash from './Splash'
@@ -98,15 +100,27 @@ class App extends React.Component {
     //     return false
     // }
 
-    handleClick = (e) => {
+
+    handleClick = e => {
         getGeoLocationByTimeApi(e.target.dataset.greater, e.target.dataset.less)
     }
+
+    
+    handleDateChange = e => {
+        console.log(e.target.value)
+        let date = e.target.value
+        let unixTimestamp = moment(`${date}`).unix()
+        console.log(unixTimestamp)
+        // this.setState({currentDate: e.target.value})
+    }
+
 
     render() {
         return (
             <React.Fragment>
                 <div>
                     <Splash />
+                    <input type="date" onChange={this.handleDateChange}/>
                     <button className='temp-button' onClick={this.handleClick} data-greater={1563548700} data-less={1563552300}>2pm - 3pm</button>
                     <div className='content'>
                         <PrimaryMap/> 

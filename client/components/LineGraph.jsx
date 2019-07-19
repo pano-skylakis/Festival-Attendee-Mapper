@@ -42,7 +42,7 @@ class LineGraph extends React.Component {
                         }}
                         rootProps={{ 'data-testid': '2' }}
                         />
-                            </div>
+                    </div>
             </>
         );
     }

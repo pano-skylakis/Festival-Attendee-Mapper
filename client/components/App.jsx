@@ -6,8 +6,6 @@ import Footer from './Footer'
 import Map from './Map'
 import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
-import ScatterGraph from './ScatterGraph'
-import Buttons from './Buttons'
 
 import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
 
@@ -102,17 +100,7 @@ class App extends React.Component {
     }
 
     handleClick = () => {
-        if(this.state.barGraph) {
-            this.setState({
-                barGraph: false,
-                lineGraph: true,
-            })
-        } else if(this.state.lineGraph){
-            this.setState({
-                barGraph: true,
-                lineGraph: false,
-            })
-        }
+        this.state.barGraph ? this.setState({barGraph: false, lineGraph: true}) : this.setState({barGraph: true, lineGraph: false})
     }
 
     render() {

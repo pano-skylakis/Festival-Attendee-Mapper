@@ -1,6 +1,5 @@
 import React from 'react'
 import { Chart } from "react-google-charts";
-import Buttons from './Buttons'
 
 class BarGraph extends React.Component {
     constructor(props) {

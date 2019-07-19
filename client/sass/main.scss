@@ -2,6 +2,8 @@
 $color-white:white;
 $color-grey: rgba(44, 44, 44, 0.89);
 $color-orange: #FF9C00;
+$color-button: #E67E22;
+$color-footer: rgb(197, 197, 197);
 
 //media queries
 
@@ -43,7 +45,7 @@ body {
     text-align: center;
 }
 
-//arrow stuff
+//Splash-Arrow
 .arrow
 {
   cursor: pointer;
@@ -83,7 +85,7 @@ body {
 
 .content {
     font-family: 'Raleway', sans-serif;
-    background-color: white;
+    background-color: $color-white;
 }
 
 //other components
@@ -104,7 +106,7 @@ body {
 .footer {
 
     background-color:$color-grey;
-    color: rgb(197, 197, 197);
+    color: $color-footer;
     left: 0;
     right: 0;
     padding: 5vw 40vw 5vw 5vw;
@@ -138,8 +140,8 @@ body {
 
 //button
 .toggle-button {
-  color: #E67E22;
-  border: 4px solid #E67E22;
+  color: $color-button;
+  border: 4px solid $color-button;
   border-radius: 32px;
   padding: 10px 30px;
   margin: 20px 200px 0 150px;
@@ -153,5 +155,5 @@ body {
 
 .padding-title {
   padding-left: 13vw;
-  color: #E67E22;
+  color: $color-button;
 }

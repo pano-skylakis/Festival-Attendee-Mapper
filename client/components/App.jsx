@@ -3,6 +3,8 @@ const uuidv4 = require('uuid/v4')
 
 import Splash from './Splash'
 import Footer from './Footer'
+import BarGraph from './BarGraph'
+import LineGraph from './LineGraph'
 
 import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
 
@@ -100,7 +102,11 @@ class App extends React.Component {
                 <div>
                     <Splash />
                     <div className='content'>
-                    <Footer/>
+                        <div className="graph-container">   
+                            <BarGraph />
+                            <LineGraph />
+                        </div> 
+                        <Footer/>
                     </div>
                 </div>
             </React.Fragment>

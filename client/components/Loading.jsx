@@ -5,7 +5,7 @@ class Loading extends React.Component {
     render() { 
         return ( 
             <>
-            <h2>I am a Loading Component</h2>
+                <h2>I am a Loading Component</h2>
             </>
          );
     }

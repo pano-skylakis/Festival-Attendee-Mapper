@@ -88,17 +88,6 @@ body {
 
 //other components
 
-//test
-
-
-.test-paragraph {
-   margin-left: 20vw;
-   margin-right: 20vw;
-   margin-top: 30vh;
-   margin-bottom: 30vh
-
-}
-
 //footer component 
 
 .footer {
@@ -137,4 +126,43 @@ body {
 }
 
 //buttons
+
+//statsbar
+
+.statsbar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding-top: 10vh;
+}
+
+.stats-1, .stats-2, .stats-3, .stats-4 {
+  height: 155px;
+  width: 20vw;
+  background-color: $color-orange;
+   text-align: center;
+} 
+
+.stats-big {
+  font-size: 3.5em;
+  color: $color-grey;
+  margin-bottom: 0;
+  margin-top: 3vh;
+}
+
+.stats-little {
+  color: #0d0d0d
+}
+
+.stats-1 {
+  background-color: $color-grey;
+  color: white;
+}
+
+.stats-1-big {
+  color: $color-orange;
+  font-size: 3.5em;
+  margin-bottom: 0;
+  margin-top: 3vh;
+}
 

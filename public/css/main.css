@@ -56,12 +56,6 @@ body {
   font-family: 'Raleway', sans-serif;
   background-color: white; }
 
-.test-paragraph {
-  margin-left: 20vw;
-  margin-right: 20vw;
-  margin-top: 30vh;
-  margin-bottom: 30vh; }
-
 .footer {
   background-color: rgba(44, 44, 44, 0.89);
   color: #c5c5c5;
@@ -89,3 +83,34 @@ body {
   margin-bottom: 5%;
   border-radius: 4px;
   box-shadow: 0px 0px 14px -6px rgba(0, 0, 0, 0.75); }
+
+.statsbar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding-top: 10vh; }
+
+.stats-1, .stats-2, .stats-3, .stats-4 {
+  height: 155px;
+  width: 20vw;
+  background-color: #FF9C00;
+  text-align: center; }
+
+.stats-big {
+  font-size: 3.5em;
+  color: rgba(44, 44, 44, 0.89);
+  margin-bottom: 0;
+  margin-top: 3vh; }
+
+.stats-little {
+  color: #0d0d0d; }
+
+.stats-1 {
+  background-color: rgba(44, 44, 44, 0.89);
+  color: white; }
+
+.stats-1-big {
+  color: #FF9C00;
+  font-size: 3.5em;
+  margin-bottom: 0;
+  margin-top: 3vh; }

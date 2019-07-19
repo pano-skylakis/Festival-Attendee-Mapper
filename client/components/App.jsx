@@ -7,6 +7,7 @@ import Map from './Map'
 import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
 import ScatterGraph from './ScatterGraph'
+import Stats from './Stats'
 
 import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
 
@@ -107,14 +108,15 @@ class App extends React.Component {
                 <div>
                     <Splash />
                     <div className='content'>
-                        <div className="graph-container">
+                        <Stats/>
+                         <div className="graph-container">
                             <Map />
                             <div className="graph-padding">
                                 {this.state.barGraph && <BarGraph />}
                                 {this.state.LineGraph && <LineGraph />}
                                 {this.state.ScatterGraph && <ScatterGraph />}
                             </div>
-                        </div> 
+                            </div> 
                         <Footer/>
                     </div>
                 </div>

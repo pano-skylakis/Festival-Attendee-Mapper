@@ -3,6 +3,7 @@ const uuidv4 = require('uuid/v4')
 
 import Splash from './Splash'
 import Footer from './Footer'
+import Map from './Map'
 import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
 import ScatterGraph from './ScatterGraph'
@@ -115,6 +116,7 @@ class App extends React.Component {
                 <div>
                     <Splash />
                     <div className='content'>
+                        <Map/> 
                         <div className="graph-container">   
                             <BarGraph />
                             <LineGraph />

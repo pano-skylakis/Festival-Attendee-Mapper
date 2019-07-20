@@ -102,11 +102,6 @@ class App extends React.Component {
     //     return false
     // }
 
-
-    handleClick = e => {
-        getGeoLocationByTimeApi(e.target.dataset.greater, e.target.dataset.less)
-    }
-
     
     handleDateChange = e => {
         this.setState({currentDate: e.target.value})
@@ -135,7 +130,6 @@ class App extends React.Component {
                 <div>
                     <Splash />
                     <input type="date" onChange={this.handleDateChange}/>
-                    <button className='temp-button' onClick={this.handleClick} data-greater={1563548700} data-less={1563552300}>2pm - 3pm</button>
                     <div className="slidecontainer">
                         <input type="range" min="0" max="23" value={this.state.sliderValue} className="slider" id="myRange" onChange={this.handleSliderChange}/>
                     </div>

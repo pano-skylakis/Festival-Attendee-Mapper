@@ -1,4 +1,5 @@
 import React from 'react'
+import { getTotalUniqueUsersApi } from '../api/geoLocationApi';
 
 
 
@@ -7,8 +8,15 @@ class Stats extends React.Component {
         super(props)
         
         this.state = {
-
+          uniqueUsers: null,
         }
+    }
+
+    componentDidMount() {
+      getTotalUniqueUsersApi()
+        .then(data => {
+          this.setState({uniqueUsers: data})
+        })
     }
 
     render() { 
@@ -21,7 +29,7 @@ class Stats extends React.Component {
               
 
               <div className="stats-2">
-                <p className="stats-big">50,821</p>
+                <p className="stats-big">{`${this.state.uniqueUsers}`}</p>
                 <p className="stats-little">users tracked to date</p>
               </div>
               

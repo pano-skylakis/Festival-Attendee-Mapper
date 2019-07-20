@@ -119,13 +119,7 @@ class App extends React.Component {
     let date = "";
 
     this.setState({ sliderValue: e.target.value });
-    Number(this.state.sliderValue) < 10
-      ? (date = `${this.state.currentDate}T0${
-          this.state.sliderValue
-        }:00:55+0000`)
-      : (date = `${this.state.currentDate}T${
-          this.state.sliderValue
-        }:00:55+0000`);
+    Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
 
     let unixTimestamp = moment(`${date}`).unix();
 
@@ -133,9 +127,7 @@ class App extends React.Component {
   };
 
   handleClick = () => {
-    this.state.barGraph
-      ? this.setState({ barGraph: false, lineGraph: true })
-      : this.setState({ barGraph: true, lineGraph: false });
+    this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true }) : this.setState({ barGraph: true, lineGraph: false });
   };
 
   render() {
@@ -165,11 +157,12 @@ class App extends React.Component {
             </div>
 
             <Map />
+
             <div className="graph-padding">
               {this.state.barGraph && <BarGraph />}
               {this.state.lineGraph && <LineGraph />}
               <p onClick={this.handleClick} className="toggle-button">
-                Change Graph
+                Toggle Graph
               </p>
             </div>
           </div>

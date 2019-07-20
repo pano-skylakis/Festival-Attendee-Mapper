@@ -26,3 +26,11 @@ export function getGeoLocationByTimeApi(greaterThan, lessThan) {
                 return res.body
             })
 }
+
+
+export function getTotalUniqueUsersApi() {
+    return request.get(`${route}/totaluniqueusers`)
+        .then(res => {
+            return res.body
+        })
+}

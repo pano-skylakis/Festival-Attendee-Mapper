@@ -6,10 +6,7 @@ import Footer from './Footer'
 import Map from './Map'
 import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
-<<<<<<< HEAD
 import ScatterGraph from './ScatterGraph'
-=======
->>>>>>> d53efc6987b62356c2a1c953189de13ad207d011
 import Stats from './Stats'
 
 import { addGeoLocationApi, getGeoLocationsApi } from '../api/geoLocationApi';
@@ -113,17 +110,11 @@ class App extends React.Component {
             <React.Fragment>
                 <div>
                     <Splash />
-<<<<<<< HEAD
-                    <div className='content'>
-                        <Stats/>
-                         <div className="graph-container">
-=======
                     <div className='content enter'>
                         <div data-aos="flip-up" data-aos-duration="2000">
                             <Stats/>
                         </div>
                         <div data-aos="fade-up" data-aos-duration="3000" className="graph-container">
->>>>>>> d53efc6987b62356c2a1c953189de13ad207d011
                             <Map />
                             <div className="graph-padding">
                                 {this.state.barGraph && <BarGraph />}

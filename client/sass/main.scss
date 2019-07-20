@@ -1,18 +1,22 @@
-//colours
+//Colours
+
 $color-white:white;
 $color-grey: rgba(44, 44, 44, 0.89);
 $color-orange: #FF9C00;
 $color-button: #E67E22;
 $color-footer: rgb(197, 197, 197);
+$fill: #a972cb;
 
-//media queries
+//Media Queries
 
 body {
   margin: 0;
   background-color: #0d0d0d;
 }
 
-//splash component
+//Splash Component
+
+// // Splash animation for the title.
 
 .tracking-in-contract {
     padding-top: 20%;
@@ -24,6 +28,14 @@ body {
     color:black;
 }
 
+.splash {
+  width: 100vw;
+  height: 100vh;
+  background-image:  url("https://images.unsplash.com/photo-1468234560893-89c00b6385c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2693&q=80");
+  background-size: cover;
+  box-shadow: 0px 7px 21px -2px rgba(0,0,0,0.5);
+  overflow: scroll; // Fix for the shadow
+}
   
 @keyframes tracking-in-contract {
     0% {
@@ -45,7 +57,8 @@ body {
     text-align: center;
 }
 
-//Splash-Arrow
+//Splash Arrow
+
 .arrow
 {
   cursor: pointer;
@@ -74,23 +87,15 @@ body {
 
 }
 
-.splash {
-    width: 100vw;
-    height: 100vh;
-    background-image:  url("https://images.unsplash.com/photo-1468234560893-89c00b6385c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2693&q=80");
-    background-size: cover;
-    box-shadow: 0px 7px 21px -2px rgba(0,0,0,0.5);
-    overflow: scroll; // fix for the shadow
-}
-
 .content {
     font-family: 'Raleway', sans-serif;
     background-color: $color-white;
+    box-shadow: 0px 7px 21px -2px rgba(0,0,0,0.5);
 }
 
-//other components
+//Other components
 
-//test
+//Test (Not sure what this is sorry)
 
 
 .test-paragraph {
@@ -101,7 +106,7 @@ body {
 
 }
 
-//footer component 
+//Footer Component (Bottom of the page)
 
 .footer {
 
@@ -113,6 +118,8 @@ body {
     box-shadow: 0px 12px 47px 0px rgba(0,0,0,0.75);
 }
 
+
+// Graph and Map styling (Aligning the map and graphs nicely)
 
 .graph-padding {
   padding-bottom: 18vh;
@@ -138,9 +145,11 @@ body {
   box-shadow: 0px 0px 14px -6px rgba(0,0,0,0.75);
 }
 
-//button
+//Button (Just the button to change between Bar Graph and Line Graph components)
+
 .toggle-button {
   color: $color-button;
+  background-color: $color-white;
   border: 4px solid $color-button;
   border-radius: 32px;
   padding: 10px 30px;
@@ -151,9 +160,63 @@ body {
   display: flex;
   justify-content: center;
   cursor: pointer;
+  transition: 0.5s;
+
+  &:hover,
+  &:focus { 
+    background-color: $color-button;
+    color: #fff;
+  }
 }
 
 .padding-title {
   padding-left: 13vw;
   color: $color-button;
+}
+
+// Stats! (Displays the Stat bar above the map and graphs (Thanks Tess and Q))
+
+.statsbar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding-top: 10vh;
+}
+
+.stats-1, .stats-2, .stats-3, .stats-4 {
+  height: 155px;
+  width: 20vw;
+  background-color: $color-orange;
+   text-align: center;
+} 
+
+.stats-big {
+  font-size: 3.5em;
+  color: $color-grey;
+  margin-bottom: 0;
+  margin-top: 3vh;
+}
+
+.stats-little {
+  color: #0d0d0d
+}
+
+.stats-1 {
+  background-color: $color-grey;
+  color: white;
+}
+
+.stats-1-big {
+  color: $color-orange;
+  font-size: 3.5em;
+  margin-bottom: 0;
+  margin-top: 3vh;
+}
+
+// Second Content Area (Potentially where graphs will be?)
+
+.test-area {
+  background-color: #E6E6E6;
+  width: 100vw;
+  height: 500px;
 }

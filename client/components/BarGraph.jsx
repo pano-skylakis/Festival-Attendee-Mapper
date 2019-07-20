@@ -23,8 +23,8 @@ class BarGraph extends React.Component {
                                 loader={<div>Loading Chart</div>}
                                 data={[
                                     ['Time', '2019', '2018'],
-                                    ['10AM', 8440,  8440],
-                                    ['11AM', 5600,  5600],
+                                    ['10AM', 7328,  8440],
+                                    ['11AM', 6863,  5600],
                                     ['12PM', 15877, 12187],
                                     ['1PM', 13449, 12149],
                                     ['2PM', 12888, 11388],

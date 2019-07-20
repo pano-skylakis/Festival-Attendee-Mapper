@@ -11,6 +11,14 @@ body {
   font-weight: semi-bold;
   color: black; }
 
+.splash {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1468234560893-89c00b6385c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2693&q=80");
+  background-size: cover;
+  box-shadow: 0px 7px 21px -2px rgba(0, 0, 0, 0.5);
+  overflow: scroll; }
+
 @keyframes tracking-in-contract {
   0% {
     letter-spacing: 1em;
@@ -44,17 +52,10 @@ body {
   40% {
     transform: translateY(-20px); } }
 
-.splash {
-  width: 100vw;
-  height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1468234560893-89c00b6385c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2693&q=80");
-  background-size: cover;
-  box-shadow: 0px 7px 21px -2px rgba(0, 0, 0, 0.5);
-  overflow: scroll; }
-
 .content {
   font-family: 'Raleway', sans-serif;
-  background-color: white; }
+  background-color: white;
+  box-shadow: 0px 7px 21px -2px rgba(0, 0, 0, 0.5); }
 
 .test-paragraph {
   margin-left: 20vw;
@@ -92,6 +93,7 @@ body {
 
 .toggle-button {
   color: #E67E22;
+  background-color: white;
   border: 4px solid #E67E22;
   border-radius: 32px;
   padding: 10px 30px;
@@ -101,8 +103,48 @@ body {
   line-height: 1.15;
   display: flex;
   justify-content: center;
-  cursor: pointer; }
+  cursor: pointer;
+  transition: 0.5s; }
+  .toggle-button:hover, .toggle-button:focus {
+    background-color: #E67E22;
+    color: #fff; }
 
 .padding-title {
   padding-left: 13vw;
   color: #E67E22; }
+
+.statsbar {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  padding-top: 10vh; }
+
+.stats-1, .stats-2, .stats-3, .stats-4 {
+  height: 155px;
+  width: 20vw;
+  background-color: #FF9C00;
+  text-align: center; }
+
+.stats-big {
+  font-size: 3.5em;
+  color: rgba(44, 44, 44, 0.89);
+  margin-bottom: 0;
+  margin-top: 3vh; }
+
+.stats-little {
+  color: #0d0d0d; }
+
+.stats-1 {
+  background-color: rgba(44, 44, 44, 0.89);
+  color: white; }
+
+.stats-1-big {
+  color: #FF9C00;
+  font-size: 3.5em;
+  margin-bottom: 0;
+  margin-top: 3vh; }
+
+.test-area {
+  background-color: #E6E6E6;
+  width: 100vw;
+  height: 500px; }

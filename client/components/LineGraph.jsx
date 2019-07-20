@@ -22,10 +22,21 @@ class LineGraph extends React.Component {
                         loader={<div>Loading Chart</div>}
                         data={[
                             ['Time', '2019', '2018'],
-                            ['6PM', 3730, 2878],
-                            ['7PM', 5800, 4698],
-                            ['8PM', 4900, 4269],
-                            ['9PM', 4180, 3278],
+                            ['10AM', 7328,  8440],
+                            ['11AM', 6863,  5600],
+                            ['12PM', 15877, 12187],
+                            ['1PM', 13449, 12149],
+                            ['2PM', 12888, 11388],
+                            ['3PM', 10999, 9999],
+                            ['4PM', 12098, 10098],
+                            ['5PM', 13788, 10788],
+                            ['6PM', 17668, 14668],
+                            ['7PM', 16872, 12872],
+                            ['8PM', 14092, 11092],
+                            ['9PM', 13908, 12908],
+                            ['10PM', 12331, 9543],
+                            ['11PM', 11721, 10829],
+                            ['12AM', 9003,  7892]
                         ]}
                         options={{
                             colors: ['#E67E22', '#EB984E'],
@@ -34,10 +45,6 @@ class LineGraph extends React.Component {
                             },
                             vAxis: {
                             title: 'Attendance',
-                            },
-                            series: {
-                            1: { curveType: 'function' },
-                            2: { curveType: 'function' },
                             },
                         }}
                         rootProps={{ 'data-testid': '2' }}

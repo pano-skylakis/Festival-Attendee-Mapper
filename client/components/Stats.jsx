@@ -9,6 +9,7 @@ class Stats extends React.Component {
         
         this.state = {
           uniqueUsers: null,
+          geoLocationData: this.props.geoLocationData
         }
     }
 
@@ -17,6 +18,10 @@ class Stats extends React.Component {
         .then(data => {
           this.setState({uniqueUsers: data})
         })
+    }
+
+    componentWillReceiveProps(nextProps) {
+      this.setState({geoLocationData: nextProps.geoLocationData})
     }
 
     render() { 
@@ -34,8 +39,8 @@ class Stats extends React.Component {
               </div>
               
               <div className="stats-3">
-              <p className="stats-big">76%</p>
-              <p className="stats-little">users accept location tracking</p>
+              <p className="stats-big">{this.state.geoLocationData.length}</p>
+              <p className="stats-little">locations pinged</p>
               </div>
 
               <div className="stats-4">

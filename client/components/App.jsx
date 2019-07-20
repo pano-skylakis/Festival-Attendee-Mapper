@@ -55,13 +55,6 @@ class App extends React.Component {
     });
   };
 
-  refreshLocations = locations => {
-    this.setState({
-      locs: locations || []
-    });
-    console.log(this.state.locs);
-  };
-
   // Track Locations
   // geoLocate = () => {
   //     const error = () => {
@@ -114,7 +107,7 @@ class App extends React.Component {
   };
 
   handleSliderChange = e => {
-    // 2019-07-20T11:06:55+0000  <<< this is the format it needs to be in (ISO8106)
+    // 2019-07-20T11:06:55+0000  <<< this is the format the date must be in (ISO8106)
 
     let date = "";
 
@@ -136,7 +129,7 @@ class App extends React.Component {
         <Splash />
         <div className="content enter">
           <div data-aos="flip-up" data-aos-duration="2000">
-            <Stats />
+            <Stats geoLocationData={this.state.locs}/>
           </div>
           <div
             data-aos="fade-up"

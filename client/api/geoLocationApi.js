@@ -13,7 +13,7 @@ export function getGeoLocationsApi() {
 
 export function addGeoLocationApi(body) {
     return request.post(route)
-        .send({latitude: body.latitude, longitude: body.longitude, latitude_rounded: body.latitude, longitude_rounded: body.longitude, user: body.user})
+        .send({latitude: body.latitude, longitude: body.longitude, user: body.user})
         .end((err, res) => {
             err ? err : res
         })
@@ -21,7 +21,7 @@ export function addGeoLocationApi(body) {
 
 
 export function getGeoLocationByTimeApi(greaterThan, lessThan) {
-    return request.get(`${route}/${greaterThan}-${lessThan}`)
+    return request.get(`${route}/timestamp/${greaterThan}-${lessThan}`)
             .then(res => {
                 return res.body
             })

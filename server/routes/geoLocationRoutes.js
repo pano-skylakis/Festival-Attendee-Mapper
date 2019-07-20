@@ -23,8 +23,9 @@ router.post('/', (req, res) => {
         })
 })
 
+//users = int of the total number of unqiue users in DB
 
-router.get('/:timestamp', (req, res) => {
+router.get('/timestamp/:timestamp', (req, res) => {
     let dates = req.params.timestamp.split('-')
     let greaterThan = parseInt(dates[0])
     let lessThan = parseInt(dates[1])
@@ -37,13 +38,14 @@ router.get('/:timestamp', (req, res) => {
         })
 })
 
-
-//users = int of the total number of unqiue users in DB
 router.get('/totaluniqueusers', (req, res)=>{
     db.getTotalUniqueUsers()
     .then(users =>{
         res.json(users)
     })
 })
+
+
+
 
 module.exports = router

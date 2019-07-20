@@ -9,6 +9,4 @@ jspm_packages/
 # Webpack bundles
 bundle.*
 dev.sqlite3
-
-
 npm-debug.log

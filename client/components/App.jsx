@@ -5,7 +5,7 @@ const uuidv4 = require('uuid/v4')
 
 import Splash from './Splash'
 import Footer from './Footer'
-import PrimaryMap from './Map'
+import Map from './Map'
 import BarGraph from './BarGraph'
 import LineGraph from './LineGraph'
 
@@ -19,7 +19,9 @@ class App extends React.Component {
         this.state = {
             locs: [],
             currentDate: '',
-            sliderValue: '12'
+            sliderValue: '12',
+            barGraph: true,
+            lineGraph: false
         }
     }
 
@@ -38,9 +40,15 @@ class App extends React.Component {
 
         // Get Locations from Database
     getLocations = () => {
-        getGeoLocationsApi()
-            .then(locations => {
-                this.refreshLocations(locations)
+            getGeoLocationsApi()
+                .then(locations => {
+                    this.refreshLocations(locations)
+                })
+        }
+    
+        refreshLocations = (locations) => {
+            this.setState({
+                locs: locations || [],
             })
         }
     
@@ -121,6 +129,9 @@ class App extends React.Component {
         getGeoLocationByTimeApi(unixTimestamp,  unixTimestamp + 3601)
     }
 
+    handleClick = () => {
+        this.state.barGraph ? this.setState({barGraph: false, lineGraph: true}) : this.setState({barGraph: true, lineGraph: false})
+    }
 
     render() {
         return (
@@ -132,10 +143,13 @@ class App extends React.Component {
                         <input type="range" min="0" max="23" value={this.state.sliderValue} className="slider" id="myRange" onChange={this.handleSliderChange}/>
                     </div>
                     <div className='content'>
-                        <PrimaryMap/> 
-                        <div className="graph-container">   
-                            <BarGraph />
-                            <LineGraph />
+                        <div className="graph-container">
+                            <Map />
+                            <div className="graph-padding">
+                                {this.state.barGraph && <BarGraph />}
+                                {this.state.lineGraph && <LineGraph />}
+                                <p onClick={this.handleClick} className="toggle-button">Another Graph</p>
+                            </div>
                         </div> 
                         <Footer/>
                     </div>

@@ -5,7 +5,7 @@ class Logo extends React.Component {
     render() { 
         return ( 
             <>
-            <h2>I am a Logo Component</h2>
+                <h2>I am a Logo Component</h2>
             </>
          );
     }

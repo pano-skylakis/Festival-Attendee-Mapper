@@ -36,4 +36,14 @@ router.get('/:timestamp', (req, res) => {
             res.send(err)
         })
 })
+
+
+//users = int of the total number of unqiue users in DB
+router.get('/totaluniqueusers', (req, res)=>{
+    db.getTotalUniqueUsers()
+    .then(users =>{
+        res.json(users)
+    })
+})
+
 module.exports = router

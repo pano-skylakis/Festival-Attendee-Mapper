@@ -15,7 +15,7 @@ class Map extends React.Component {
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
-      <LeafletMap center={position} zoom={this.state.zoom}>
+      <LeafletMap className="map-margin enter" center={position} zoom={this.state.zoom}>
         <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
       </LeafletMap>
     );

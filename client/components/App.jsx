@@ -109,10 +109,6 @@ class App extends React.Component {
 
     
     handleDateChange = e => {
-        console.log(e.target.value)
-        let date = e.target.value
-        let unixTimestamp = moment(`${e.target.value}`).unix()
-        console.log(unixTimestamp)
         this.setState({currentDate: e.target.value})
     }
 
@@ -128,6 +124,8 @@ class App extends React.Component {
 
         let unixTimestamp = moment(`${date}`).unix()
         console.log(unixTimestamp)
+
+        getGeoLocationByTimeApi(unixTimestamp,  unixTimestamp + 3601)
     }
 
 

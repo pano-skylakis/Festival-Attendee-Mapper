@@ -15,7 +15,9 @@ class App extends React.Component {
         super(props)
 
         this.state = {
-            locs: []
+            locs: [],
+            barGraph: true,
+            lineGraph: false,
         }
     }
 
@@ -42,7 +44,7 @@ class App extends React.Component {
     
         refreshLocations = (locations) => {
             this.setState({
-                locs: locations || []
+                locs: locations || [],
             })
             console.log(this.state.locs)
         }
@@ -97,16 +99,23 @@ class App extends React.Component {
         return false
     }
 
+    handleClick = () => {
+        this.state.barGraph ? this.setState({barGraph: false, lineGraph: true}) : this.setState({barGraph: true, lineGraph: false})
+    }
+
     render() {
         return (
             <React.Fragment>
                 <div>
                     <Splash />
                     <div className='content'>
-                        <Map/> 
-                        <div className="graph-container">   
-                            <BarGraph />
-                            <LineGraph />
+                        <div className="graph-container">
+                            <Map />
+                            <div className="graph-padding">
+                                {this.state.barGraph && <BarGraph />}
+                                {this.state.lineGraph && <LineGraph />}
+                                <p onClick={this.handleClick} className="toggle-button">Another Graph</p>
+                            </div>
                         </div> 
                         <Footer/>
                     </div>

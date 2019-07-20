@@ -234,8 +234,9 @@ body {
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
-  border-radius: 25px;
+  // border-radius: 25px;
   margin-top: 10px;
+  background-color: #0d0d0d;
 }
 
 //track colour of slider

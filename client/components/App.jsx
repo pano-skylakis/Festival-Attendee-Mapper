@@ -122,9 +122,6 @@ class App extends React.Component {
                                 <p onClick={this.handleClick} className="toggle-button">Change Graph</p>
                             </div>
                         </div> 
-                        <div className="test-area">
-                            <p>This is a test.</p>
-                        </div>
                         <Footer/>
                     </div>
                 </div>

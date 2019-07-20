@@ -19,6 +19,7 @@ class Stats extends React.Component {
                 <p>users currently being tracked</p>
               </div>
               
+
               <div className="stats-2">
                 <p className="stats-big">50,821</p>
                 <p className="stats-little">users tracked to date</p>

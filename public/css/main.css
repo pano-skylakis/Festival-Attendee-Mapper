@@ -55,7 +55,9 @@ body {
 .content {
   font-family: 'Raleway', sans-serif;
   background-color: white;
-  box-shadow: 0px 7px 21px -2px rgba(0, 0, 0, 0.5); }
+  box-shadow: 0px 7px 21px -2px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-wrap: wrap; }
 
 .footer {
   background-color: rgba(44, 44, 44, 0.89);
@@ -73,14 +75,16 @@ body {
 .graph-container {
   justify-content: space-around;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  flex-wrap: wrap; }
 
 .leaflet-container {
-  height: 60vh;
-  width: 45vw; }
+  display: flex;
+  height: 70vh;
+  width: 80vw; }
 
 .map-margin {
-  margin-top: 5%;
+  margin-top: 4vh;
   margin-bottom: 5%;
   border-radius: 4px;
   box-shadow: 0px 0px 14px -6px rgba(0, 0, 0, 0.75); }
@@ -106,8 +110,8 @@ body {
 .statsbar {
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
-  padding-top: 10vh; }
+  padding: 5vh 0 0 10vw;
+  align-content: center; }
 
 .stats-1, .stats-2, .stats-3, .stats-4 {
   height: 155px;
@@ -137,39 +141,3 @@ body {
 .padding-title {
   padding-left: 13vw;
   color: #E67E22; }
-
-.statsbar {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  padding-top: 10vh; }
-
-.stats-1, .stats-2, .stats-3, .stats-4 {
-  height: 155px;
-  width: 20vw;
-  background-color: #FF9C00;
-  text-align: center; }
-
-.stats-big {
-  font-size: 3.5em;
-  color: rgba(44, 44, 44, 0.89);
-  margin-bottom: 0;
-  margin-top: 3vh; }
-
-.stats-little {
-  color: #0d0d0d; }
-
-.stats-1 {
-  background-color: rgba(44, 44, 44, 0.89);
-  color: white; }
-
-.stats-1-big {
-  color: #FF9C00;
-  font-size: 3.5em;
-  margin-bottom: 0;
-  margin-top: 3vh; }
-
-.test-area {
-  background-color: #E6E6E6;
-  width: 100vw;
-  height: 500px; }

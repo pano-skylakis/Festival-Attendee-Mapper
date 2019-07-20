@@ -25,13 +25,11 @@ router.post('/', (req, res) => {
 
 
 router.get('/:timestamp', (req, res) => {
-    console.log(req.params.timestamp)
     let dates = req.params.timestamp.split('-')
     let greaterThan = parseInt(dates[0])
     let lessThan = parseInt(dates[1])
     db.getGeoLocationsByTime(greaterThan, lessThan)
         .then(data => {
-            console.log(data)
             res.send(data)
         })
         .catch(err => {

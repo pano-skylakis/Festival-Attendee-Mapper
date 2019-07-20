@@ -115,10 +115,8 @@ class App extends React.Component {
 
         this.setState({sliderValue: e.target.value})
         Number(this.state.sliderValue) < 10 ? date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000` : date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`
-        console.log(date)
 
         let unixTimestamp = moment(`${date}`).unix()
-        console.log(unixTimestamp)
 
         getGeoLocationByTimeApi(unixTimestamp,  unixTimestamp + 3601)
     }

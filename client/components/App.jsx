@@ -18,6 +18,7 @@ class App extends React.Component {
 
         this.state = {
             locs: [],
+            currentDate: '',
             sliderValue: '12'
         }
     }
@@ -117,8 +118,16 @@ class App extends React.Component {
 
 
     handleSliderChange = e => {
-        console.log(e.target.value)
+        // 2019-07-20T11:06:55+0000  <<< this is the format it needs to be in (ISO8106)
+
+        let date = ''
+
         this.setState({sliderValue: e.target.value})
+        Number(this.state.sliderValue) < 10 ? date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000` : date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`
+        console.log(date)
+
+        let unixTimestamp = moment(`${date}`).unix()
+        console.log(unixTimestamp)
     }
 
 
@@ -130,7 +139,7 @@ class App extends React.Component {
                     <input type="date" onChange={this.handleDateChange}/>
                     <button className='temp-button' onClick={this.handleClick} data-greater={1563548700} data-less={1563552300}>2pm - 3pm</button>
                     <div className="slidecontainer">
-                        <input type="range" min="00" max="23" value={this.state.sliderValue} className="slider" id="myRange" onChange={this.handleSliderChange}/>
+                        <input type="range" min="0" max="23" value={this.state.sliderValue} className="slider" id="myRange" onChange={this.handleSliderChange}/>
                     </div>
                     <div className='content'>
                         <PrimaryMap/> 

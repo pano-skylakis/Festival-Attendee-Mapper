@@ -77,69 +77,9 @@ body {
   flex-wrap: wrap; }
 
 .leaflet-container {
-  height: 700px;
-  width: 40%; }
-
-.temp-button {
-  background-color: #ddd;
-  height: 50px;
-  width: 50%; }
-  .temp-button:hover {
-    cursor: pointer; }
-
-.slidecontainer {
-  width: 100%;
-  /* Width of the outside container */ }
-
-/* The slider itself */
-.slider {
-  -webkit-appearance: none;
-  /* Override default CSS styles */
-  appearance: none;
-  width: 100%;
-  /* Full-width */
-  height: 25px;
-  /* Specified height */
-  background: #9b9b9b;
-  /* Grey background */
-  outline: none;
-  /* Remove outline */
-  opacity: 0.7;
-  /* Set transparency (for mouse-over effects on hover) */
-  -webkit-transition: .2s;
-  /* 0.2 seconds transition on hover */
-  transition: opacity .2s; }
-
-/* Mouse-over effects */
-.slider:hover {
-  opacity: 1;
-  /* Fully shown on mouse-over */ }
-
-/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  /* Override default look */
-  appearance: none;
-  width: 25px;
-  /* Set a specific slider handle width */
-  height: 25px;
-  /* Slider handle height */
-  background: #4CAF50;
-  /* Green background */
-  cursor: pointer;
-  /* Cursor on hover */ }
-
-.slider::-moz-range-thumb {
-  width: 25px;
-  /* Set a specific slider handle width */
-  height: 25px;
-  /* Slider handle height */
-  background: #4CAF50;
-  /* Green background */
-  cursor: pointer;
-  /* Cursor on hover */
-  height: 60vh;
-  width: 45vw; }
+  display: flex;
+  height: 70vh;
+  width: 80vw; }
 
 .map-margin {
   margin-top: 4vh;
@@ -200,24 +140,36 @@ body {
   padding-left: 13vw;
   color: #E67E22; }
 
-.range {
+.slidecontainer {
+  width: 50%;
+  /* Width of the outside container */ }
+
+/* The slider itself */
+.slider {
   -webkit-appearance: none;
-  -moz-appearance: none;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 200px;
-  margin-top: 10px;
-  transform: translate(-50%, -50%); }
+  /* Override default CSS styles */
+  appearance: none;
+  width: 100%;
+  /* Full-width */
+  height: 25px;
+  /* Specified height */
+  background: #9b9b9b;
+  /* Grey background */
+  outline: none;
+  /* Remove outline */
+  opacity: 0.7;
+  /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s;
+  /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  border-radius: 25px;
+  margin-top: 10px; }
 
 input[type=range]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
   background: linear-gradient(90deg, rgba(11, 77, 236, 0.85618) 0%, rgba(234, 236, 71, 0.909401) 71%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3bade3 ', endColorstr='#ff357f ', GradientType=1 );
   height: 2px; }
-
-input[type=range]:focus {
-  outline: none; }
 
 input[type=range]::-moz-range-track {
   -moz-appearance: none;
@@ -233,7 +185,7 @@ input[type=range]::-webkit-slider-thumb {
   width: 25px;
   max-width: 80px;
   position: relative;
-  bottom: 11px;
+  bottom: 12px;
   background-color: #1d1c25;
   cursor: -webkit-grab;
   -webkit-transition: border 1000ms ease;

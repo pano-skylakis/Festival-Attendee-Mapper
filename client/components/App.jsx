@@ -144,7 +144,7 @@ class App extends React.Component {
                     </div>
                     <div className='content'>
                         <div className="graph-container">
-                            <Map />
+                            <PrimaryMap />
                             <div className="graph-padding">
                                 {this.state.barGraph && <BarGraph />}
                                 {this.state.lineGraph && <LineGraph />}

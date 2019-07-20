@@ -2,7 +2,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('geolocation', table => {
       table.increments('id').primary()
-      table.timestamp('timestamp').defaultTo(knex.fn.now())
+      table.integer('timestamp')
       table.decimal('latitude', 9, 6)
       table.decimal('longitude', 9, 6)
       table.decimal('latitude_rounded', 7, 4)

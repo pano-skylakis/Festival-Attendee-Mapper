@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import HeatmapLayer from 'react-leaflet-heatmap-layer';
 
 const uuidv4 = require("uuid/v4");
 
@@ -165,6 +166,15 @@ class App extends React.Component {
             </div>
 
             <Map />
+            <HeatmapLayer
+            fitBoundsOnLoad
+            fitBoundsOnUpdate
+            points={addressPoints}
+            longitudeExtractor={m => m[1]}
+            latitudeExtractor={m => m[0]}
+            intensityExtractor={m => parseFloat(m[2])}
+            />
+
             <div className="graph-padding">
               {this.state.barGraph && <BarGraph />}
               {this.state.lineGraph && <LineGraph />}

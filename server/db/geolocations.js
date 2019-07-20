@@ -16,18 +16,40 @@ function getGeoLocationsByTime(timeGreaterThan, timeLessThan, db = connection) {
 }
 
 
-function getTotalUniqueUsers(db = connection){
+function getTotalUniqueUsers(db = connection) {
     return db('geolocation')
-    .distinct()
-    .pluck('user')
-    .then(user=>{
-        return user.length
-    })
+        .distinct()
+        .pluck('user')
+        .then(user => {
+            return user.length
+        })
+}
+
+function getHeatMapValues(db = connection) {
+    return db('geolocation')
+        .distinct('latitude_rounded', 'longitude_rounded')
+        .then(stuff => {
+            return stuff
+        })
 }
 
 module.exports = {
     getGeoLocations,
     addGeoLocation,
     getGeoLocationsByTime,
-    getTotalUniqueUsers
+    getTotalUniqueUsers,
+    getHeatMapValues,
 }
+
+
+// stuff.map(morestuff => {
+//     db('geolocation')
+//         .select()
+//         .where('latitude_rounded', morestuff.latitude_rounded 
+//         && 'longitude_rounded', morestuff.longitude_rounded)
+//         .then(arr =>{
+//             morestuff.intensity = arr.length
+//         })
+// })
+
+

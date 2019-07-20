@@ -16,8 +16,8 @@ class LineGraph extends React.Component {
             <>
                 <div className="line-margin">
                     <Chart
-                        width={'500px'}
-                        height={'300px'}
+                        width={'80vw'}
+                        height={'80vh'}
                         chartType="LineChart"
                         loader={<div>Loading Chart</div>}
                         data={[

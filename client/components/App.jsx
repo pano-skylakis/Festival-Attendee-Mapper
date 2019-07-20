@@ -115,6 +115,7 @@ class App extends React.Component {
                             <Stats/>
                         </div>
                         <div data-aos="fade-up" data-aos-duration="3000" className="graph-container">
+                        
                             <Map />
                             <div className="graph-padding">
                                 {this.state.barGraph && <BarGraph />}

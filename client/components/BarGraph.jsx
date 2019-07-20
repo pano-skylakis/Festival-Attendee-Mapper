@@ -15,10 +15,9 @@ class BarGraph extends React.Component {
         return (  
             <>
                 <div className="bar-margin">
-                            <h3 className="padding-title">Attendees by Year</h3>
                             <Chart className="chart"
-                                width={'40vw'}
-                                height={'40vh'}
+                                width={'80vw'}
+                                height={'80vh'}
                                 chartType="Bar"
                                 loader={<div>Loading Chart</div>}
                                 data={[

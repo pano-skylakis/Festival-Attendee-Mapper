@@ -9,11 +9,17 @@ Roles
 ---
 
 Product Owner : VA
+
 Git Master : Hanh
+
 Git Support : Pano
+
 Vibes Master : Quentin
-Fun Master/Idiot : Tess
+
+Fun Master : Tess
+
 Scrum Sheriff : Bridey
+
 Scrum Deputy : Ben
 
 > Scrum Sheriff/Deputy will go off of workflow, and then decide on break times.

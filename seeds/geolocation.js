@@ -5,10 +5,16 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('geolocation').insert([
-        {id: 1, latitude: '42.4535', longitude: '174.3434', user:'goku'},
-        {id: 2, latitude: '42.5435', longitude: '174.2456', user:'vegeta'},
-        {id: 3, latitude: '42.5644', longitude: '173.4343', user:'gohan'},
-        {id: 4, latitude: '41.3433', longitude: '173.3433', user:'trunks'}
+        {id: 1, latitude: '-41.291847', longitude: '174.776518', latitude_rounded: '-41.2918', longitude_rounded: '174.3657', user:'goku'},
+        {id: 2, latitude: '-41.291847', longitude: '174.776518', latitude_rounded: '-41.2918', longitude_rounded: '174.3657', user:'goku'},
+        {id: 3, latitude: '-41.291847', longitude: '174.776518', latitude_rounded: '-41.2918', longitude_rounded: '174.3657', user:'goku'},
+        {id: 4, latitude: '-41.291847', longitude: '174.776518', latitude_rounded: '-41.2918', longitude_rounded: '174.3657', user:'goku'},
+        {id: 5, latitude: '-41.294132', longitude: '174.775354', latitude_rounded: '-41.2941', longitude_rounded: '174.7753', user:'trunks'},
+        {id: 6, latitude: '-41.294132', longitude: '174.775354', latitude_rounded: '-41.2941', longitude_rounded: '174.7753', user:'trunks'},
+        {id: 7, latitude: '-41.294132', longitude: '174.775354', latitude_rounded: '-41.2941', longitude_rounded: '174.7753', user:'trunks'},
+        {id: 8, latitude: '-41.294132', longitude: '174.775354', latitude_rounded: '-41.2941', longitude_rounded: '174.7753', user:'trunks'},
+        {id: 9, latitude: '-41.294132', longitude: '174.775354', latitude_rounded: '-41.2941', longitude_rounded: '174.7753', user:'trunks'},
       ]);
     });
 };
+

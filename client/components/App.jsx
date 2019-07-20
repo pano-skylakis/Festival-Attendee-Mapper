@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import HeatmapLayer from 'react-leaflet-heatmap-layer';
+import HeatmapLayer from 'react-leaflet-heatmap-layer'
 
 const uuidv4 = require("uuid/v4");
 
@@ -15,8 +15,11 @@ import Stats from "./Stats";
 import {
   addGeoLocationApi,
   getGeoLocationsApi,
-  getGeoLocationByTimeApi
+  getGeoLocationByTimeApi,
+  getHeatMapValues,
+  getHeatMapIntensity,
 } from "../api/geoLocationApi";
+import { get } from "https";
 
 class App extends React.Component {
   constructor(props) {
@@ -27,11 +30,25 @@ class App extends React.Component {
       currentDate: "",
       sliderValue: "12",
       barGraph: true,
-      lineGraph: false
+      lineGraph: false,
+      heatMapValues: undefined,
     };
   }
 
   componentDidMount() {
+    getHeatMapValues()
+      .then(values => {
+        this.setState({values: values})
+        return values
+      })
+      .then(values => {
+        values.map(value => {
+          getHeatMapIntensity(value)
+            .then(res => {
+              console.log(res)
+            })
+        })
+      })
     // let userStorage = window.localStorage;
     // if (userStorage.userId){
     //     console.log("Existing user found: " + userStorage.userId)
@@ -54,13 +71,6 @@ class App extends React.Component {
     this.setState({
       locs: locations || []
     });
-  };
-
-  refreshLocations = locations => {
-    this.setState({
-      locs: locations || []
-    });
-    console.log(this.state.locs);
   };
 
   // Track Locations
@@ -164,17 +174,7 @@ class App extends React.Component {
                 onChange={this.handleSliderChange}
               />
             </div>
-
             <Map />
-            <HeatmapLayer
-            fitBoundsOnLoad
-            fitBoundsOnUpdate
-            points={addressPoints}
-            longitudeExtractor={m => m[1]}
-            latitudeExtractor={m => m[0]}
-            intensityExtractor={m => parseFloat(m[2])}
-            />
-
             <div className="graph-padding">
               {this.state.barGraph && <BarGraph />}
               {this.state.lineGraph && <LineGraph />}

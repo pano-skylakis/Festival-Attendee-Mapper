@@ -45,11 +45,26 @@ router.get('/totaluniqueusers', (req, res)=>{
     })
 })
 router.get('/heatmapvalues', (req, res)=> {
-    console.log("route called")
     db.getHeatMapValues()
     .then(values =>{
-        console.log(values)
         res.json(values)
+    })
+})
+
+router.get('/heatmapvalues/:heatmapintensity', (req,res)=>{    
+    let splitCoords = req.params.heatmapintensity.split('_')
+
+    let coords = {
+        latitude_rounded: undefined,
+        longitude_rounded: undefined,
+    }
+
+    coords.longitude_rounded = splitCoords[1]
+    coords.latitude_rounded = splitCoords[0]
+
+    db.getHeatMapIntensity(coords)
+    .then(data =>{
+        res.send(data)
     })
 })
 

@@ -1,18 +1,26 @@
-//colours
+//Colours
+
 $color-white:white;
 $color-grey: rgba(44, 44, 44, 0.89);
-$color-orange: FF9C00;
+$color-orange: #FF9C00;
+$color-button: #E67E22;
+$color-lightgrey: #e9e9e9;
 
-//media queries
+
+//Media Queries
 
 body {
-background-color: #0d0d0d;
+  margin: 0;
+  background-color: $color-lightgrey;
 }
 
-//splash component
+//Splash Component
+
+// // Splash animation for the title.
 
 .tracking-in-contract {
-    margin-top: 20%;
+    padding-top: 20%;
+    margin: 0;
     animation: tracking-in-contract 2.4s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
     font-family: 'Raleway', sans-serif;
     font-size: 3em;
@@ -20,6 +28,13 @@ background-color: #0d0d0d;
     color:black;
 }
 
+.splash {
+  width: 100vw;
+  height: 100vh;
+  background-image:  url("https://images.unsplash.com/photo-1468234560893-89c00b6385c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2693&q=80");
+  background-size: cover;
+  box-shadow: 0px 7px 21px -2px rgba(0,0,0,0.5);
+}
   
 @keyframes tracking-in-contract {
     0% {
@@ -41,7 +56,8 @@ background-color: #0d0d0d;
     text-align: center;
 }
 
-//arrow stuff
+//Splash Arrow
+
 .arrow
 {
   cursor: pointer;
@@ -70,50 +86,216 @@ background-color: #0d0d0d;
 
 }
 
-.splash {
-    width: 100vw;
-    height: 100vh;
-    background-image:  url("https://images.unsplash.com/photo-1468234560893-89c00b6385c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2693&q=80");
-    background-size: cover;
-    position: absolute;
-    top: 0;
-    left: 0;
-    -webkit-box-shadow: 0px 7px 21px -2px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px 7px 21px -2px rgba(0,0,0,0.5);
-    box-shadow: 0px 7px 21px -2px rgba(0,0,0,0.5);
-}
-
 .content {
-    left:0;
     font-family: 'Raleway', sans-serif;
-    position: absolute;
-    top: 100vh;
-    background-color: white;
+    // background-color: $color-white;
+    box-shadow: 0px 7px 21px -2px rgba(0,0,0,0.5);
+    display: flex;
+    flex-wrap: wrap;
 }
 
-//other components
-
-//test
-
-
-.test-paragraph {
-   margin-left: 20vw;
-   margin-right: 20vw;
-   margin-top: 30vh;
-   margin-bottom: 30vh
-
-}
+//Other components
 
 //footer component 
+
+//Footer Component (Bottom of the page)
 
 .footer {
 
     background-color:$color-grey;
-    color: rgb(197, 197, 197);
+    color: $color-lightgrey
+  ;
     left: 0;
     right: 0;
     padding: 5vw 40vw 5vw 5vw;
     box-shadow: 0px 12px 47px 0px rgba(0,0,0,0.75);
 }
 
+
+// Graph and Map styling (Aligning the map and graphs nicely)
+
+// .line-margin, .graph-margin {
+// }
+
+.graph-margin {
+  margin-bottom: 8vh;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+.graph-container {
+
+  justify-content: space-around;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.graph-shadow {
+  -webkit-box-shadow: 0px 0px 11px -4px rgba(0,0,0,0.6);
+  -moz-box-shadow: 0px 0px 11px -4px rgba(0,0,0,0.6);
+  box-shadow: 0px 0px 11px -4px rgba(0,0,0,0.6);
+}
+
+.graph-border {
+  border: solid white 15px;
+}
+
+
+// map ? 
+
+.leaflet-container {
+  display: flex;
+  height: 70vh;
+  width: 80vw;
+}
+
+
+.map-margin {
+  margin-top: 4vh;
+  margin-bottom: 5%;
+  border-radius: 4px;
+  // border: orange solid;
+  // border-width: 15px 15px 15px 15px;
+  box-shadow: 0px 0px 14px -6px rgba(0,0,0,0.75);
+}
+
+//Button (Just the button to change between Bar Graph and Line Graph components)
+
+.toggle-button {
+  color: $color-button;
+  background-color: $color-lightgrey;
+  border: 4px solid $color-button;
+  border-radius: 32px;
+  padding: 10px 30px;
+  margin: 5% 400px 5% 400px;
+  display: inline-block;
+  font-size: 17px;
+  line-height: 1.15;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.5s;
+
+  &:hover,
+  &:focus { 
+    background-color: $color-button;
+    color: #fff;
+  }
+}
+
+//statsbar (Displays the Stat bar above the map and graphs (Thanks Tess and Q))
+
+.statsbar {
+  display: flex;
+  flex-flow: row wrap;
+  padding: 5vh 0 0 10vw;
+  align-content: center;
+}
+
+.stats-1, .stats-2, .stats-3, .stats-4 {
+  height: 155px;
+  width: 20vw;
+  background-color: $color-orange;
+  text-align: center;
+} 
+
+.stats-big {
+  font-size: 3.5em;
+  color: $color-grey;
+  margin-bottom: 0;
+  margin-top: 3vh;
+}
+
+.stats-little {
+  color: $color-grey;
+}
+
+.stats-1 {
+  background-color: $color-grey;
+  color: white;
+}
+
+.stats-1-big {
+  color: $color-orange;
+  font-size: 3.5em;
+  margin-bottom: 0;
+  margin-top: 3vh;
+}
+
+.padding-title {
+  padding-left: 13vw;
+  color: $color-button;
+}
+
+// Slider 
+.slidecontainer {
+  width: 50%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 25px; /* Specified height */
+  background: #9b9b9b; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  // border-radius: 25px;
+  margin-top: 4%;
+  background-color: $color-lightgrey;
+}
+
+//track colour of slider
+input[type=range]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  background: rgb(250,217,39);
+  background: linear-gradient(90deg, rgba(250,217,39,1) 0%, rgba(255,167,20,1) 50%, rgba(251,95,65,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3bade3 ', endColorstr='#ff357f ', GradientType=1 );
+  height: 2px;
+}
+
+//track colour of slider
+input[type=range]::-moz-range-track {
+  -moz-appearance: none;
+  background: rgb(250,217,39);
+  background: linear-gradient(90deg, rgba(250,217,39,1) 0%, rgba(255,167,20,1) 50%, rgba(251,95,65,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3bade3 ', endColorstr='#ff357f ', GradientType=1 );
+  height: 2px;
+}
+
+// slider button 
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 2px solid;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  max-width: 80px;
+  position: relative;
+  bottom: 12px;
+  background-color: #1d1c25;
+  cursor: -webkit-grab;
+  -webkit-transition: border 1000ms ease;
+  transition: border 1000ms ease;
+}
+
+// slider button 
+input[type=range]::-moz-range-thumb {
+  -moz-appearance: none;
+  border: 2px solid;
+  border-radius: 50%;
+  height: 25px;
+  width: 25px;
+  max-width: 80px;
+  position: relative;
+  bottom: 11px;
+  background-color: #1d1c25;
+  cursor: -moz-grab;
+  -moz-transition: border 1000ms ease;
+  transition: border 1000ms ease;
+}
 

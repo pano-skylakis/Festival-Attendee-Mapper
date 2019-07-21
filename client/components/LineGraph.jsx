@@ -1,14 +1,46 @@
 import React from 'react'
 import { Chart } from "react-google-charts";
+import { getGeoLocationByTimeApi } from '../api/geoLocationApi';
+import { unix } from 'moment';
 
 class LineGraph extends React.Component {
     constructor(props) {
         super(props)
-        
-        this.state = {
 
+        this.state={
+            geoLocationData: this.props.geoLocationData,
+            time: {
+                One: [],
+                Two: []
+            }
         }
     }
+
+
+    // timesStamps between x - y  push to array and assign to key in 'time
+
+    componentDidMount() {
+        this.getLocationByTime()
+    }
+
+
+    getLocationByTime = () => {
+        getGeoLocationByTimeApi(1563634620, 1563653450)
+            .then(locationByTime => {
+                console.log(locationByTime)
+            })
+        }
+    }
+
+
+    // let unixGreaterThan = 1563634620
+    // let unixLessThan = 1563653450
+    // .then(data => {
+    //     unixGreaterThan = unixGreaterThan + 6000
+    //     unixLessThan = unixLessThan + 6000
+    //     console.log('unixGreaterThan: ', unixGreaterThan)
+    //     console.log('unixLessThan: ', unixLessThan)
+    // })
 
 
     render() { 

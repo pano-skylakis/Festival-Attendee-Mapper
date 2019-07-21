@@ -13,6 +13,7 @@ class Stats extends React.Component {
         }
     }
 
+    
     componentDidMount() {
       getTotalUniqueUsersApi()
         .then(data => {
@@ -20,9 +21,11 @@ class Stats extends React.Component {
         })
     }
 
+
     componentWillReceiveProps(nextProps) {
       this.setState({geoLocationData: nextProps.geoLocationData})
     }
+
 
     render() { 
         return (  

@@ -153,7 +153,7 @@ class App extends React.Component {
 
             <div className="graph-padding">
               {this.state.barGraph && <BarGraph />}
-              {this.state.lineGraph && <LineGraph />}
+              {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs}/>}
               <p onClick={this.handleClick} className="toggle-button">
                 Toggle Graph
               </p>

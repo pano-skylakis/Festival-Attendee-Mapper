@@ -46,10 +46,11 @@ class LineGraph extends React.Component {
     render() { 
         return (  
             <>
-                <div className="line-margin">
+                <div className="graph-padding">
                     <Chart
+                        className="chart graph-shadow"
                         width={'80vw'}
-                        height={'80vh'}
+                        height={'70vh'}
                         chartType="LineChart"
                         loader={<div>Loading Chart</div>}
                         data={[

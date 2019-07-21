@@ -8,7 +8,6 @@ import Footer from "./Footer";
 import Map from "./Map";
 import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
-import ScatterGraph from "./ScatterGraph";
 import Stats from "./Stats";
 
 import {
@@ -127,13 +126,19 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Splash />
+<<<<<<< HEAD
         <div className="content enter">
           <div data-aos="flip-up" data-aos-duration="2000">
             <Stats geoLocationData={this.state.locs}/>
+=======
+        <div className="content">
+          <div className="enter" data-aos="flip-up" data-aos-duration="2000">
+            <Stats />
+>>>>>>> eac7e2eb8732c20b4c046f5637fa952d09c37a2c
           </div>
           <div
             data-aos="fade-up"
-            data-aos-duration="3000"
+            data-aos-duration="2000"
             className="graph-container"
           >
             <input type="date" onChange={this.handleDateChange} />
@@ -151,7 +156,7 @@ class App extends React.Component {
 
             <Map />
 
-            <div className="graph-padding">
+            <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
               {this.state.barGraph && <BarGraph />}
               {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs}/>}
               <p onClick={this.handleClick} className="toggle-button">

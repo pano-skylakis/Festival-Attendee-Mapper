@@ -12,6 +12,7 @@ class Map extends React.Component {
       zoom: 16,
       markers: [],
       uniqueUsers: null,
+      maxZoom: 19,
     }
   }
 
@@ -31,7 +32,7 @@ class Map extends React.Component {
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
-      <LeafletMap className="map-margin" center={position} zoom={this.state.zoom} onClick={this.addMarker}>
+      <LeafletMap className="map-margin" center={position} zoom={this.state.zoom} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
         <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
         {this.state.markers.map((position, idx) => 
           <Marker key={`marker-${idx}`} position={position}>

@@ -71,7 +71,7 @@ class App extends React.Component {
     let crd = pos.coords;
     const locationTag = {}
 
-    if (!this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
+    if (this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
       locationTag.latitude = crd.latitude
       locationTag.longitude = crd.longitude
       locationTag.accuracy = crd.accuracy
@@ -137,6 +137,7 @@ class App extends React.Component {
           >
             <input type="date" onChange={this.handleDateChange} />
             <div className="slidecontainer">
+              <p>{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
               <input
                 type="range"
                 min="0"

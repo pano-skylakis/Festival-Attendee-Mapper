@@ -10,7 +10,7 @@ import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
 import Stats from "./Stats";
 
-import { getHeatMapValues, getHeatMapIntensity } from '../api/geoLocationApi'
+import {returnHeatmapValues} from '../utils/heatmapdata'
 
 import {
   addGeoLocationApi,
@@ -29,35 +29,14 @@ class App extends React.Component {
       sliderValue: "12",
       barGraph: true,
       lineGraph: false,
-      addressPoints: []
+      heatmapData: [],
     };
   }
 
   componentDidMount() {
-    getHeatMapValues()
-      .then(values => {
-        this.setState({ values: values })
-        return values
-      })
-      .then(values => {
-        return values.map(value => {
-          getHeatMapIntensity(value)
-            .then(res => {
-              console.log(res)
-              let newArr = []
-              value.intensity = res + ''
-              newArr.push(value.latitude_rounded, value.longitude_rounded, value.intensity)
-              console.log(newArr)
-              return newArr
-            })
-            .then(data => {
-              console.log(data)
-              this.setState({
-                addressPoints: data
-              })
-            })
-        })
-      })
+    this.setState({
+      heatmapData: returnHeatmapValues()
+    })
     // let userStorage = window.localStorage;
     // if (userStorage.userId){
     //     console.log("Existing user found: " + userStorage.userId)
@@ -139,17 +118,6 @@ class App extends React.Component {
     let date = "";
 
     this.setState({ sliderValue: e.target.value });
-<<<<<<< HEAD
-    Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
-||||||| merged common ancestors
-    Number(this.state.sliderValue) < 10
-      ? (date = `${this.state.currentDate}T0${
-          this.state.sliderValue
-        }:00:55+0000`)
-      : (date = `${this.state.currentDate}T${
-          this.state.sliderValue
-        }:00:55+0000`);
-=======
     Number(this.state.sliderValue) < 10
       ? (date = `${this.state.currentDate}T0${
         this.state.sliderValue
@@ -157,7 +125,6 @@ class App extends React.Component {
       : (date = `${this.state.currentDate}T${
         this.state.sliderValue
         }:00:55+0000`);
->>>>>>> 72e694ba6dbe76be0fabee6cfc799ef3e5c07a3a
 
     let unixTimestamp = moment(`${date}`).unix();
 
@@ -193,19 +160,8 @@ class App extends React.Component {
                 onChange={this.handleSliderChange}
               />
             </div>
-<<<<<<< HEAD
-
-            <Map />
-
-            <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
-||||||| merged common ancestors
-
-            <Map />
-            <div className="graph-padding">
-=======
             <Map addressPoints = {this.state.addressPoints}/>
             <div className="graph-padding">
->>>>>>> 72e694ba6dbe76be0fabee6cfc799ef3e5c07a3a
               {this.state.barGraph && <BarGraph />}
               {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}
               <p onClick={this.handleClick} className="toggle-button">

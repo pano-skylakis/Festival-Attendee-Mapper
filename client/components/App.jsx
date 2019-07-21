@@ -135,7 +135,7 @@ class App extends React.Component {
             data-aos-duration="2000"
             className="graph-container"
           >
-            <input type="date" onChange={this.handleDateChange} />
+            <input  className="date-picker" type="date" onChange={this.handleDateChange} />
             <div className="slidecontainer">
               <input
                 type="range"

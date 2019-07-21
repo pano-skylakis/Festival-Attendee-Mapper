@@ -90,7 +90,6 @@ class App extends React.Component {
       this.getLocations()
     } else {
       console.log("Out of bounds!")
-      alert("Out of bounds!")
     }
   }
   outOfBoundsChecker = (lat, long) => {

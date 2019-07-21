@@ -28,9 +28,17 @@ export function getGeoLocationByTimeApi(greaterThan, lessThan) {
 }
 
 
-export function getTotalUniqueUsersApi() {
-    return request.get(`${route}/totaluniqueusers`)
-        .then(res => {
-            return res.body
-        })
+export function getHeatMapValues(){
+    return request.get(`${route}/heatmapvalues`)
+    .then(res =>{
+        return res.body
+    })
+}
+
+
+export function getHeatMapIntensity(obj){
+    return request.get(`${route}/heatmapvalues/${obj.latitude_rounded}_${obj.longitude_rounded}`)
+    .then(res=>{
+        return res.body.length
+    })
 }

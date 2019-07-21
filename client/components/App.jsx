@@ -1,6 +1,5 @@
 import React from "react";
 import moment from "moment";
-import HeatmapLayer from 'react-leaflet-heatmap-layer'
 
 const uuidv4 = require("uuid/v4");
 
@@ -9,17 +8,16 @@ import Footer from "./Footer";
 import Map from "./Map";
 import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
-import ScatterGraph from "./ScatterGraph";
 import Stats from "./Stats";
+
+import { getHeatMapValues, getHeatMapIntensity } from '../api/geoLocationApi'
 
 import {
   addGeoLocationApi,
   getGeoLocationsApi,
   getGeoLocationByTimeApi,
-  getHeatMapValues,
-  getHeatMapIntensity,
 } from "../api/geoLocationApi";
-import { get } from "https";
+
 
 class App extends React.Component {
   constructor(props) {
@@ -31,23 +29,32 @@ class App extends React.Component {
       sliderValue: "12",
       barGraph: true,
       lineGraph: false,
-      heatMapValues: undefined,
+      addressPoints: []
     };
   }
 
   componentDidMount() {
     getHeatMapValues()
       .then(values => {
-        this.setState({values: values})
+        this.setState({ values: values })
         return values
       })
       .then(values => {
         return values.map(value => {
           getHeatMapIntensity(value)
             .then(res => {
-              value.intensity = res
-              console.log(value)
-              return value
+              console.log(res)
+              let newArr = []
+              value.intensity = res + ''
+              newArr.push(value.latitude_rounded, value.longitude_rounded, value.intensity)
+              console.log(newArr)
+              return newArr
+            })
+            .then(data => {
+              console.log(data)
+              this.setState({
+                addressPoints: data
+              })
             })
         })
       })
@@ -134,10 +141,10 @@ class App extends React.Component {
     this.setState({ sliderValue: e.target.value });
     Number(this.state.sliderValue) < 10
       ? (date = `${this.state.currentDate}T0${
-          this.state.sliderValue
+        this.state.sliderValue
         }:00:55+0000`)
       : (date = `${this.state.currentDate}T${
-          this.state.sliderValue
+        this.state.sliderValue
         }:00:55+0000`);
 
     let unixTimestamp = moment(`${date}`).unix();
@@ -176,7 +183,7 @@ class App extends React.Component {
                 onChange={this.handleSliderChange}
               />
             </div>
-            <Map />
+            <Map addressPoints = {this.state.addressPoints}/>
             <div className="graph-padding">
               {this.state.barGraph && <BarGraph />}
               {this.state.lineGraph && <LineGraph />}

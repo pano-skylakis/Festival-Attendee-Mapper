@@ -69,6 +69,4 @@ router.get('/heatmapvalues/:heatmapintensity', (req,res)=>{
 })
 
 
-
-
 module.exports = router

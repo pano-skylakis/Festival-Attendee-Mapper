@@ -81,7 +81,6 @@ class App extends React.Component {
       this.setState({
         geoTags: locationTag
       })
-      console.log(this.state.geoTags)
 
       addGeoLocationApi(locationTag)
       this.getLocations()

@@ -12,9 +12,11 @@ export function getGeoLocationsApi() {
 
 
 export function addGeoLocationApi(body) {
+    console.log('API: ', body)
     return request.post(route)
         .send({latitude: body.latitude, longitude: body.longitude, user: body.user, timestamp: body.timestamp, latitude_rounded: body.latitude, longitude_rounded: body.longitude})
         .end((err, res) => {
+            console.log('response: ', res, 'error: ', err)
             err ? err : res
         })
 }

@@ -22,7 +22,7 @@ class App extends React.Component {
       sliderValue: "12",
       barGraph: true,
       lineGraph: false,
-      geoTag
+      geoTags: {}
     };
   }
 

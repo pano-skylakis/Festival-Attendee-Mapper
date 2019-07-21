@@ -16,10 +16,10 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     db.addGeoLocation(req.body)
         .then(id => {
-            res.json(id)
+            res.send(id)
         })
         .catch(err => {
-            res.json(err)
+            res.send(err)
         })
 })
 

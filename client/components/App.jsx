@@ -21,7 +21,8 @@ class App extends React.Component {
       currentDate: "",
       sliderValue: "12",
       barGraph: true,
-      lineGraph: false
+      lineGraph: false,
+      geoTag
     };
   }
 
@@ -81,8 +82,8 @@ class App extends React.Component {
         geoTags: locationTag
       })
       console.log(this.state.geoTags)
-      
-      addGeoLocationApi(this.state.geoTags)
+
+      addGeoLocationApi(locationTag)
       this.getLocations()
       } else {
         console.log("Out of bounds!")

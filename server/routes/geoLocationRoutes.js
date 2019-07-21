@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
             res.json(id)
         })
         .catch(err => {
-            res.json(err)
+            res.status(500).json(err)
         })
 })
 

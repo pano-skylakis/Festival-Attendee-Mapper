@@ -10,11 +10,7 @@ import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
 import Stats from "./Stats";
 
-import {
-  addGeoLocationApi,
-  getGeoLocationsApi,
-  getGeoLocationByTimeApi
-} from "../api/geoLocationApi";
+import { addGeoLocationApi,getGeoLocationsApi,getGeoLocationByTimeApi } from "../api/geoLocationApi";
 
 class App extends React.Component {
   constructor(props) {
@@ -25,19 +21,20 @@ class App extends React.Component {
       currentDate: "",
       sliderValue: "12",
       barGraph: true,
-      lineGraph: false
+      lineGraph: false,
+      geoTags: {}
     };
   }
 
   componentDidMount() {
-    // let userStorage = window.localStorage;
-    // if (userStorage.userId){
-    //     console.log("Existing user found: " + userStorage.userId)
-    // }else{
-    //     userStorage.userId = uuidv4()
-    //     console.log("New User Set: " + userStorage.userId)
-    // }
-    // this.geoLocate()
+    let userStorage = window.localStorage;
+    if (userStorage.userId) {
+      console.log("Existing user found: " + userStorage.userId)
+    } else {
+      userStorage.userId = uuidv4()
+      console.log("New User Set: " + userStorage.userId)
+    }
+    this.geoLocate()
     this.getLocations();
   }
 
@@ -55,51 +52,53 @@ class App extends React.Component {
   };
 
   // Track Locations
-  // geoLocate = () => {
-  //     const error = () => {
-  //         console.warn(`ERROR(${err.code}): ${err.message}`);
-  //     }
-  //     const options = {
-  //         enableHighAccuracy: true,
-  //         timeout: 60000,
-  //         maximumAge: 0
-  //     };
-  //     let interval = setInterval(function () {
-  //         navigator.geolocation.getCurrentPosition(this.saveLocation, error, options)
-  //     }.bind(this), 3000)
-  // }
+  geoLocate = () => {
+    const error = () => {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+    let interval = setInterval(function () {
+      navigator.geolocation.getCurrentPosition(this.saveLocation, error, options)
+    }.bind(this), 3000)
+  }
 
-  // saveLocation = (pos) => {
-  //     let crd = pos.coords;
-  //     const locationTag = {}
+  saveLocation = (pos) => {
+    let crd = pos.coords;
+    const locationTag = {}
 
-  //     if (this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
-  //         locationTag.latitude = crd.latitude
-  //         locationTag.longitude = crd.longitude
-  //         locationTag.accuracy = crd.accuracy
-  //         locationTag.user  = window.localStorage.userId
-  //         locationTag.timestamp = Date.now()
+    if (this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
+      locationTag.latitude = crd.latitude
+      locationTag.longitude = crd.longitude
+      locationTag.accuracy = crd.accuracy
+      locationTag.user = window.localStorage.userId
+      locationTag.timestamp = Date.now()
 
-  //         this.setState({
-  //             geoTags: locationTag
-  //         })
-  //         addGeoLocationApi(this.state.geoTags)
-  //         this.getLocations()
-  //     }
-  //     console.log("Out of bounds!")
-  // }
 
-  // outOfBoundsChecker = (lat, long) => {
-  //     const eastLong = 174.780310
-  //     const westLong = 174.772497
-  //     const northLat = -41.290972
-  //     const southLat = -41.297387
+      this.setState({
+        geoTags: locationTag
+      })
 
-  //     if (lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong) {
-  //         return true
-  //     }
-  //     return false
-  // }
+      addGeoLocationApi(locationTag)
+      this.getLocations()
+      } else {
+        console.log("Out of bounds!")
+      }
+  }
+  outOfBoundsChecker = (lat, long) => {
+    const eastLong = 174.780310
+    const westLong = 174.772497
+    const northLat = -41.290972
+    const southLat = -41.297387
+
+    if (lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong) {
+      return true
+    }
+    return false
+  }
 
   handleDateChange = e => {
     this.setState({ currentDate: e.target.value });
@@ -128,7 +127,7 @@ class App extends React.Component {
         <Splash />
         <div className="content enter">
           <div data-aos="flip-up" data-aos-duration="2000">
-            <Stats geoLocationData={this.state.locs}/>
+            <Stats geoLocationData={this.state.locs} />
           </div>
           <div
             data-aos="fade-up"
@@ -137,6 +136,7 @@ class App extends React.Component {
           >
             <input type="date" onChange={this.handleDateChange} />
             <div className="slidecontainer">
+              <p>{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
               <input
                 type="range"
                 min="0"
@@ -152,7 +152,7 @@ class App extends React.Component {
 
             <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
               {this.state.barGraph && <BarGraph />}
-              {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs}/>}
+              {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}
               <p onClick={this.handleClick} className="toggle-button">
                 Toggle Graph
               </p>

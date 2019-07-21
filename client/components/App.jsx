@@ -10,13 +10,7 @@ import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
 import Stats from "./Stats";
 
-import { getHeatMapValues, getHeatMapIntensity } from '../api/geoLocationApi'
-
-import {
-  addGeoLocationApi,
-  getGeoLocationsApi,
-  getGeoLocationByTimeApi,
-} from "../api/geoLocationApi";
+import { addGeoLocationApi,getGeoLocationsApi,getGeoLocationByTimeApi } from "../api/geoLocationApi";
 
 
 class App extends React.Component {
@@ -29,43 +23,19 @@ class App extends React.Component {
       sliderValue: "12",
       barGraph: true,
       lineGraph: false,
-      addressPoints: []
+      geoTags: {}
     };
   }
 
   componentDidMount() {
-    getHeatMapValues()
-      .then(values => {
-        this.setState({ values: values })
-        return values
-      })
-      .then(values => {
-        return values.map(value => {
-          getHeatMapIntensity(value)
-            .then(res => {
-              console.log(res)
-              let newArr = []
-              value.intensity = res + ''
-              newArr.push(value.latitude_rounded, value.longitude_rounded, value.intensity)
-              console.log(newArr)
-              return newArr
-            })
-            .then(data => {
-              console.log(data)
-              this.setState({
-                addressPoints: data
-              })
-            })
-        })
-      })
-    // let userStorage = window.localStorage;
-    // if (userStorage.userId){
-    //     console.log("Existing user found: " + userStorage.userId)
-    // }else{
-    //     userStorage.userId = uuidv4()
-    //     console.log("New User Set: " + userStorage.userId)
-    // }
-    // this.geoLocate()
+    let userStorage = window.localStorage;
+    if (userStorage.userId) {
+      console.log("Existing user found: " + userStorage.userId)
+    } else {
+      userStorage.userId = uuidv4()
+      console.log("New User Set: " + userStorage.userId)
+    }
+    this.geoLocate()
     this.getLocations();
   }
 
@@ -83,69 +53,65 @@ class App extends React.Component {
   };
 
   // Track Locations
-  // geoLocate = () => {
-  //     const error = () => {
-  //         console.warn(`ERROR(${err.code}): ${err.message}`);
-  //     }
-  //     const options = {
-  //         enableHighAccuracy: true,
-  //         timeout: 60000,
-  //         maximumAge: 0
-  //     };
-  //     let interval = setInterval(function () {
-  //         navigator.geolocation.getCurrentPosition(this.saveLocation, error, options)
-  //     }.bind(this), 3000)
-  // }
+  geoLocate = () => {
+    const error = () => {
+      console.warn(`ERROR(${err.code}): ${err.message}`);
+    }
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+    let interval = setInterval(function () {
+      navigator.geolocation.getCurrentPosition(this.saveLocation, error, options)
+    }.bind(this), 3000)
+  }
 
-  // saveLocation = (pos) => {
-  //     let crd = pos.coords;
-  //     const locationTag = {}
+  saveLocation = (pos) => {
+    let crd = pos.coords;
+    const locationTag = {}
 
-  //     if (this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
-  //         locationTag.latitude = crd.latitude
-  //         locationTag.longitude = crd.longitude
-  //         locationTag.accuracy = crd.accuracy
-  //         locationTag.user  = window.localStorage.userId
-  //         locationTag.timestamp = Date.now()
+    if (!this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
+      locationTag.latitude = crd.latitude
+      locationTag.longitude = crd.longitude
+      locationTag.accuracy = crd.accuracy
+      locationTag.user = window.localStorage.userId
+      locationTag.timestamp = Date.now()
 
-  //         this.setState({
-  //             geoTags: locationTag
-  //         })
-  //         addGeoLocationApi(this.state.geoTags)
-  //         this.getLocations()
-  //     }
-  //     console.log("Out of bounds!")
-  // }
 
-  // outOfBoundsChecker = (lat, long) => {
-  //     const eastLong = 174.780310
-  //     const westLong = 174.772497
-  //     const northLat = -41.290972
-  //     const southLat = -41.297387
+      this.setState({
+        geoTags: locationTag
+      })
 
-  //     if (lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong) {
-  //         return true
-  //     }
-  //     return false
-  // }
+      addGeoLocationApi(locationTag)
+      this.getLocations()
+      } else {
+        console.log("Out of bounds!")
+      }
+  }
+  outOfBoundsChecker = (lat, long) => {
+    const eastLong = 174.780310
+    const westLong = 174.772497
+    const northLat = -41.290972
+    const southLat = -41.297387
+
+    if (lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong) {
+      return true
+    }
+    return false
+  }
 
   handleDateChange = e => {
     this.setState({ currentDate: e.target.value });
   };
 
   handleSliderChange = e => {
-    // 2019-07-20T11:06:55+0000  <<< this is the format it needs to be in (ISO8106)
+    // 2019-07-20T11:06:55+0000  <<< this is the format the date must be in (ISO8106)
 
     let date = "";
 
     this.setState({ sliderValue: e.target.value });
-    Number(this.state.sliderValue) < 10
-      ? (date = `${this.state.currentDate}T0${
-        this.state.sliderValue
-        }:00:55+0000`)
-      : (date = `${this.state.currentDate}T${
-        this.state.sliderValue
-        }:00:55+0000`);
+    Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
 
     let unixTimestamp = moment(`${date}`).unix();
 
@@ -153,9 +119,7 @@ class App extends React.Component {
   };
 
   handleClick = () => {
-    this.state.barGraph
-      ? this.setState({ barGraph: false, lineGraph: true })
-      : this.setState({ barGraph: true, lineGraph: false });
+    this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true }) : this.setState({ barGraph: true, lineGraph: false });
   };
 
   render() {
@@ -164,11 +128,11 @@ class App extends React.Component {
         <Splash />
         <div className="content enter">
           <div data-aos="flip-up" data-aos-duration="2000">
-            <Stats />
+            <Stats geoLocationData={this.state.locs} />
           </div>
           <div
             data-aos="fade-up"
-            data-aos-duration="3000"
+            data-aos-duration="2000"
             className="graph-container"
           >
             <input type="date" onChange={this.handleDateChange} />
@@ -183,12 +147,14 @@ class App extends React.Component {
                 onChange={this.handleSliderChange}
               />
             </div>
-            <Map addressPoints = {this.state.addressPoints}/>
-            <div className="graph-padding">
+
+            <Map />
+
+            <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
               {this.state.barGraph && <BarGraph />}
-              {this.state.lineGraph && <LineGraph />}
+              {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}
               <p onClick={this.handleClick} className="toggle-button">
-                Change Graph
+                Toggle Graph
               </p>
             </div>
           </div>

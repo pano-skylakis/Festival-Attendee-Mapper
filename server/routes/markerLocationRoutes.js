@@ -12,4 +12,14 @@ router.get('/markers', (req, res) => {
         })
 })
 
+router.post('/markers', (req, res) => {
+    db.addMarkerLocation(req.body)
+        .then(id => {
+            res.send(id)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+})
+
 module.exports = router

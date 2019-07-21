@@ -8,3 +8,13 @@ export function getMarkerLocationsApi() {
             return res.body
         })
 }
+
+export function addMarkerLocationApi(body) {
+    console.log('Marker Location API: ', body)
+    return request.post(route)
+        .send({latitude: body.latitude, longitude: body.longitude})
+        .end((err, res) => {
+            console.log('response: ', res, 'error: ', err)
+            err ? err : res
+        })
+}

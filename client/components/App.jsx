@@ -126,15 +126,9 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Splash />
-<<<<<<< HEAD
         <div className="content enter">
           <div data-aos="flip-up" data-aos-duration="2000">
             <Stats geoLocationData={this.state.locs}/>
-=======
-        <div className="content">
-          <div className="enter" data-aos="flip-up" data-aos-duration="2000">
-            <Stats />
->>>>>>> eac7e2eb8732c20b4c046f5637fa952d09c37a2c
           </div>
           <div
             data-aos="fade-up"

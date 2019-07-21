@@ -30,7 +30,6 @@ class LineGraph extends React.Component {
                 console.log(locationByTime)
             })
         }
-    }
 
 
     // let unixGreaterThan = 1563634620

@@ -7,7 +7,6 @@ function getGeoLocations(db = connection) {
 
 
 function addGeoLocation(coords, db = connection) {
-    console.log('database', coords)
     return db('geolocation').insert(coords)
 }
 

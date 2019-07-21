@@ -10,11 +10,7 @@ import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
 import Stats from "./Stats";
 
-import {
-  addGeoLocationApi,
-  getGeoLocationsApi,
-  getGeoLocationByTimeApi
-} from "../api/geoLocationApi";
+import { addGeoLocationApi,getGeoLocationsApi,getGeoLocationByTimeApi } from "../api/geoLocationApi";
 
 class App extends React.Component {
   constructor(props) {
@@ -61,7 +57,7 @@ class App extends React.Component {
     }
     const options = {
       enableHighAccuracy: true,
-      timeout: 60000,
+      timeout: 5000,
       maximumAge: 0
     };
     let interval = setInterval(function () {
@@ -73,24 +69,24 @@ class App extends React.Component {
     let crd = pos.coords;
     const locationTag = {}
 
-    if (this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
+    if (!this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
       locationTag.latitude = crd.latitude
       locationTag.longitude = crd.longitude
       locationTag.accuracy = crd.accuracy
       locationTag.user = window.localStorage.userId
       locationTag.timestamp = Date.now()
 
-      console.log(locationTag)
 
       this.setState({
         geoTags: locationTag
       })
       console.log(this.state.geoTags)
+      
       addGeoLocationApi(this.state.geoTags)
       this.getLocations()
-    } else {
-      console.log("Out of bounds!")
-    }
+      } else {
+        console.log("Out of bounds!")
+      }
   }
   outOfBoundsChecker = (lat, long) => {
     const eastLong = 174.780310

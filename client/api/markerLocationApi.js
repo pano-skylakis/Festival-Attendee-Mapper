@@ -10,11 +10,12 @@ export function getMarkerLocationsApi() {
 }
 
 export function addMarkerLocationApi(body) {
-    console.log('Marker Location API: ', body)
     return request.post(route)
-        .send({latitude: body.latitude, longitude: body.longitude})
-        .end((err, res) => {
-            console.log('response: ', res, 'error: ', err)
-            err ? err : res
+        .send({latitude: body.lat, longitude: body.lng})
+        .then(res => {
+            return res.body
+        })
+        .catch(err => {
+            return err
         })
 }

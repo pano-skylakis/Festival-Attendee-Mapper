@@ -1,6 +1,8 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet'
 import { getTotalUniqueUsersApi } from '../api/geoLocationApi'
+import { get } from 'http';
+import { getMarkerLocationsApi, addMarkerLocationApi } from '../api/markerLocationApi';
 
 class Map extends React.Component {
   constructor(props) {
@@ -13,6 +15,7 @@ class Map extends React.Component {
       markers: [],
       uniqueUsers: null,
       maxZoom: 19,
+      savedMarkers: {lat: null, lng: null}
     }
   }
 
@@ -21,13 +24,22 @@ class Map extends React.Component {
       .then(data => {
         this.setState({ uniqueUsers: data })
       })
+    getMarkerLocationsApi()
+    .then(data => {
+      this.setState({savedMarkers: {lat: data.lat, lng: data.lng}})
+      console.log(this.state.savedMarkers + "this is savedMarkers");
+    })
   }
-
+  
   addMarker = (e) => {
     const { markers } = this.state
+    console.log(e.latlng);
+    
+    // this.setState({markers:e.latlng})
     markers.push(e.latlng)
     this.setState({ markers })
-    console.log(markers);
+    // console.log(markers);
+    addMarkerLocationApi(e.latlng)
 }
 
 render() {

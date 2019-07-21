@@ -5,7 +5,7 @@ function getMarkerLocations(db = connection) {
 }
 
 function addMarkerLocation(coords, db = connection) {
-    return db('geolocation').insert(coords)
+    return db('marker_locations').insert(coords)
 }
 
 module.exports = {

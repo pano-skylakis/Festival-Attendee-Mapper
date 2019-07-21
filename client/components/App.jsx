@@ -54,13 +54,6 @@ class App extends React.Component {
     });
   };
 
-  refreshLocations = locations => {
-    this.setState({
-      locs: locations || []
-    });
-    console.log(this.state.locs);
-  };
-
   // Track Locations
   // geoLocate = () => {
   //     const error = () => {
@@ -113,7 +106,7 @@ class App extends React.Component {
   };
 
   handleSliderChange = e => {
-    // 2019-07-20T11:06:55+0000  <<< this is the format it needs to be in (ISO8106)
+    // 2019-07-20T11:06:55+0000  <<< this is the format the date must be in (ISO8106)
 
     let date = "";
 
@@ -133,9 +126,9 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <Splash />
-        <div className="content">
-          <div className="enter" data-aos="flip-up" data-aos-duration="2000">
-            <Stats />
+        <div className="content enter">
+          <div data-aos="flip-up" data-aos-duration="2000">
+            <Stats geoLocationData={this.state.locs}/>
           </div>
           <div
             data-aos="fade-up"
@@ -159,7 +152,7 @@ class App extends React.Component {
 
             <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
               {this.state.barGraph && <BarGraph />}
-              {this.state.lineGraph && <LineGraph />}
+              {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs}/>}
               <p onClick={this.handleClick} className="toggle-button">
                 Toggle Graph
               </p>

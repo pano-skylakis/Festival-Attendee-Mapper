@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-
+const regeneratorRuntime = require("regenerator-runtime")
 const uuidv4 = require("uuid/v4");
 
 import Splash from "./Splash";
@@ -10,7 +10,8 @@ import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
 import Stats from "./Stats";
 
-import { addGeoLocationApi,getGeoLocationsApi,getGeoLocationByTimeApi } from "../api/geoLocationApi";
+import { returnHeatmapValues } from '../utils/heatmapdata'
+import { addGeoLocationApi, getGeoLocationsApi, getGeoLocationByTimeApi, getHeatMapValues, getHeatMapIntensity } from '../api/geoLocationApi'
 
 
 class App extends React.Component {
@@ -23,14 +24,16 @@ class App extends React.Component {
       sliderValue: "12",
       barGraph: true,
       lineGraph: false,
-      geoTags: {}
+      geoTags: {},
+      heatmapData: [],
     };
+
+    // this.getHeatMapData = this.getHeatMapData.bind(this)
   }
 
   componentDidMount() {
-    this.setState({
-      heatmapData: returnHeatmapValues()
-    })
+    
+    
     // let userStorage = window.localStorage;
     // if (userStorage.userId){
     //     console.log("Existing user found: " + userStorage.userId)
@@ -41,7 +44,6 @@ class App extends React.Component {
     // this.geoLocate()
     this.getLocations();
   }
-
   // Get Locations from Database
   getLocations = () => {
     getGeoLocationsApi().then(locations => {
@@ -89,9 +91,9 @@ class App extends React.Component {
 
       addGeoLocationApi(locationTag)
       this.getLocations()
-      } else {
-        console.log("Out of bounds!")
-      }
+    } else {
+      console.log("Out of bounds!")
+    }
   }
   outOfBoundsChecker = (lat, long) => {
     const eastLong = 174.780310
@@ -157,7 +159,7 @@ class App extends React.Component {
                 onChange={this.handleSliderChange}
               />
             </div>
-            <Map addressPoints = {this.state.addressPoints}/>
+            <Map addressPoints={this.state.heatmapData} />
             <div className="graph-padding">
               {this.state.barGraph && <BarGraph />}
               {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}

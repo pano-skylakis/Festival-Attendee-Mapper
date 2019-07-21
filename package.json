@@ -54,6 +54,7 @@
     "react-leaflet": "^2.4.0",
     "react-leaflet-heatmap-layer": "^2.0.0",
     "react-scroll": "^1.7.12",
+    "regenerator-runtime": "^0.13.3",
     "sass": "^1.22.1",
     "sass-loader": "^7.1.0",
     "sqlite3": "^4.0.9",

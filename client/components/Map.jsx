@@ -1,7 +1,7 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer } from 'react-leaflet'
 import HeatmapLayer from 'react-leaflet-heatmap-layer'
-import {addressPoints as stuff} from './realworld.10000'
+import {getTotalUniqueUsersApi} from '../api/geoLocationApi'
 
 class Map extends React.Component {
   constructor(props) {
@@ -11,19 +11,16 @@ class Map extends React.Component {
       lat: -41.293699,
       lng: 174.775497,
       zoom: 16,
-      addressPoints:[[-41.293699,174.775497,'0']],
+      addressPoints: []
     }
-  }
-  componentDidMount(){
-    console.log(this.state.addressPoints)
+    this.convertMapData = this.convertMapData.bind(this)
   }
 
   componentWillReceiveProps(nextProps){
     if(nextProps.addressPoints !== []){
       this.setState({
-        addressPoints: [...this.state.addressPoints, nextProps.addressPoints]
+        addressPoints: [nextProps.addressPoints]
       })
-      console.log(this.state.addressPoints)
     }
   }
 
@@ -32,6 +29,9 @@ class Map extends React.Component {
       .then(data => {
         this.setState({uniqueUsers: data})
       })
+  }
+  convertMapData(arr){
+    // console.log(this.state.addressPoints)
   }
 
   addMarker = (e) => {

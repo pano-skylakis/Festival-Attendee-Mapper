@@ -48,14 +48,3 @@ module.exports = {
 }
 
 
-// stuff.map(morestuff => {
-//     db('geolocation')
-//         .select()
-//         .where('latitude_rounded', morestuff.latitude_rounded 
-//         && 'longitude_rounded', morestuff.longitude_rounded)
-//         .then(arr =>{
-//             morestuff.intensity = arr.length
-//         })
-// })
-
-

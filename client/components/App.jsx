@@ -81,14 +81,16 @@ class App extends React.Component {
       locationTag.timestamp = Date.now()
 
       console.log(locationTag)
-      
+
       this.setState({
         geoTags: locationTag
       })
+      console.log(this.state.geoTags)
       addGeoLocationApi(this.state.geoTags)
       this.getLocations()
     } else {
       console.log("Out of bounds!")
+      alert("Out of bounds!")
     }
   }
   outOfBoundsChecker = (lat, long) => {

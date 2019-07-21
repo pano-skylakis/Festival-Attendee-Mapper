@@ -136,6 +136,7 @@ class App extends React.Component {
           >
             <input type="date" onChange={this.handleDateChange} />
             <div className="slidecontainer">
+              <p>{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
               <input
                 type="range"
                 min="0"

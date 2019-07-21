@@ -19,31 +19,33 @@ class Map extends React.Component {
   componentDidMount() {
     getTotalUniqueUsersApi()
       .then(data => {
-        this.setState({uniqueUsers: data})
+        this.setState({ uniqueUsers: data })
       })
   }
 
   addMarker = (e) => {
-    const {markers} = this.state
+    const { markers } = this.state
     markers.push(e.latlng)
-    this.setState({markers})
-  }
+    this.setState({ markers })
+    console.log(markers);
+}
 
-  render() {
-    const position = [this.state.lat, this.state.lng];
-    return (
-      <LeafletMap className="map-margin" center={position} zoom={this.state.zoom} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
-        <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
-        {this.state.markers.map((position, idx) => 
-          <Marker key={`marker-${idx}`} position={position}>
+render() {
+  const position = [this.state.lat, this.state.lng];
+  return (
+    <LeafletMap className="map-margin" center={position} zoom={this.state.zoom} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
+      <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+      {this.state.markers.map((position, idx) =>
+        <Marker key={`marker-${idx}`} position={position}>
           <Popup>
-            <span>{`${this.state.uniqueUsers}`}</span>
+            {/* this changes whatever is in the pop-up --v*/}
+            <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span>
           </Popup>
         </Marker>
-        )}
-      </LeafletMap>
-    );
-  }
+      )}
+    </LeafletMap>
+  );
+}
 }
 
 export default Map

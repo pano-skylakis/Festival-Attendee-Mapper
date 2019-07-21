@@ -12,7 +12,7 @@ export function getGeoLocationsApi() {
 
 
 export function addGeoLocationApi(body) {
-    console.log('API: ', body)
+    // console.log('API: ', body)
     return request.post(route)
         .send({latitude: body.latitude, longitude: body.longitude, user: body.user, timestamp: body.timestamp, latitude_rounded: body.latitude, longitude_rounded: body.longitude})
         .end((err, res) => {
@@ -27,25 +27,6 @@ export function getGeoLocationByTimeApi(greaterThan, lessThan) {
             .then(res => {
                 return res.body
             })
-<<<<<<< HEAD
-}
-
-
-export function getHeatMapValues(){
-    return request.get(`${route}/heatmapvalues`)
-    .then(res =>{
-        return res.body
-    })
-}
-
-
-export function getHeatMapIntensity(obj){
-    return request.get(`${route}/heatmapvalues/${obj.latitude_rounded}_${obj.longitude_rounded}`)
-    .then(res=>{
-        return res.body.length
-    })
-||||||| merged common ancestors
-=======
 }
 
 
@@ -54,5 +35,4 @@ export function getTotalUniqueUsersApi() {
         .then(res => {
             return res.body
         })
->>>>>>> f0a380da00d6d07b05600790e6aaf6277d68ea20
 }

@@ -42,10 +42,12 @@ class App extends React.Component {
         return values
       })
       .then(values => {
-        values.map(value => {
+        return values.map(value => {
           getHeatMapIntensity(value)
             .then(res => {
-              console.log(res)
+              value.intensity = res
+              console.log(value)
+              return value
             })
         })
       })

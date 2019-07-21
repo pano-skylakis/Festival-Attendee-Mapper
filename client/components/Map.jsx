@@ -1,16 +1,6 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet'
-
-// const pointerIcon = new L.Icon({
-//   iconUrl: require(''),
-//   iconRetinaUrl: require(''),
-//   iconAnchor: [5, 55],
-//   popupAnchor: [10, -44],
-//   iconSize: [25, 55],
-//   shadowUrl: '',
-//   shadowSize: [68, 95],
-//   shadowAnchor: [20, 92],
-// })
+import { getTotalUniqueUsersApi } from '../api/geoLocationApi'
 
 class Map extends React.Component {
   constructor() {
@@ -20,8 +10,16 @@ class Map extends React.Component {
       lat: -41.293699,
       lng: 174.775497,
       zoom: 16,
-      markers: []
+      markers: [],
+      uniqueUsers: null,
     }
+  }
+
+  componentDidMount() {
+    getTotalUniqueUsersApi()
+      .then(data => {
+        this.setState({uniqueUsers: data})
+      })
   }
 
   addMarker = (e) => {
@@ -38,7 +36,7 @@ class Map extends React.Component {
         {this.state.markers.map((position, idx) => 
           <Marker key={`marker-${idx}`} position={position}>
           <Popup>
-            <span>Info</span>
+            <span>{`${this.state.uniqueUsers}`}</span>
           </Popup>
         </Marker>
         )}
@@ -47,9 +45,5 @@ class Map extends React.Component {
   }
 }
   
-
-
-
-
 
 export default Map

@@ -80,6 +80,8 @@ class App extends React.Component {
       locationTag.user = window.localStorage.userId
       locationTag.timestamp = Date.now()
 
+      console.log(locationTag)
+      
       this.setState({
         geoTags: locationTag
       })

@@ -6,11 +6,6 @@ const uuidv4 = require("uuid/v4");
 import Dashboard from './Dashboard'
 import UserLanding from './UserLanding'
 
-import {
-  addGeoLocationApi,
-  getGeoLocationsApi,
-  getGeoLocationByTimeApi
-} from "../api/geoLocationApi";
 
 class App extends React.Component {
   constructor(props) {
@@ -48,7 +43,7 @@ class App extends React.Component {
         )}
       </div>
     )
-  }
+  } 
 }
 
-export default App;
+export default App

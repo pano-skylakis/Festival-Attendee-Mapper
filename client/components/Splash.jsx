@@ -4,7 +4,7 @@ import Loading from './Loading'
 
 import {Link, animateScroll as scroll} from 'react-scroll'
 
-class App extends React.Component {
+class Splash extends React.Component {
     constructor(props) {
         super(props)
         
@@ -32,4 +32,4 @@ class App extends React.Component {
     }
 }
  
-export default App;
+export default Splash;

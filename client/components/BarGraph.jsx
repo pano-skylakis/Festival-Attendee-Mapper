@@ -16,8 +16,8 @@ class BarGraph extends React.Component {
             <>
                 <div className="graph-padding">
                             <Chart className="chart graph-shadow graph-border"
-                                width={'79vw'}
-                                height={'65vh'}
+                                width={'84rem'}
+                                height={'40rem'}
                                 chartType="Bar"
                                 loader={<div>Loading Chart</div>}
                                 data={[

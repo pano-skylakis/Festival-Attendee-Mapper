@@ -1,6 +1,7 @@
 import React from 'react'
 import { Chart } from "react-google-charts";
 import { getGeoLocationByTimeApi } from '../api/geoLocationApi';
+import regeneratorRuntime from "regenerator-runtime";
 import { unix } from 'moment';
 
 class LineGraph extends React.Component {
@@ -9,37 +10,52 @@ class LineGraph extends React.Component {
 
         this.state={
             geoLocationData: this.props.geoLocationData,
-            time: {
-                One: [],
-                Two: []
-            }
+            time: 8,
+            graphData: [['Time', '2019-07-23']]
         }
     }
 
-
-    // timesStamps between x - y  push to array and assign to key in 'time
 
     componentDidMount() {
         this.getLocationByTime()
     }
 
+    getLocationByTime = async () => {
 
-    getLocationByTime = () => {
-        getGeoLocationByTimeApi(1563634620, 1563653450)
-            .then(locationByTime => {
-                console.log(locationByTime)
-            })
+        let unixGreaterThan = 1563868800 // 2019-07-23T08:00:00+00:00
+        let unixLessThan = 1563872401 // 2019-07-23T09:00:00+00:00
+
+        // let unixLessThan = 1563883199 // 2019-07-23T11:59:59+00:00
+
+        let time = 8
+
+        for(let i = 0; i < 16; i++) {
+
+            await getGeoLocationByTimeApi(unixGreaterThan, unixLessThan)
+                .then(locationByTime => {
+
+                    console.log(locationByTime)
+
+                    let timeArr = []
+                    let timeString = `${time}:00`
+                    
+
+                    timeArr.push(timeString, locationByTime.length)
+                    this.setState({graphData: [...this.state.graphData, timeArr]})
+                    timeArr = []
+
+                    unixGreaterThan = unixGreaterThan + 3600
+                    unixLessThan = unixLessThan + 3600
+                    time = time + 1
+
+                    console.log('unixGreaterThan: ', unixGreaterThan)
+                    console.log('unixLessThan: ', unixLessThan)
+                    console.log('timeArr: ', timeArr)
+                    console.log(timeString)
+                })
+            }
+           await console.log(this.state.graphData)
         }
-
-
-    // let unixGreaterThan = 1563634620
-    // let unixLessThan = 1563653450
-    // .then(data => {
-    //     unixGreaterThan = unixGreaterThan + 6000
-    //     unixLessThan = unixLessThan + 6000
-    //     console.log('unixGreaterThan: ', unixGreaterThan)
-    //     console.log('unixLessThan: ', unixLessThan)
-    // })
 
 
     render() { 
@@ -48,28 +64,11 @@ class LineGraph extends React.Component {
                 <div className="graph-padding">
                     <Chart
                         className="chart graph-shadow"
-                        width={'80vw'}
-                        height={'70vh'}
+                        width={'84rem'}
+                        height={'40rem'}
                         chartType="LineChart"
                         loader={<div>Loading Chart</div>}
-                        data={[
-                            ['Time', '2019', '2018'],
-                            ['10AM', 7328,  8440],
-                            ['11AM', 6863,  5600],
-                            ['12PM', 15877, 12187],
-                            ['1PM', 13449, 12149],
-                            ['2PM', 12888, 11388],
-                            ['3PM', 10999, 9999],
-                            ['4PM', 12098, 10098],
-                            ['5PM', 13788, 10788],
-                            ['6PM', 17668, 14668],
-                            ['7PM', 16872, 12872],
-                            ['8PM', 14092, 11092],
-                            ['9PM', 13908, 12908],
-                            ['10PM', 12331, 9543],
-                            ['11PM', 11721, 10829],
-                            ['12AM', 9003,  7892]
-                        ]}
+                        data={this.state.graphData}
                         options={{
                             colors: ['#E67E22', '#EB984E'],
                             hAxis: {

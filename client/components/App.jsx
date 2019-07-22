@@ -26,8 +26,10 @@ class App extends React.Component {
       currentDate: "",
       sliderValue: "12",
       barGraph: true,
-      lineGraph: false
+      lineGraph: false,
     };
+
+    this.updatePredicate = this.updatePredicate.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +42,17 @@ class App extends React.Component {
     // }
     // this.geoLocate()
     this.getLocations();
+
+    this.updatePredicate();
+    window.addEventListener("resize", this.updatePredicate);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updatePredicate);
+  }
+
+  updatePredicate() {
+    this.setState({ isDesktop: window.innerWidth > 1450 });
   }
 
   // Get Locations from Database
@@ -126,6 +139,9 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
+        {isDesktop ? (
+
+        )}
         <UserLanding />
         {/* <Splash />
         <div className="content enter">

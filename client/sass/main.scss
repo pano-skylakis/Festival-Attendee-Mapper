@@ -42,7 +42,7 @@ $screen-xl: 100rem;
 body {
   margin: 0;
   background-color: $color-lightgrey;
-  font-size: 16px;
+  font-size: 3rem;
 }
 
 //Splash Component
@@ -354,10 +354,13 @@ a:hover {
   color: #000;
   text-decoration: none;
 }
-.splash-container {
+.scroller-container {
   background: #fafafa;
   width: 100vw;
   height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .container {
   width: 100%;
@@ -374,8 +377,8 @@ p {
   color: #888;
 }
 .scroller {
-  height: 50px;
-  line-height: 50px;
+  height: 170px;
+  line-height: 70px;
   float: left;
   margin-left: 5px;
   overflow: hidden;
@@ -393,9 +396,8 @@ p {
   -moz-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   text-align: center;
-  margin-left: 30vw;
 }
-.blue {
+.orange {
   -webkit-animation: color 0.25s 1 linear;
   -moz-animation: color 0.25s 1 linear;
   animation: color 0.25s 1 linear;
@@ -406,7 +408,7 @@ p {
   -moz-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
 }
-.blueb {
+.orangeb {
   -webkit-animation: color 0.25s 1 linear;
   -moz-animation: color 0.25s 1 linear;
   animation: color 0.25s 1 linear;
@@ -449,25 +451,25 @@ p {
     margin-top: 0px;
   }
   33% {
-    margin-top: -50px;
+    margin-top: -100px;
   }
   44% {
-    margin-top: -50px;
+    margin-top: -100px;
   }
   55% {
-    margin-top: -100px;
+    margin-top: -200px;
   }
   66% {
-    margin-top: -100px;
+    margin-top: -200px;
   }
   77% {
-    margin-top: -150px;
+    margin-top: -300px;
   }
   88% {
-    margin-top: -150px;
+    margin-top: -300px;
   }
   100% {
-    margin-top: -150px;
+    margin-top: -300px;
   }
 }
 @-moz-keyframes scroll {
@@ -478,53 +480,56 @@ p {
     margin-top: 0px;
   }
   33% {
-    margin-top: -50px;
+    margin-top: -100px;
   }
   44% {
-    margin-top: -50px;
+    margin-top: -100px;
   }
   55% {
-    margin-top: -100px;
+    margin-top: -200px;
   }
   66% {
-    margin-top: -100px;
+    margin-top: -200px;
   }
   77% {
-    margin-top: -150px;
+    margin-top: -300px;
   }
   88% {
-    margin-top: -150px;
+    margin-top: -300px;
   }
   100% {
-    margin-top: -150px;
+    margin-top: -300px;
   }
 }
 @keyframes scroll {
+  0% {
+    margin-top: 50px;
+  }
   11% {
-    margin-top: 0px;
+    margin-top: 50px;
   }
   22% {
-    margin-top: 0px;
+    margin-top: 50px;
   }
   33% {
-    margin-top: -50px;
+    margin-top: -100px;
   }
   44% {
-    margin-top: -50px;
+    margin-top: -100px;
   }
   55% {
-    margin-top: -100px;
+    margin-top: -280px;
   }
   66% {
-    margin-top: -100px;
+    margin-top: -280px;
   }
   77% {
-    margin-top: -150px;
+    margin-top: -480px;
   }
   88% {
-    margin-top: -150px;
+    margin-top: -480px;
   }
   100% {
-    margin-top: -150px;
+    margin-top: -480px;
   }
 }

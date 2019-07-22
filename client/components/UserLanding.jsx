@@ -12,13 +12,16 @@ class UserLanding extends React.Component {
 
     render() { 
         return (  
-            <div className="splash-container">
+            <div className="scroller-container">
                 <div className="scroller">
                     <div className="inner">
                         <span>Hi there.</span>
+                        <br></br>
                         <span>Please let us track you.</span>
+                        <br></br>
                         <span>We're not going to stalk you.</span>
-                        <span>We're just trying to make <a className="blue">events</a> <a className="blueb">easier</a>.</span>
+                        <br></br>
+                        <span>We're just trying to make <a className="orange">events</a> <a className="orangeb">easier</a>.</span>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,8 @@ import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
 import Stats from "./Stats";
 
-import { addGeoLocationApi,getGeoLocationsApi,getGeoLocationByTimeApi } from "../api/geoLocationApi";
+import { addGeoLocationApi, getGeoLocationsApi, getGeoLocationByTimeApi, getHeatMapValues, getHeatMapIntensity } from '../api/geoLocationApi'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -22,22 +23,33 @@ class App extends React.Component {
       sliderValue: "12",
       barGraph: true,
       lineGraph: false,
-      geoTags: {}
+      geoTags: {},
+      heatmapData:[],
     };
+
   }
 
   componentDidMount() {
+
+    // gets unique heatmap values + intensities.
+    getHeatMapValues()
+    .then(res=>{
+      Promise.all(res.map(getHeatMapIntensity)).then(info => {
+        this.setState({
+          heatmapData: info
+        })
+      })
+    })
+    //Assigns each user a unique id
     let userStorage = window.localStorage;
-    if (userStorage.userId) {
-      console.log("Existing user found: " + userStorage.userId)
-    } else {
-      userStorage.userId = uuidv4()
-      console.log("New User Set: " + userStorage.userId)
+    if (userStorage.userId){
+        console.log("Existing user found: " + userStorage.userId)
+    }else{
+        userStorage.userId = uuidv4()
     }
     this.geoLocate()
     this.getLocations();
   }
-
   // Get Locations from Database
   getLocations = () => {
     getGeoLocationsApi().then(locations => {
@@ -81,12 +93,11 @@ class App extends React.Component {
       this.setState({
         geoTags: locationTag
       })
-
       addGeoLocationApi(locationTag)
       this.getLocations()
-      } else {
-        console.log("Out of bounds!")
-      }
+    } else {
+      console.log("Out of bounds!")
+    }
   }
   outOfBoundsChecker = (lat, long) => {
     const eastLong = 174.780310
@@ -110,7 +121,13 @@ class App extends React.Component {
     let date = "";
 
     this.setState({ sliderValue: e.target.value });
-    Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
+    Number(this.state.sliderValue) < 10
+      ? (date = `${this.state.currentDate}T0${
+        this.state.sliderValue
+        }:00:55+0000`)
+      : (date = `${this.state.currentDate}T${
+        this.state.sliderValue
+        }:00:55+0000`);
 
     let unixTimestamp = moment(`${date}`).unix();
 
@@ -147,10 +164,8 @@ class App extends React.Component {
                 onChange={this.handleSliderChange}
               />
             </div>
-
-            <Map />
-
-            <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
+            <Map addressPoints={this.state.heatmapData} />
+            <div className="graph-padding">
               {this.state.barGraph && <BarGraph />}
               {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}
               <p onClick={this.handleClick} className="toggle-button">

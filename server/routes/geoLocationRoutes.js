@@ -45,8 +45,19 @@ router.get('/totaluniqueusers', (req, res)=>{
         res.json(users)
     })
 })
+router.get('/heatmapvalues', (req, res)=> {
+    db.getHeatMapValues()
+    .then(values =>{
+        res.json(values)
+    })
+})
 
-
+router.post('/intensity', (req,res)=>{
+     db.getHeatMapIntensity(req.body)
+    .then(data =>{
+        res.json(data)
+    })
+})
 
 
 module.exports = router

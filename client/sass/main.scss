@@ -52,7 +52,7 @@ body {
 // // Splash animation for the title.
 
 .tracking-in-contract {
-    padding-top: 20%;
+    padding-top: 25vh;
     margin: 0;
     animation: tracking-in-contract 2.4s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
     font-family: 'Raleway', sans-serif;
@@ -185,7 +185,7 @@ body {
 
 .leaflet-container {
   display: flex;
-  height: 70vh;
+  height: 75vh;
   width: 80vw;
 }
 
@@ -286,8 +286,12 @@ body {
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
   // border-radius: 25px;
-  margin-top: 2rem;
+  // margin-top: 2rem;
   background-color: $color-lightgrey;
+}
+
+.slider-time {
+  font-size: 1.5rem;
 }
 
 //track colour of slider

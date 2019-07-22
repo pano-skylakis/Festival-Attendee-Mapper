@@ -91,8 +91,8 @@ class Dashboard extends React.Component {
             </div>
             <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
               <input type="date" onChange={this.handleDateChange} />
-              <div className="slidecontainer">
-                <p>{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
+                <p className="slider-time">{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
+                <div className="slidecontainer">
                 <input
                   type="range"
                   min="0"

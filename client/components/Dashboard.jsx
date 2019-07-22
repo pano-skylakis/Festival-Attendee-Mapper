@@ -28,6 +28,7 @@ class Dashboard extends React.Component {
         lineGraph: false,
         geoTags: {},
         heatmapData:[],
+        isDesktop: false,
       };
   
     }
@@ -90,7 +91,7 @@ class Dashboard extends React.Component {
               <Stats geoLocationData={this.state.locs} />
             </div>
             <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
-              <input className="date-input" type="date" onChange={this.handleDateChange} />
+              <input className="date-input" type="date" defaultValue="2019/07/23" onChange={this.handleDateChange} />
                 <p className="slider-time">{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
                 <div className="slidecontainer">
                 <input
@@ -104,6 +105,7 @@ class Dashboard extends React.Component {
                 />
               </div>
               <Map addressPoints={this.state.heatmapData} />
+              
               {/* <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
                 {this.state.barGraph && <BarGraph />}
                 {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}

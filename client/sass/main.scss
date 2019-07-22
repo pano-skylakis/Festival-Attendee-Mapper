@@ -145,14 +145,19 @@ body {
   padding: 1rem 2rem 1rem 1rem;
     
   @include tablet{
-      padding: 1rem 4.5rem; 
-      box-shadow: 0 1rem 3rem 0 rgba(0,0,0,0.75);
+    padding: 1rem 4.5rem; 
+  }
+  @include desktop {
+    padding: 1rem 6.5rem;
   }
 
   p {
     font-size: .8rem;
       @include tablet {
         font-size: 1.1rem;
+      }
+      @include desktop {
+        font-size: 0.9rem;
       }
   }
 }
@@ -206,6 +211,11 @@ body {
   // border: orange solid;
   // border-width: 15px 15px 15px 15px;
   box-shadow: 0 0 1rem 0 rgba(0,0,0,0.75);
+
+  @include desktop {
+    margin-bottom: 3.2rem;
+    margin-top: 1.8rem;
+  }
 }
 
 //Button (Just the button to change between Bar Graph and Line Graph components)
@@ -253,6 +263,12 @@ body {
       border: 0;
       font-size: 1.3rem
     }
+
+    @include desktop {
+      height: 22vh;
+      width: 25vw;
+      font-size: 1rem;
+    }
 } 
 
 .stats-big {
@@ -262,6 +278,10 @@ body {
   margin-top: 1.8rem;
     @include tablet {
       font-size: 4rem;
+    }
+    @include desktop {
+      font-size: 3rem;
+      margin-top: 1.3rem;
     }
 }
 

@@ -70,13 +70,18 @@ body {
   padding: 1rem 2rem 1rem 1rem; }
   @media (min-width: 48rem) {
     .footer {
-      padding: 1rem 4.5rem;
-      box-shadow: 0 1rem 3rem 0 rgba(0, 0, 0, 0.75); } }
+      padding: 1rem 4.5rem; } }
+  @media (min-width: 64rem) {
+    .footer {
+      padding: 1rem 6.5rem; } }
   .footer p {
     font-size: .8rem; }
     @media (min-width: 48rem) {
       .footer p {
         font-size: 1.1rem; } }
+    @media (min-width: 64rem) {
+      .footer p {
+        font-size: 0.9rem; } }
 
 .graph-container {
   justify-content: space-around;
@@ -98,6 +103,10 @@ body {
   margin-bottom: 2rem;
   border-radius: 1rem;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.75); }
+  @media (min-width: 64rem) {
+    .map-margin {
+      margin-bottom: 3.2rem;
+      margin-top: 1.8rem; } }
 
 .toggle-button {
   color: #E67E22;
@@ -134,6 +143,11 @@ body {
       width: 50vw;
       border: 0;
       font-size: 1.3rem; } }
+  @media (min-width: 64rem) {
+    .stats-1, .stats-2, .stats-3, .stats-4 {
+      height: 22vh;
+      width: 25vw;
+      font-size: 1rem; } }
 
 .stats-big {
   font-size: 3rem;
@@ -143,6 +157,10 @@ body {
   @media (min-width: 48rem) {
     .stats-big {
       font-size: 4rem; } }
+  @media (min-width: 64rem) {
+    .stats-big {
+      font-size: 3rem;
+      margin-top: 1.3rem; } }
 
 .stats-little {
   color: rgba(44, 44, 44, 0.89); }

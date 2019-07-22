@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 
 const uuidv4 = require("uuid/v4");
 
@@ -28,7 +27,7 @@ class App extends React.Component {
   }
 
   updatePredicate() {
-    this.setState({ isDesktop: window.innerWidth > 1450 });
+    this.setState({ isDesktop: window.innerWidth > 1023 });
   }
 
   render() {

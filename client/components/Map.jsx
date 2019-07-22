@@ -17,7 +17,7 @@ class Map extends React.Component {
       maxZoom: 19,
       savedMarkers: [],
       addressPoints: [],
-      positions: [[-41.296969, 174.776282],[-41.295607, 174.772038],[-41.288876, 174.776126],[-41.291125, 174.779602]]
+      positions: [[-41.297850, 174.775803],[-41.296085, 174.771753],[-41.288876, 174.776126],[-41.291125, 174.779602]]
     }
   }
   //adds poly position on right click

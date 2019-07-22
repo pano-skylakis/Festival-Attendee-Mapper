@@ -103,9 +103,9 @@ class App extends React.Component {
   }
   outOfBoundsChecker = (lat, long) => {
     const eastLong = 174.779602
-    const westLong = 174.772038
+    const westLong = 174.771753
     const northLat = -41.288876
-    const southLat = -41.296969
+    const southLat = -41.297850
 
     if (lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong) {
       return true

@@ -31,6 +31,23 @@ export function getGeoLocationByTimeApi(greaterThan, lessThan) {
 }
 
 
+export function getHeatMapValues(){
+    return request.get(`${route}/heatmapvalues`)
+    .then(res =>{
+        return res.body
+    })
+}
+
+
+export function getHeatMapIntensity(obj){
+    return request.post(`${route}/intensity`)
+    .send(obj)
+    .then(res=>{
+        return JSON.parse(res.text)
+    })
+}
+
+
 export function getTotalUniqueUsersApi() {
     return request.get(`${route}/totaluniqueusers`)
         .then(res => {

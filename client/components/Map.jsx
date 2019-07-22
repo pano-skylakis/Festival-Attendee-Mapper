@@ -18,6 +18,7 @@ class Map extends React.Component {
       savedMarkers: [],
       addressPoints: [],
       positions: [[-41.297850, 174.775803], [-41.296085, 174.771753], [-41.288876, 174.776126], [-41.291125, 174.779602]],
+      heatChange: false
     }
   }
 
@@ -77,12 +78,16 @@ class Map extends React.Component {
       .then(this.getMarkerLocations())
   }
 
+  //toggles heat map
+  handleToggleHeatMap = e => {
+    this.setState({ heatChange: true })
+  }
+
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
       <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin" center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
         <Polygon color="black" positions={this.state.positions} />
-
         {this.state.savedMarkers.map((position, idx) =>
           <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
             <Popup>
@@ -106,7 +111,6 @@ class Map extends React.Component {
           <LayersControl.Overlay name="Heatmap" checked>
             <HeatmapLayer
               fitBoundsOnLoad
-              fitBoundsOnUpdate
               points={this.props.addressPoints}
               longitudeExtractor={m => m[1]}
               latitudeExtractor={m => m[0]}

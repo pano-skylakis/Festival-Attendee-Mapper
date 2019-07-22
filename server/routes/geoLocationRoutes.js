@@ -53,7 +53,6 @@ router.get('/heatmapvalues', (req, res)=> {
 })
 
 router.post('/intensity', (req,res)=>{
-    console.log(req.body)
      db.getHeatMapIntensity(req.body)
     .then(data =>{
         res.json(data)

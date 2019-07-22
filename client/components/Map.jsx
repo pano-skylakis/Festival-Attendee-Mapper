@@ -11,21 +11,17 @@ class Map extends React.Component {
       lat: -41.293699,
       lng: 174.775497,
       zoom: 16,
-      addressPoints: []
+      addressPoints: [],
+      maxZoom: 18,
     }
-    this.convertMapData = this.convertMapData.bind(this)
   }
 
 
   componentDidMount() {
-
     getTotalUniqueUsersApi()
       .then(data => {
         this.setState({uniqueUsers: data})
       })
-  }
-  convertMapData(arr){
-    // console.log(this.state.addressPoints)
   }
 
   addMarker = (e) => {
@@ -37,7 +33,7 @@ class Map extends React.Component {
   render() {
     const position = [this.state.lat, this.state.lng];
     return (
-      <LeafletMap className="map-margin" center={position} zoom={this.state.zoom}>
+      <LeafletMap className="map-margin" center={position} zoom={this.state.zoom} maxZoom={this.state.maxZoom}>
         <HeatmapLayer
               fitBoundsOnLoad
               fitBoundsOnUpdate
@@ -53,3 +49,4 @@ class Map extends React.Component {
 
 
 export default Map;
+

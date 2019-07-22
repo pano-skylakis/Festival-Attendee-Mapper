@@ -46,7 +46,6 @@ class App extends React.Component {
         console.log("Existing user found: " + userStorage.userId)
     }else{
         userStorage.userId = uuidv4()
-        console.log("New User Set: " + userStorage.userId)
     }
     this.geoLocate()
     this.getLocations();

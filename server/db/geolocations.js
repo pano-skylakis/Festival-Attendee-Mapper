@@ -37,7 +37,7 @@ function getHeatMapIntensity(data, db = connection){
         .where('latitude_rounded', data.latitude_rounded).andWhere('longitude_rounded', data.longitude_rounded)
         .select('latitude_rounded', 'longitude_rounded')
         .then(res=>{
-            data.intensity = res.length
+            data.intensity = res.length * 500
             let newArr = []
             newArr.push(data.latitude_rounded, data.longitude_rounded, data.intensity)
             return newArr

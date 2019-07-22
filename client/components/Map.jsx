@@ -17,7 +17,8 @@ class Map extends React.Component {
       maxZoom: 19,
       savedMarkers: [],
       addressPoints: [],
-      positions: [[-41.297850, 174.775803],[-41.296085, 174.771753],[-41.288876, 174.776126],[-41.291125, 174.779602]]
+      positions: [[-41.297850, 174.775803],[-41.296085, 174.771753],[-41.288876, 174.776126],[-41.291125, 174.779602]],
+      heatChange: false
     }
   }
   
@@ -77,6 +78,10 @@ class Map extends React.Component {
       .then(this.getMarkerLocations())
   }
 
+  //toggles heat map
+  handleToggleHeatMap = e => {
+    this.setState({heatChange: true})
+  }
 
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
@@ -84,13 +89,13 @@ class Map extends React.Component {
       <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin"  center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>      
         <Polygon color="black" positions = {this.state.positions}/>
         
-        <HeatmapLayer
+              {this.state.heatChange && <HeatmapLayer
               fitBoundsOnLoad
               // fitBoundsOnUpdate
               points={this.props.addressPoints}
               longitudeExtractor={m => m[1]}
               latitudeExtractor={m => m[0]}
-              intensityExtractor={m => parseFloat(m[2])} />
+              intensityExtractor={m => parseFloat(m[2])} />}
 
 
             {this.state.savedMarkers.map((position, idx) =>
@@ -108,11 +113,15 @@ class Map extends React.Component {
 
 
         <LayersControl position='topright'>
-          <LayersControl.BaseLayer checked name='Street View'>
-            <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+          <LayersControl.BaseLayer checked name='Street View' >
+            <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'>
+            </TileLayer>
           </LayersControl.BaseLayer>
           <LayersControl.BaseLayer name='Satellite'>
             <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name='Heat Map' onChange={this.handleToggleHeatMap}>
+            <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
           </LayersControl.BaseLayer>
         </LayersControl>
 

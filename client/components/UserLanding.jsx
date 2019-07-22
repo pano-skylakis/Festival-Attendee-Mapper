@@ -1,4 +1,5 @@
 import React from 'react'
+import { addGeoLocationApi } from '../api/geoLocationApi'
 
 class UserLanding extends React.Component {
     constructor(props) {
@@ -7,6 +8,68 @@ class UserLanding extends React.Component {
         this.state = {
 
         }
+    }
+
+    componentDidMount() {
+        //Assigns each user a unique id
+        let userStorage = window.localStorage;
+        if (userStorage.userId){
+            console.log("Existing user found: " + userStorage.userId)
+        }else{
+            userStorage.userId = uuidv4()
+        }
+        this.geoLocate()
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval)
+    }
+    
+    // Track Locations
+    geoLocate = () => {
+        const error = () => {
+          console.warn(`ERROR(${err.code}): ${err.message}`);
+        }
+        const options = {
+          enableHighAccuracy: true,
+          timeout: 5000,
+          maximumAge: 0
+        };
+        this.interval = setInterval(function () {
+          navigator.geolocation.getCurrentPosition(this.saveLocation, error, options)
+        }.bind(this), 5000)
+    }
+    
+    saveLocation = (pos) => {
+    let crd = pos.coords;
+    const locationTag = {}
+
+    if (this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
+            locationTag.latitude = crd.latitude
+            locationTag.longitude = crd.longitude
+            locationTag.accuracy = crd.accuracy
+            locationTag.user = window.localStorage.userId
+            locationTag.timestamp = Date.now()
+
+            this.setState({
+            geoTags: locationTag
+            })
+            addGeoLocationApi(locationTag)
+
+        } else {
+            console.log("Out of bounds!")
+        }
+    }
+    outOfBoundsChecker = (lat, long) => {
+    const eastLong = 174.779602
+    const westLong = 174.771753
+    const northLat = -41.288876
+    const southLat = -41.297850
+
+    if (lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong) {
+        return true
+    }
+    return false
     }
 
 

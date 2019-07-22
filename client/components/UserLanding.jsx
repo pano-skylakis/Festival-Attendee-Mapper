@@ -1,5 +1,6 @@
 import React from 'react'
 import { addGeoLocationApi } from '../api/geoLocationApi'
+const uuidv4 = require("uuid/v4");
 
 class UserLanding extends React.Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class UserLanding extends React.Component {
     }
 
     componentDidMount() {
-        //Assigns each user a unique id
+        //assigns each user a unique id
         let userStorage = window.localStorage;
         if (userStorage.userId){
             console.log("Existing user found: " + userStorage.userId)
@@ -25,7 +26,8 @@ class UserLanding extends React.Component {
         clearInterval(this.interval)
     }
     
-    // Track Locations
+
+    //track locations
     geoLocate = () => {
         const error = () => {
           console.warn(`ERROR(${err.code}): ${err.message}`);
@@ -40,6 +42,8 @@ class UserLanding extends React.Component {
         }.bind(this), 5000)
     }
     
+
+    //checks if out of bounds and saves user location to state >> database
     saveLocation = (pos) => {
     let crd = pos.coords;
     const locationTag = {}

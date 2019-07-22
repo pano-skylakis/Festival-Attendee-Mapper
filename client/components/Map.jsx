@@ -1,7 +1,6 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup, Polygon, LayersControl } from 'react-leaflet'
-import { getTotalUniqueUsersApi } from '../api/geoLocationApi'
-import { getMarkerLocationsApi, addMarkerLocationApi, deleteMarkerApi } from '../api/markerLocationApi'
+import { getMarkerLocationsApi, addMarkerLocationApi, deleteMarkerApi, addMarkerDescriptionApi } from '../api/markerLocationApi'
 import HeatmapLayer from 'react-leaflet-heatmap-layer';
 
 
@@ -14,7 +13,7 @@ class Map extends React.Component {
       lng: 174.775497,
       zoom: 16,
       markers: [],
-      uniqueUsers: null,
+      description: '',
       maxZoom: 19,
       savedMarkers: [],
       addressPoints: [],
@@ -35,43 +34,56 @@ class Map extends React.Component {
 
 
   componentDidMount() {
-    getTotalUniqueUsersApi()
-      .then(data => {
-        this.setState({ uniqueUsers: data })
-      })
     this.getMarkerLocations()
   }
 
+
+  //gets all marker locations from database and assigns them to state using refreshState method
   getMarkerLocations = () => {
     getMarkerLocationsApi()
       .then(data => {
         this.refreshState(data)
       })
   }
-
   refreshState = data => {
-    this.setState({ savedMarkers: data })
+    this.setState({ savedMarkers: data, description: '' })
   }
 
-  addMarker = e => {
-    const { markers } = this.state
 
-    markers.push(e.latlng)
-    this.setState({ markers })
+  //adds marker on map-click event
+  addMarker = e => {
     addMarkerLocationApi(e.latlng)
       .then(this.getMarkerLocations())
   }
 
-  deletePost = e => {
+
+  //deletes selected marker
+  deleteMarker = e => {
     deleteMarkerApi(e.target.id)
       .then(this.getMarkerLocations())
   }
+
+
+  //sets state to current description input value
+  handleDescriptionChange = e => {
+    this.setState({description: e.target.value})
+  }
+
+
+  //submits description to database on click event
+  handleDescriptionSubmit = e => {
+    e.preventDefault()
+    addMarkerDescriptionApi(this.state.description, e.target.dataset.marker)
+      .then(this.getMarkerLocations())
+  }
+
 
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
       <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin"  center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>      
         <Polygon color="black" positions = {this.state.positions}/>
+        
         <HeatmapLayer
               fitBoundsOnLoad
               // fitBoundsOnUpdate
@@ -80,18 +92,20 @@ class Map extends React.Component {
               latitudeExtractor={m => m[0]}
               intensityExtractor={m => parseFloat(m[2])} />
 
+
             {this.state.savedMarkers.map((position, idx) =>
               <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
                 <Popup>
                   {/* this changes whatever is in the pop-up --v*/}
                   {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}
                   <span>New pin!</span><br/>
-                  <button onClick={this.deletePost} id={position.id}>Delete</button>
-                  Description: <input type="text" name="lname"/>
-                    <input type="submit" value="Add"/>
+                  <button onClick={this.deleteMarker} id={position.id}>Delete</button>
+                  Description: {position.description}<input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description}/>
+                    <input data-marker={position.id} type="submit" value="Add" onClick={this.handleDescriptionSubmit}/>
                 </Popup>
               </Marker>
                     )}
+
 
         <LayersControl position='topright'>
           <LayersControl.BaseLayer checked name='Street View'>

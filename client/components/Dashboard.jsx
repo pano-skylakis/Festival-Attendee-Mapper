@@ -1,8 +1,6 @@
 import React from "react";
 import moment from "moment";
 
-const uuidv4 = require("uuid/v4");
-
 import Splash from "./Splash";
 import Footer from "./Footer";
 import Map from "./Map";
@@ -62,9 +60,8 @@ class Dashboard extends React.Component {
     });
   };
 
-  
 
-  handleClick = () => {
+  handleGraphButtonClick = () => {
       this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true}) : this.setState({ barGraph: true, lineGraph: false})
   }
 
@@ -110,7 +107,7 @@ class Dashboard extends React.Component {
               <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
                 {this.state.barGraph && <BarGraph />}
                 {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}
-                <p onClick={this.handleClick} className="toggle-button">
+                <p onClick={this.handleGraphButtonClick} className="toggle-button">
                   Toggle Graph
                 </p>
               </div>

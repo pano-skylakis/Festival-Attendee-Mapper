@@ -32,8 +32,8 @@ export function addMarkerDescriptionApi(body) {
         })
 }
 
-export function deletePost() {
-    return request.del(route)
+export function deleteMarkerApi(id) {
+    return request.del(`${route}/${id}`)
         .then(res => {
             return res.body
         })

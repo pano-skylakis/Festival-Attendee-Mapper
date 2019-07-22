@@ -1,7 +1,7 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup, Polygon, LayersControl } from 'react-leaflet'
 import { getTotalUniqueUsersApi } from '../api/geoLocationApi'
-import { getMarkerLocationsApi, addMarkerLocationApi, deletePost } from '../api/markerLocationApi'
+import { getMarkerLocationsApi, addMarkerLocationApi, deleteMarkerApi } from '../api/markerLocationApi'
 import HeatmapLayer from 'react-leaflet-heatmap-layer';
 
 
@@ -62,7 +62,8 @@ class Map extends React.Component {
   }
 
   deletePost = e => {
-    console.log(e.target)
+    deleteMarkerApi(e.target.id)
+      .then(this.getMarkerLocations())
   }
 
   render() {
@@ -84,7 +85,7 @@ class Map extends React.Component {
                   {/* this changes whatever is in the pop-up --v*/}
                   {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}
                   <span>New pin!</span><br/>
-                  <button onClick={this.delelePost} id={position.id}>Delete</button>
+                  <button onClick={this.deletePost} id={position.id}>Delete</button>
                   Description: <input type="text" name="lname"/>
                     <input type="submit" value="Add"/>
                 </Popup>

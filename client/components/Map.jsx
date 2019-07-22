@@ -3,6 +3,9 @@ import { Map as LeafletMap, TileLayer, Marker, Popup, Polygon, LayersControl } f
 import { getMarkerLocationsApi, addMarkerLocationApi, deleteMarkerApi, addMarkerDescriptionApi } from '../api/markerLocationApi'
 import HeatmapLayer from 'react-leaflet-heatmap-layer';
 
+import { toiletIcon } from './mapIcons'
+
+
 
 class Map extends React.Component {
   constructor(props) {
@@ -94,10 +97,9 @@ class Map extends React.Component {
 
 
             {this.state.savedMarkers.map((position, idx) =>
-              <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
+              <Marker key={`marker-${idx}`} icon={toiletIcon} position={{ lat: position.latitude, lng: position.longitude }}>
                 <Popup>
                   {/* this changes whatever is in the pop-up --v*/}
-                  {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}
                   <span>New pin!</span><br/>
                   <button onClick={this.deleteMarker} id={position.id}>Delete</button>
                   Description: {position.description}<input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description}/>

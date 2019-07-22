@@ -47,6 +47,7 @@ export function getHeatMapIntensity(obj){
     })
 }
 
+
 export function getTotalUniqueUsersApi() {
     return request.get(`${route}/totaluniqueusers`)
         .then(res => {

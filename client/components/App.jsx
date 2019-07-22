@@ -40,6 +40,7 @@ class App extends React.Component {
         })
       })
     })
+
     //Assigns each user a unique id
     let userStorage = window.localStorage;
     if (userStorage.userId){
@@ -50,6 +51,7 @@ class App extends React.Component {
     this.geoLocate()
     this.getLocations();
   }
+  
   // Get Locations from Database
   getLocations = () => {
     getGeoLocationsApi().then(locations => {
@@ -121,13 +123,7 @@ class App extends React.Component {
     let date = "";
 
     this.setState({ sliderValue: e.target.value });
-    Number(this.state.sliderValue) < 10
-      ? (date = `${this.state.currentDate}T0${
-        this.state.sliderValue
-        }:00:55+0000`)
-      : (date = `${this.state.currentDate}T${
-        this.state.sliderValue
-        }:00:55+0000`);
+    Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
 
     let unixTimestamp = moment(`${date}`).unix();
 
@@ -146,11 +142,7 @@ class App extends React.Component {
           <div data-aos="flip-up" data-aos-duration="2000">
             <Stats geoLocationData={this.state.locs} />
           </div>
-          <div
-            data-aos="fade-up"
-            data-aos-duration="2000"
-            className="graph-container"
-          >
+          <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
             <input type="date" onChange={this.handleDateChange} />
             <div className="slidecontainer">
               <p>{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
@@ -165,7 +157,7 @@ class App extends React.Component {
               />
             </div>
             <Map addressPoints={this.state.heatmapData} />
-            <div className="graph-padding">
+            <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
               {this.state.barGraph && <BarGraph />}
               {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}
               <p onClick={this.handleClick} className="toggle-button">

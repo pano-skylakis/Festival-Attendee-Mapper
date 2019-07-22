@@ -29,7 +29,6 @@ export function addMarkerDescriptionApi(body, id) {
             return res.body
         })
         .catch(err => {
-            console.log(err)
             return err
         })
 }

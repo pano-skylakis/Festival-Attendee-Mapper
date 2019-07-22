@@ -9,7 +9,6 @@ function addMarkerLocation(coords, db = connection) {
 }
 
 function updateMarkerDescription(description, id, db = connection) {
-    console.log(description, id)
     return db('marker_locations').where('id', id).update(description)
 }
 

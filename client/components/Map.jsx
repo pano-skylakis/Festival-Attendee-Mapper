@@ -120,9 +120,16 @@ class Map extends React.Component {
           <LayersControl.BaseLayer name='Satellite'>
             <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' />
           </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name='Heat Map' onChange={this.handleToggleHeatMap}>
-            <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'/>
-          </LayersControl.BaseLayer>
+          <LayersControl.Overlay name="Heatmap" checked>
+                  <HeatmapLayer
+                    fitBoundsOnLoad
+                    fitBoundsOnUpdate
+                    points={this.props.addressPoints}
+                    longitudeExtractor={m => m[1]}
+                    latitudeExtractor={m => m[0]}
+                    intensityExtractor={m => parseFloat(m[2])}
+                  />
+              </LayersControl.Overlay>
         </LayersControl>
 
       </LeafletMap>

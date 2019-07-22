@@ -1,5 +1,5 @@
 import React from 'react'
-import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Map as LeafletMap, TileLayer, Marker, Popup, Polygon } from 'react-leaflet'
 import { getTotalUniqueUsersApi } from '../api/geoLocationApi'
 import { getMarkerLocationsApi, addMarkerLocationApi } from '../api/markerLocationApi';
 import HeatmapLayer from 'react-leaflet-heatmap-layer'
@@ -17,8 +17,19 @@ class Map extends React.Component {
       maxZoom: 19,
       savedMarkers: [],
       addressPoints: [],
+      positions: [[-41.296969, 174.776282],[-41.295607, 174.772038],[-41.288876, 174.776126],[-41.291125, 174.779602]]
     }
   }
+  //adds poly position on right click
+  // addPolyPosition = (e) => {
+  //   const newPos = [e.latlng.lat, e.latlng.lng];
+  //   this.setState(prevState => (
+  //     {
+  //       positions: prevState.positions.concat([newPos])
+  //     }
+  //   ));
+  //   return false
+  // }
 
 
   componentDidMount() {
@@ -45,9 +56,6 @@ class Map extends React.Component {
 
     markers.push(e.latlng)
     this.setState({ markers })
-
-    console.log(this.state.markers)
-
     addMarkerLocationApi(e.latlng)
       .then(this.getMarkerLocations())
   }
@@ -55,10 +63,11 @@ class Map extends React.Component {
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
-      <LeafletMap className="map-margin" center={centerPosition} zoom={this.state.zoom} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
+      <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin"  center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
+        <Polygon color="black" positions = {this.state.positions}/>
         <HeatmapLayer
               fitBoundsOnLoad
-              fitBoundsOnUpdate
+              // fitBoundsOnUpdate
               points={this.props.addressPoints}
               longitudeExtractor={m => m[1]}
               latitudeExtractor={m => m[0]}

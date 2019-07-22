@@ -104,13 +104,13 @@ class Dashboard extends React.Component {
                 />
               </div>
               <Map addressPoints={this.state.heatmapData} />
-              <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
+              {/* <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
                 {this.state.barGraph && <BarGraph />}
                 {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}
                 <p onClick={this.handleGraphButtonClick} className="toggle-button">
                   Toggle Graph
                 </p>
-              </div>
+              </div> */}
             </div>
             <Footer />
           </div>

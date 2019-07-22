@@ -29,7 +29,7 @@ class Stats extends React.Component {
 
     render() { 
         return (  
-          <div className="statsbar">
+          <div className="statsbar enter">
               <div className="stats-1">
                 <p className="stats-1-big">2,410</p>
                 <p>users currently being tracked</p>

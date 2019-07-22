@@ -117,6 +117,10 @@ class Dashboard extends React.Component {
       }
       return false
     }
+
+    handleClick = () => {
+        this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true}) : this.setState({ barGraph: true, lineGraph: false})
+    }
   
     handleDateChange = e => {
       this.setState({ currentDate: e.target.value });
@@ -139,7 +143,7 @@ class Dashboard extends React.Component {
     return (
         <React.Fragment>
           <Splash />
-          <div className="content enter">
+          <div className="content">
             <div data-aos="flip-up" data-aos-duration="2000">
               <Stats geoLocationData={this.state.locs} />
             </div>

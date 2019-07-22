@@ -21,6 +21,7 @@ class Map extends React.Component {
       positions: [[-41.297850, 174.775803],[-41.296085, 174.771753],[-41.288876, 174.776126],[-41.291125, 174.779602]]
     }
   }
+  
   //adds poly position on right click
   // addPolyPosition = (e) => {
   //   const newPos = [e.latlng.lat, e.latlng.lng];

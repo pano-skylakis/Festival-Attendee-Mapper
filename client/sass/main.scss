@@ -41,8 +41,11 @@ $screen-xl: 100rem;
 
 body {
   margin: 0;
+  padding: 0;
+  font-weight: 200;
+  font-family: helvetica neue, helvetica, arial, sans-serif;
   background-color: $color-lightgrey;
-  font-size: 3rem;
+  font-size: 16px;
 }
 
 //Splash Component
@@ -134,13 +137,16 @@ body {
 //Footer Component (Bottom of the page)
 
 .footer {
+  background-color:$color-grey;
+  color: $color-lightgrey;
+  left: 0;
+  right: 0;
+  padding: 1rem 60rem 1rem 6rem;
+  box-shadow: 0 1rem 3rem 0 rgba(0,0,0,0.75);
 
-    background-color:$color-grey;
-    color: $color-lightgrey;
-    left: 0;
-    right: 0;
-    padding: 1rem 60rem 1rem 6rem;
-    box-shadow: 0 1rem 3rem 0 rgba(0,0,0,0.75);
+  p {
+    font-size: .8rem;
+  }
 }
 
 
@@ -340,10 +346,6 @@ input[type=range]::-moz-range-thumb {
 // Bridey experimenting
 
 * {
-  margin: 0px;
-  padding: 0px;
-  font-weight: 200;
-  font-family: helvetica neue, helvetica, arial, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 a {
@@ -372,8 +374,6 @@ a:hover {
   margin-top: -25px;
 }
 p {
-  line-height: 50px;
-  font-size: 200%;
   color: #888;
 }
 .scroller {
@@ -382,6 +382,7 @@ p {
   float: left;
   margin-left: 5px;
   overflow: hidden;
+  font-size: 3rem;
 }
 .scroller span {
   display: block;

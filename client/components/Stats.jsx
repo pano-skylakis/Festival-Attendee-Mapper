@@ -47,8 +47,8 @@ class Stats extends React.Component {
               </div>
 
               <div className="stats-4">
-              <p className="stats-big">64</p>
-              <p className="stats-little">bullshit statistics</p>
+              <p className="stats-big">588</p>
+              <p className="stats-little">hours spent on this project</p>
               </div>
           </div>
         );

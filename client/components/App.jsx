@@ -1,7 +1,5 @@
 import React from "react";
 
-const uuidv4 = require("uuid/v4");
-
 import Dashboard from './Dashboard'
 import UserLanding from './UserLanding'
 
@@ -37,6 +35,7 @@ class App extends React.Component {
   }
 
   render() {
+
     const isDesktop = this.state.isDesktop;
 
     return (

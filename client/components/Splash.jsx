@@ -5,14 +5,6 @@ import Loading from './Loading'
 import {Link, animateScroll as scroll} from 'react-scroll'
 
 class Splash extends React.Component {
-    constructor(props) {
-        super(props)
-        
-        this.state = {
-
-        }
-    }
-
 
     render() { 
         return (  

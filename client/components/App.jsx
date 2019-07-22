@@ -9,6 +9,7 @@ import Map from "./Map";
 import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
 import Stats from "./Stats";
+import UserLanding from "./UserLanding";
 
 import {
   addGeoLocationApi,
@@ -125,7 +126,8 @@ class App extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Splash />
+        <UserLanding />
+        {/* <Splash />
         <div className="content enter">
           <div data-aos="flip-up" data-aos-duration="2000">
             <Stats geoLocationData={this.state.locs}/>
@@ -159,7 +161,7 @@ class App extends React.Component {
             </div>
           </div>
           <Footer />
-        </div>
+        </div> */}
       </React.Fragment>
     );
   }

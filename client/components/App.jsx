@@ -119,15 +119,18 @@ class App extends React.Component {
 
   handleSliderChange = e => {
     // 2019-07-20T11:06:55+0000  <<< this is the format the date must be in (ISO8106)
-
     let date = "";
 
     this.setState({ sliderValue: e.target.value });
-    Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
 
+    Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
+    
     let unixTimestamp = moment(`${date}`).unix();
 
-    getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601);
+    getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601)
+      .then(data => {
+        console.log(data)
+      })
   };
 
   handleClick = () => {

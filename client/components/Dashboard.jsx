@@ -13,7 +13,9 @@ import Stats from "./Stats";
 import {
   addGeoLocationApi,
   getGeoLocationsApi,
-  getGeoLocationByTimeApi
+  getGeoLocationByTimeApi,
+  getHeatMapValues,
+  getHeatMapIntensity
 } from "../api/geoLocationApi";
 
 class Dashboard extends React.Component {

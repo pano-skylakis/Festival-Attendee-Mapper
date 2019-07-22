@@ -46,8 +46,6 @@ class Map extends React.Component {
     markers.push(e.latlng)
     this.setState({ markers })
 
-    console.log(this.state.markers)
-
     addMarkerLocationApi(e.latlng)
       .then(this.getMarkerLocations())
   }

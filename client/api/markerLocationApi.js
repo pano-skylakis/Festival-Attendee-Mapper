@@ -12,7 +12,7 @@ export function getMarkerLocationsApi() {
 
 export function addMarkerLocationApi(body) {
     return request.post(route)
-        .send({latitude: body.lat, longitude: body.lng})
+        .send({ latitude: body.lat, longitude: body.lng })
         .then(res => {
             return res.body
         })
@@ -23,7 +23,17 @@ export function addMarkerLocationApi(body) {
 
 export function addMarkerDescriptionApi(body) {
     return request.post(descriptionRoute)
-        .send({description: body.description})
+        .send({ description: body.description })
+        .then(res => {
+            return res.body
+        })
+        .catch(err => {
+            return err
+        })
+}
+
+export function deleteMarkerApi(id) {
+    return request.del(`${route}/${id}`)
         .then(res => {
             return res.body
         })

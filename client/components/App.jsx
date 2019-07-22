@@ -25,10 +25,19 @@ class App extends React.Component {
   componentWillUnmount() {
     window.removeEventListener("resize", this.updatePredicate);
   }
+  
 
   updatePredicate() {
     this.setState({ isDesktop: window.innerWidth > 1023 });
   }
+
+  handleDateChange = e => {
+    this.setState({ currentDate: e.target.value });
+  };
+
+  handleClick = () => {
+    this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true }) : this.setState({ barGraph: true, lineGraph: false });
+  };
 
   render() {
     const isDesktop = this.state.isDesktop;

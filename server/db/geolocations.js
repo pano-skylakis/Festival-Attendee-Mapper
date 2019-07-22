@@ -25,6 +25,7 @@ function getTotalUniqueUsers(db = connection) {
         })
 }
 
+
 function getHeatMapValues(db = connection) {
     return db('geolocation')
         .distinct('latitude_rounded', 'longitude_rounded')
@@ -32,6 +33,8 @@ function getHeatMapValues(db = connection) {
             return latLongPairs
         })
 }
+
+
 function getHeatMapIntensity(data, db = connection){
     return db('geolocation')
         .where('latitude_rounded', data.latitude_rounded).andWhere('longitude_rounded', data.longitude_rounded)
@@ -43,6 +46,7 @@ function getHeatMapIntensity(data, db = connection){
             return newArr
         })
 }
+
 
 module.exports = {
     getGeoLocations,

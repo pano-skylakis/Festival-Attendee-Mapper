@@ -22,4 +22,14 @@ router.post('/markers', (req, res) => {
         })
 })
 
+router.delete('/markers/:id', (req, res) => {
+    db.deletePost(req.params.id)
+        .then(numberOfDeleted => {
+            res.sendStatus(200)
+        })
+        .catch(err => {
+            res.send(err)
+        })
+})
+
 module.exports = router

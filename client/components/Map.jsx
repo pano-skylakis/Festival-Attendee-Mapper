@@ -1,8 +1,9 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup, LayersControl } from 'react-leaflet'
 import { getTotalUniqueUsersApi } from '../api/geoLocationApi'
-import { getMarkerLocationsApi, addMarkerLocationApi } from '../api/markerLocationApi';
-import HeatmapLayer from 'react-leaflet-heatmap-layer'
+import { getMarkerLocationsApi, addMarkerLocationApi } from '../api/markerLocationApi'
+import HeatmapLayer from 'react-leaflet-heatmap-layer';
+import {deletePost} from '../api'
 
 
 class Map extends React.Component {
@@ -53,6 +54,10 @@ class Map extends React.Component {
       .then(this.getMarkerLocations())
   }
 
+  deletePost (e) {
+    deletePost.this.props.id
+  }
+
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
@@ -72,13 +77,14 @@ class Map extends React.Component {
               longitudeExtractor={m => m[1]}
               latitudeExtractor={m => m[0]}
               intensityExtractor={m => parseFloat(m[2])} />
-        {this.state.savedMarkers.map((position, idx) =>
+          {this.state.savedMarkers.map((position, idx) =>
           <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
+
             <Popup>
               {/* this changes whatever is in the pop-up --v*/}
               {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}
               <span>New pin!</span><br/>
-
+              <button onClick={this.delelePost}>delete</button>
               Description: <input type="text" name="lname"/>
                 <input type="submit" value="Add"/>
             </Popup>

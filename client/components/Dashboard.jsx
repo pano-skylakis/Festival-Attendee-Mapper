@@ -7,6 +7,8 @@ import Map from "./Map";
 import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
 import Stats from "./Stats";
+import IconSelect from "./IconSelect"
+
 
 import {
   getGeoLocationsApi,
@@ -105,7 +107,7 @@ class Dashboard extends React.Component {
                   onChange={this.handleSliderChange}
                 />
               </div>
-
+              <IconSelect />
               <Map addressPoints={this.state.heatmapData} />
               <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
                 {this.state.barGraph && <BarGraph />}

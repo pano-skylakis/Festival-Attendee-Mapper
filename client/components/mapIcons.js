@@ -1,64 +1,65 @@
-import { Map as LeafletMap, TileLayer, Marker, Popup} from 'react-leaflet'
+import { Map as LeafletMap, TileLayer, Marker, Popup, Polygon, LayersControl } from 'react-leaflet'
+
 
 
 export const toiletIcon = L.icon({
-    iconUrl: './images/toilet-solid.svg',
+    iconUrl: './images/toilet.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
   });
 
   export const babyCarriageIcon = L.icon({
-    iconUrl: './images/toilet-solid.svg',
+    iconUrl: './images/baby-carriage.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
   });
 
   export const firstAidIcon = L.icon({
-    iconUrl: './images/toilet-solid.svg',
+    iconUrl: './images/first-aid.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
   });
 
   export const coffeeIcon = L.icon({
-    iconUrl: './images/toilet-solid.svg',
+    iconUrl: './images/coffee.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
   });
 
   export const guitarIcon = L.icon({
-    iconUrl: './images/toilet-solid.svg',
+    iconUrl: './images/guitar.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
   });
 
   export const informationIcon = L.icon({
-    iconUrl: './images/toilet-solid.svg',
+    iconUrl: './images/information.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
   });
 
   export const trashIcon = L.icon({
-    iconUrl: './images/toilet-solid.svg',
+    iconUrl: './images/trash.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
   });
   
   export const foodIcon = L.icon({
-    iconUrl: './images/toilet-solid.svg',
+    iconUrl: './images/food.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
   });
 
   export const waterIcon = L.icon({
-    iconUrl: './images/toilet-solid.svg',
+    iconUrl: './images/water.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],

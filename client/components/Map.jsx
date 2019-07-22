@@ -28,15 +28,15 @@ class Map extends React.Component {
 
   getMarkerLocations = () => {
     getMarkerLocationsApi()
-    .then(data => {
-      this.refreshState(data)
-    })
+      .then(data => {
+        this.refreshState(data)
+      })
   }
 
   refreshState = (data) => {
-    this.setState({savedMarkers: data})
+    this.setState({ savedMarkers: data })
   }
-  
+
   addMarker = (e) => {
     const { markers } = this.state
 
@@ -49,22 +49,24 @@ class Map extends React.Component {
       .then(this.getMarkerLocations())
   }
 
-render() {
+  render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
       <LeafletMap className="map-margin" center={centerPosition} zoom={this.state.zoom} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
         <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
-        {this.state.savedMarkers.map((position, idx) => 
-            <Marker key={`marker-${idx}`} position={{lat: position.latitude, lng: position.longitude}}>
-              <Popup>
+        {this.state.savedMarkers.map((position, idx) =>
+          <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
+            <Popup>
               {/* this changes whatever is in the pop-up --v*/}
-              <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span>
+              <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/>
+              Description: <input type="text" name="lname"/>
+                <input type="submit" value="Add"/>
             </Popup>
           </Marker>
-        )}
+                )}
       </LeafletMap>
-    );
-  }
-}
-
-export default Map
+              );
+            }
+          }
+          
+          export default Map

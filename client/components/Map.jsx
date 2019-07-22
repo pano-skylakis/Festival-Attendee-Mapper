@@ -14,6 +14,7 @@ class Map extends React.Component {
       lng: 174.775497,
       zoom: 16,
       markers: [],
+      description: '',
       uniqueUsers: null,
       maxZoom: 19,
       savedMarkers: [],
@@ -67,6 +68,11 @@ class Map extends React.Component {
       .then(this.getMarkerLocations())
   }
 
+  handleDescriptionChange = e => {
+    this.setState({description: e.target.value})
+    console.log(this.state.description)
+  }
+
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
@@ -87,7 +93,7 @@ class Map extends React.Component {
                   {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}
                   <span>New pin!</span><br/>
                   <button onClick={this.deletePost} id={position.id}>Delete</button>
-                  Description: <input type="text" name="lname"/>
+                  Description: {this.state.description}<input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description}/>
                     <input type="submit" value="Add"/>
                 </Popup>
               </Marker>

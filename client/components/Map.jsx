@@ -48,11 +48,11 @@ class Map extends React.Component {
       })
   }
 
-  refreshState = (data) => {
+  refreshState = data => {
     this.setState({ savedMarkers: data })
   }
 
-  addMarker = (e) => {
+  addMarker = e => {
     const { markers } = this.state
 
     markers.push(e.latlng)
@@ -61,8 +61,8 @@ class Map extends React.Component {
       .then(this.getMarkerLocations())
   }
 
-  deletePost (e) {
-    deletePost.this.props.id
+  deletePost = e => {
+    console.log(e.target)
   }
 
   render() {
@@ -77,19 +77,19 @@ class Map extends React.Component {
               longitudeExtractor={m => m[1]}
               latitudeExtractor={m => m[0]}
               intensityExtractor={m => parseFloat(m[2])} />
+
             {this.state.savedMarkers.map((position, idx) =>
               <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
-
-            <Popup>
-              {/* this changes whatever is in the pop-up --v*/}
-              {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}
-              <span>New pin!</span><br/>
-              <button onClick={this.delelePost}>delete</button>
-              Description: <input type="text" name="lname"/>
-                <input type="submit" value="Add"/>
-            </Popup>
-          </Marker>
-                )}
+                <Popup>
+                  {/* this changes whatever is in the pop-up --v*/}
+                  {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}
+                  <span>New pin!</span><br/>
+                  <button onClick={this.delelePost} id={position.id}>Delete</button>
+                  Description: <input type="text" name="lname"/>
+                    <input type="submit" value="Add"/>
+                </Popup>
+              </Marker>
+                    )}
 
         <LayersControl position='topright'>
           <LayersControl.BaseLayer checked name='Street View'>

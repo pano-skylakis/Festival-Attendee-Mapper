@@ -12,43 +12,36 @@ class App extends React.Component {
 
     this.state = {
       isDesktop: false
-    };
-
-    this.updatePredicate = this.updatePredicate.bind(this);
+    }
   }
+
 
   componentDidMount() {
     this.updatePredicate();
     window.addEventListener("resize", this.updatePredicate);
   }
 
+
   componentWillUnmount() {
     window.removeEventListener("resize", this.updatePredicate);
   }
   
 
-  updatePredicate() {
-    this.setState({ isDesktop: window.innerWidth > 1023 });
+  updatePredicate = () => {
+    this.setState({ isDesktop: window.innerWidth > 1023 })
   }
 
-  handleDateChange = e => {
-    this.setState({ currentDate: e.target.value });
-  };
 
   handleClick = () => {
-    this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true }) : this.setState({ barGraph: true, lineGraph: false });
-  };
+    this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true }) : this.setState({ barGraph: true, lineGraph: false })
+  }
 
   render() {
     const isDesktop = this.state.isDesktop;
 
     return (
       <div>
-        {isDesktop ? (
-          <Dashboard />
-        ) : (
-          <UserLanding />
-        )}
+        {isDesktop ? (<Dashboard />) : (<UserLanding />)}
       </div>
     )
   } 

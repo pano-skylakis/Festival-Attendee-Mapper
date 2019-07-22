@@ -1,7 +1,6 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet'
 import { getTotalUniqueUsersApi } from '../api/geoLocationApi'
-import { get } from 'http';
 import { getMarkerLocationsApi, addMarkerLocationApi } from '../api/markerLocationApi';
 
 class Map extends React.Component {
@@ -15,7 +14,7 @@ class Map extends React.Component {
       markers: [],
       uniqueUsers: null,
       maxZoom: 19,
-      savedMarkers: {lat: null, lng: null}
+      savedMarkers: []
     }
   }
 
@@ -24,40 +23,48 @@ class Map extends React.Component {
       .then(data => {
         this.setState({ uniqueUsers: data })
       })
+    this.getMarkerLocations()
+  }
+
+  getMarkerLocations = () => {
     getMarkerLocationsApi()
     .then(data => {
-      this.setState({savedMarkers: {lat: data.lat, lng: data.lng}})
-      console.log(this.state.savedMarkers + "this is savedMarkers");
+      this.refreshState(data)
     })
+  }
+
+  refreshState = (data) => {
+    this.setState({savedMarkers: data})
   }
   
   addMarker = (e) => {
     const { markers } = this.state
-    console.log(e.latlng);
-    
-    // this.setState({markers:e.latlng})
+
     markers.push(e.latlng)
     this.setState({ markers })
-    // console.log(markers);
+
+    console.log(this.state.markers)
+
     addMarkerLocationApi(e.latlng)
-}
+      .then(this.getMarkerLocations())
+  }
 
 render() {
-  const position = [this.state.lat, this.state.lng];
-  return (
-    <LeafletMap className="map-margin" center={position} zoom={this.state.zoom} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
-      <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
-      {this.state.markers.map((position, idx) =>
-        <Marker key={`marker-${idx}`} position={position}>
-          <Popup>
-            {/* this changes whatever is in the pop-up --v*/}
-            <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span>
-          </Popup>
-        </Marker>
-      )}
-    </LeafletMap>
-  );
-}
+    const centerPosition = [this.state.lat, this.state.lng];
+    return (
+      <LeafletMap className="map-margin" center={centerPosition} zoom={this.state.zoom} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
+        <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+        {this.state.savedMarkers.map((position, idx) => 
+            <Marker key={`marker-${idx}`} position={{lat: position.latitude, lng: position.longitude}}>
+              <Popup>
+              {/* this changes whatever is in the pop-up --v*/}
+              <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span>
+            </Popup>
+          </Marker>
+        )}
+      </LeafletMap>
+    );
+  }
 }
 
 export default Map

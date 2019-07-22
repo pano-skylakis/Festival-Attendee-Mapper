@@ -1,6 +1,7 @@
 import React from 'react'
 import { Chart } from "react-google-charts";
 import { getGeoLocationByTimeApi } from '../api/geoLocationApi';
+import regeneratorRuntime from "regenerator-runtime";
 import { unix } from 'moment';
 
 class LineGraph extends React.Component {
@@ -17,29 +18,23 @@ class LineGraph extends React.Component {
     }
 
 
-    // timesStamps between x - y  push to array and assign to key in 'time
-
     componentDidMount() {
         this.getLocationByTime()
     }
 
+    getLocationByTime = async () => {
 
-    getLocationByTime = () => {
-        getGeoLocationByTimeApi(1563634620, 1563653450)
-            .then(locationByTime => {
-                console.log(locationByTime)
-            })
+        let unixGreaterThan = 1563634620
+        let unixLessThan = 1563653450
+
+        for(let i = 0; i < 24; i++) {
+            await getGeoLocationByTimeApi(unixGreaterThan, unixLessThan)
+                .then(locationByTime => {
+                    unixGreaterThan = unixGreaterThan + 3600
+                    unixLessThan = unixLessThan + 3600
+                })
+            }
         }
-
-
-    // let unixGreaterThan = 1563634620
-    // let unixLessThan = 1563653450
-    // .then(data => {
-    //     unixGreaterThan = unixGreaterThan + 6000
-    //     unixLessThan = unixLessThan + 6000
-    //     console.log('unixGreaterThan: ', unixGreaterThan)
-    //     console.log('unixLessThan: ', unixLessThan)
-    // })
 
 
     render() { 

@@ -28,7 +28,7 @@ function getTotalUniqueUsers(db = connection) {
 function getHeatMapValues(db = connection) {
     return db('geolocation')
         .distinct('latitude_rounded', 'longitude_rounded')
-        .then(latLongPairs => {
+        .then(latLongPairs => {            
             return latLongPairs
         })
 }
@@ -36,6 +36,12 @@ function getHeatMapIntensity(data, db = connection){
     return db('geolocation')
         .where('latitude_rounded', data.latitude_rounded).andWhere('longitude_rounded', data.longitude_rounded)
         .select('latitude_rounded', 'longitude_rounded')
+        .then(res=>{
+            data.intensity = res.length
+            let newArr = []
+            newArr.push(data.latitude_rounded, data.longitude_rounded, data.intensity)
+            return newArr
+        })
 }
 
 module.exports = {

@@ -16,15 +16,9 @@ class Map extends React.Component {
     this.convertMapData = this.convertMapData.bind(this)
   }
 
-  componentWillReceiveProps(nextProps){
-    if(nextProps.addressPoints !== []){
-      this.setState({
-        addressPoints: [nextProps.addressPoints]
-      })
-    }
-  }
 
   componentDidMount() {
+
     getTotalUniqueUsersApi()
       .then(data => {
         this.setState({uniqueUsers: data})
@@ -44,13 +38,13 @@ class Map extends React.Component {
     const position = [this.state.lat, this.state.lng];
     return (
       <LeafletMap className="map-margin" center={position} zoom={this.state.zoom}>
-        {/* <HeatmapLayer
+        <HeatmapLayer
               fitBoundsOnLoad
               fitBoundsOnUpdate
-              points={this.state.addressPoints}
+              points={this.props.addressPoints}
               longitudeExtractor={m => m[1]}
               latitudeExtractor={m => m[0]}
-              intensityExtractor={m => parseFloat(m[2])} /> */}
+              intensityExtractor={m => parseFloat(m[2])} />
         <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
       </LeafletMap>
     );

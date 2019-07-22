@@ -22,7 +22,7 @@ exports.seed = function(knex) {
         {id: 15, timestamp: '1563648320', latitude: '-41.294132', longitude: '174.775354', latitude_rounded: '-41.2941', longitude_rounded: '174.7753', user:'trunks'},
         {id: 16, timestamp: '1563652320', latitude: '-41.294132', longitude: '174.775354', latitude_rounded: '-41.2941', longitude_rounded: '174.7753', user:'trunks'},
         {id: 17, timestamp: '1563650920', latitude: '-41.294132', longitude: '174.775354', latitude_rounded: '-41.2941', longitude_rounded: '174.7753', user:'trunks'},
-        {id: 18, timestamp: '1563653450', latitude: '-41.294132', longitude: '174.775354', latitude_rounded: '-41.2941', longitude_rounded: '174.7753', user:'trunks'},
+        {id: 18, timestamp: '1563653450', latitude: '-41.294132', longitude: '174.775354', latitude_rounded: '-41.2941', longitude_rounded: '174.7753', user:'Ben'},
       ]);
     });
 };

@@ -37,9 +37,10 @@ export function getHeatMapValues(){
 
 
 export function getHeatMapIntensity(obj){
-    return request.get(`${route}/heatmapvalues/${obj.latitude_rounded}_${obj.longitude_rounded}`)
+    return request.post(`${route}/intensity`)
+    .send(obj)
     .then(res=>{
-        return res.body.length
+        return JSON.parse(res.text)
     })
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-const regeneratorRuntime = require("regenerator-runtime")
+
 const uuidv4 = require("uuid/v4");
 
 import Splash from "./Splash";
@@ -10,7 +10,6 @@ import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
 import Stats from "./Stats";
 
-import { returnHeatmapValues } from '../utils/heatmapdata'
 import { addGeoLocationApi, getGeoLocationsApi, getGeoLocationByTimeApi, getHeatMapValues, getHeatMapIntensity } from '../api/geoLocationApi'
 
 
@@ -25,23 +24,31 @@ class App extends React.Component {
       barGraph: true,
       lineGraph: false,
       geoTags: {},
-      heatmapData: [],
+      heatmapData:[],
     };
 
-    // this.getHeatMapData = this.getHeatMapData.bind(this)
   }
 
   componentDidMount() {
-    
-    
-    // let userStorage = window.localStorage;
-    // if (userStorage.userId){
-    //     console.log("Existing user found: " + userStorage.userId)
-    // }else{
-    //     userStorage.userId = uuidv4()
-    //     console.log("New User Set: " + userStorage.userId)
-    // }
-    // this.geoLocate()
+
+    // gets unique heatmap values + intensities.
+    getHeatMapValues()
+    .then(res=>{
+      Promise.all(res.map(getHeatMapIntensity)).then(info => {
+        this.setState({
+          heatmapData: info
+        })
+      })
+    })
+    //Assigns each user a unique id
+    let userStorage = window.localStorage;
+    if (userStorage.userId){
+        console.log("Existing user found: " + userStorage.userId)
+    }else{
+        userStorage.userId = uuidv4()
+        console.log("New User Set: " + userStorage.userId)
+    }
+    this.geoLocate()
     this.getLocations();
   }
   // Get Locations from Database
@@ -76,7 +83,7 @@ class App extends React.Component {
     let crd = pos.coords;
     const locationTag = {}
 
-    if (!this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
+    if (this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
       locationTag.latitude = crd.latitude
       locationTag.longitude = crd.longitude
       locationTag.accuracy = crd.accuracy
@@ -87,8 +94,6 @@ class App extends React.Component {
       this.setState({
         geoTags: locationTag
       })
-      console.log(this.state.geoTags)
-
       addGeoLocationApi(locationTag)
       this.getLocations()
     } else {

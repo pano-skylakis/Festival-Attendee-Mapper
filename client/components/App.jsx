@@ -10,7 +10,7 @@ import BarGraph from "./BarGraph";
 import LineGraph from "./LineGraph";
 import Stats from "./Stats";
 
-import { addGeoLocationApi,getGeoLocationsApi,getGeoLocationByTimeApi } from "../api/geoLocationApi";
+import { addGeoLocationApi, getGeoLocationsApi, getGeoLocationByTimeApi, getHeatMapValues, getHeatMapIntensity } from '../api/geoLocationApi'
 
 
 class App extends React.Component {
@@ -23,22 +23,35 @@ class App extends React.Component {
       sliderValue: "12",
       barGraph: true,
       lineGraph: false,
-      geoTags: {}
+      geoTags: {},
+      heatmapData:[],
     };
+
   }
 
   componentDidMount() {
+
+    // gets unique heatmap values + intensities.
+    getHeatMapValues()
+    .then(res=>{
+      Promise.all(res.map(getHeatMapIntensity)).then(info => {
+        this.setState({
+          heatmapData: info
+        })
+      })
+    })
+
+    //Assigns each user a unique id
     let userStorage = window.localStorage;
-    if (userStorage.userId) {
-      console.log("Existing user found: " + userStorage.userId)
-    } else {
-      userStorage.userId = uuidv4()
-      console.log("New User Set: " + userStorage.userId)
+    if (userStorage.userId){
+        console.log("Existing user found: " + userStorage.userId)
+    }else{
+        userStorage.userId = uuidv4()
     }
     this.geoLocate()
     this.getLocations();
   }
-
+  
   // Get Locations from Database
   getLocations = () => {
     getGeoLocationsApi().then(locations => {
@@ -82,12 +95,11 @@ class App extends React.Component {
       this.setState({
         geoTags: locationTag
       })
-
       addGeoLocationApi(locationTag)
       this.getLocations()
-      } else {
-        console.log("Out of bounds!")
-      }
+    } else {
+      console.log("Out of bounds!")
+    }
   }
   outOfBoundsChecker = (lat, long) => {
     const eastLong = 174.780310
@@ -130,11 +142,7 @@ class App extends React.Component {
           <div data-aos="flip-up" data-aos-duration="2000">
             <Stats geoLocationData={this.state.locs} />
           </div>
-          <div
-            data-aos="fade-up"
-            data-aos-duration="2000"
-            className="graph-container"
-          >
+          <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
             <input type="date" onChange={this.handleDateChange} />
             <div className="slidecontainer">
               <p>{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
@@ -148,9 +156,7 @@ class App extends React.Component {
                 onChange={this.handleSliderChange}
               />
             </div>
-
-            <Map />
-
+            <Map addressPoints={this.state.heatmapData} />
             <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
               {this.state.barGraph && <BarGraph />}
               {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}

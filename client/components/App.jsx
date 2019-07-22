@@ -102,10 +102,10 @@ class App extends React.Component {
     }
   }
   outOfBoundsChecker = (lat, long) => {
-    const eastLong = 174.780310
-    const westLong = 174.772497
-    const northLat = -41.290972
-    const southLat = -41.297387
+    const eastLong = 174.779602
+    const westLong = 174.771753
+    const northLat = -41.288876
+    const southLat = -41.297850
 
     if (lat >= southLat && lat <= northLat && long <= eastLong && long >= westLong) {
       return true
@@ -119,15 +119,15 @@ class App extends React.Component {
 
   handleSliderChange = e => {
     // 2019-07-20T11:06:55+0000  <<< this is the format the date must be in (ISO8106)
-
     let date = "";
 
     this.setState({ sliderValue: e.target.value });
-    Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
 
+    Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
+    
     let unixTimestamp = moment(`${date}`).unix();
 
-    getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601);
+    getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601)
   };
 
   handleClick = () => {

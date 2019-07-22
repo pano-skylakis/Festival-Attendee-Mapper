@@ -1,9 +1,8 @@
 import React from 'react'
-import { Map as LeafletMap, TileLayer, Marker, Popup, LayersControl } from 'react-leaflet'
+import { Map as LeafletMap, TileLayer, Marker, Popup, Polygon, LayersControl } from 'react-leaflet'
 import { getTotalUniqueUsersApi } from '../api/geoLocationApi'
-import { getMarkerLocationsApi, addMarkerLocationApi } from '../api/markerLocationApi'
+import { getMarkerLocationsApi, addMarkerLocationApi, deletePost } from '../api/markerLocationApi'
 import HeatmapLayer from 'react-leaflet-heatmap-layer';
-import {deletePost} from '../api'
 
 
 class Map extends React.Component {
@@ -19,8 +18,19 @@ class Map extends React.Component {
       maxZoom: 19,
       savedMarkers: [],
       addressPoints: [],
+      positions: [[-41.297850, 174.775803],[-41.296085, 174.771753],[-41.288876, 174.776126],[-41.291125, 174.779602]]
     }
   }
+  //adds poly position on right click
+  // addPolyPosition = (e) => {
+  //   const newPos = [e.latlng.lat, e.latlng.lng];
+  //   this.setState(prevState => (
+  //     {
+  //       positions: prevState.positions.concat([newPos])
+  //     }
+  //   ));
+  //   return false
+  // }
 
 
   componentDidMount() {
@@ -47,9 +57,6 @@ class Map extends React.Component {
 
     markers.push(e.latlng)
     this.setState({ markers })
-
-    console.log(this.state.markers)
-
     addMarkerLocationApi(e.latlng)
       .then(this.getMarkerLocations())
   }
@@ -61,24 +68,17 @@ class Map extends React.Component {
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
-      <LeafletMap className="map-margin" center={centerPosition} zoom={this.state.zoom} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
-        <LayersControl position='topright'>
-          <LayersControl.BaseLayer checked name='Street View'>
-            <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
-          </LayersControl.BaseLayer>
-          <LayersControl.BaseLayer name='Satellite'>
-            <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' />
-          </LayersControl.BaseLayer>
-        </LayersControl>
+      <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin"  center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>      
+        <Polygon color="black" positions = {this.state.positions}/>
         <HeatmapLayer
               fitBoundsOnLoad
-              fitBoundsOnUpdate
+              // fitBoundsOnUpdate
               points={this.props.addressPoints}
               longitudeExtractor={m => m[1]}
               latitudeExtractor={m => m[0]}
               intensityExtractor={m => parseFloat(m[2])} />
-          {this.state.savedMarkers.map((position, idx) =>
-          <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
+            {this.state.savedMarkers.map((position, idx) =>
+              <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
 
             <Popup>
               {/* this changes whatever is in the pop-up --v*/}
@@ -90,7 +90,16 @@ class Map extends React.Component {
             </Popup>
           </Marker>
                 )}
-                
+
+        <LayersControl position='topright'>
+          <LayersControl.BaseLayer checked name='Street View'>
+            <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+          </LayersControl.BaseLayer>
+          <LayersControl.BaseLayer name='Satellite'>
+            <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' />
+          </LayersControl.BaseLayer>
+        </LayersControl>
+
       </LeafletMap>
     )
   }

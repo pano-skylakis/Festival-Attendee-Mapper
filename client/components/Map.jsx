@@ -58,7 +58,9 @@ class Map extends React.Component {
           <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
             <Popup>
               {/* this changes whatever is in the pop-up --v*/}
-              <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/>
+              {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}
+              <span>New pin!</span><br/>
+
               Description: <input type="text" name="lname"/>
                 <input type="submit" value="Add"/>
             </Popup>

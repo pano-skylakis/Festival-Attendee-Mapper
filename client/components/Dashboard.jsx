@@ -90,7 +90,9 @@ class Dashboard extends React.Component {
               <Stats geoLocationData={this.state.locs} />
             </div>
             <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
-              <input type="date" onChange={this.handleDateChange} />
+
+              {/* slider */}
+              <input type="date" onChange={this.handleDateChange} defaultValue="2019/07/23"/>
               <div className="slidecontainer">
                 <p>{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
                 <input
@@ -103,6 +105,7 @@ class Dashboard extends React.Component {
                   onChange={this.handleSliderChange}
                 />
               </div>
+
               <Map addressPoints={this.state.heatmapData} />
               <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
                 {this.state.barGraph && <BarGraph />}

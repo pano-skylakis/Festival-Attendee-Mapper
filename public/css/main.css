@@ -14,6 +14,9 @@ body {
   font-size: 4rem;
   font-weight: semi-bold;
   color: black; }
+  @media (min-width: 48rem) {
+    .tracking-in-contract {
+      padding: 40vh 15vw 0 15vw; } }
 
 .splash {
   width: 100vw;
@@ -65,8 +68,15 @@ body {
   left: 0;
   right: 0;
   padding: 1rem 2rem 1rem 1rem; }
+  @media (min-width: 48rem) {
+    .footer {
+      padding: 1rem 4.5rem;
+      box-shadow: 0 1rem 3rem 0 rgba(0, 0, 0, 0.75); } }
   .footer p {
     font-size: .8rem; }
+    @media (min-width: 48rem) {
+      .footer p {
+        font-size: 1.1rem; } }
 
 .graph-container {
   justify-content: space-around;
@@ -118,12 +128,21 @@ body {
   background-color: #FF9C00;
   text-align: center;
   border-top: solid 1px #ffb641; }
+  @media (min-width: 48rem) {
+    .stats-1, .stats-2, .stats-3, .stats-4 {
+      height: 18vh;
+      width: 50vw;
+      border: 0;
+      font-size: 1.3rem; } }
 
 .stats-big {
   font-size: 3rem;
   color: rgba(44, 44, 44, 0.89);
   margin-bottom: 0;
   margin-top: 1.8rem; }
+  @media (min-width: 48rem) {
+    .stats-big {
+      font-size: 4rem; } }
 
 .stats-little {
   color: rgba(44, 44, 44, 0.89); }
@@ -134,10 +153,7 @@ body {
   border-top: #9b9b9b; }
 
 .stats-1-big {
-  color: #FF9C00;
-  font-size: 3rem;
-  margin-bottom: 0;
-  margin-top: 1.8rem; }
+  color: #FF9C00; }
 
 .padding-title {
   color: #E67E22; }
@@ -168,6 +184,10 @@ body {
 
 .slider-time {
   font-size: 1.5rem; }
+  @media (min-width: 48rem) {
+    .slider-time {
+      font-size: 2rem;
+      margin: 1.5rem 0 0.4rem 0; } }
 
 input[type=range]::-webkit-slider-runnable-track {
   -webkit-appearance: none;
@@ -210,6 +230,11 @@ input[type=range]::-moz-range-thumb {
   cursor: -moz-grab;
   -moz-transition: border 1000ms ease;
   transition: border 1000ms ease; }
+
+@media (min-width: 48rem) {
+  .date-input {
+    font-size: 1.7rem;
+    margin: 1.5rem 0 0.4rem 0rem; } }
 
 .date-picker {
   margin-top: 2rem; }

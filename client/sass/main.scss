@@ -59,8 +59,10 @@ body {
     font-size: 4rem;
     font-weight: semi-bold;
     color:black;
-
-
+      
+    @include tablet {
+      padding: 40vh 15vw 0 15vw;
+    }
 }
 
 .splash {
@@ -141,10 +143,17 @@ body {
   left: 0;
   right: 0;
   padding: 1rem 2rem 1rem 1rem;
-  // box-shadow: 0 1rem 3rem 0 rgba(0,0,0,0.75);
+    
+  @include tablet{
+      padding: 1rem 4.5rem; 
+      box-shadow: 0 1rem 3rem 0 rgba(0,0,0,0.75);
+  }
 
   p {
     font-size: .8rem;
+      @include tablet {
+        font-size: 1.1rem;
+      }
   }
 }
 
@@ -238,6 +247,12 @@ body {
   background-color: $color-orange;
   text-align: center;
   border-top: solid 1px #ffb641;
+    @include tablet {
+      height:18vh;
+      width:50vw;
+      border: 0;
+      font-size: 1.3rem
+    }
 } 
 
 .stats-big {
@@ -245,6 +260,9 @@ body {
   color: $color-grey;
   margin-bottom: 0;
   margin-top: 1.8rem;
+    @include tablet {
+      font-size: 4rem;
+    }
 }
 
 .stats-little {
@@ -259,9 +277,6 @@ body {
 
 .stats-1-big {
   color: $color-orange;
-  font-size: 3rem;
-  margin-bottom: 0;
-  margin-top: 1.8rem;
 }
 
 .padding-title {
@@ -292,7 +307,12 @@ body {
 
 .slider-time {
   font-size: 1.5rem;
+    @include tablet {
+      font-size: 2rem;
+      margin: 1.5rem 0 0.4rem 0
+    }
 }
+
 
 //track colour of slider
 input[type=range]::-webkit-slider-runnable-track {
@@ -342,6 +362,13 @@ input[type=range]::-moz-range-thumb {
   cursor: -moz-grab;
   -moz-transition: border 1000ms ease;
   transition: border 1000ms ease;
+}
+
+.date-input {
+  @include tablet {
+    font-size: 1.7rem;
+    margin: 1.5rem 0 0.4rem 0rem;
+  }
 }
 
 .date-picker {

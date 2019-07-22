@@ -12,6 +12,7 @@ router.get('/markers', (req, res) => {
         })
 })
 
+
 router.post('/markers', (req, res) => {
     db.addMarkerLocation(req.body)
         .then(id => {
@@ -21,6 +22,19 @@ router.post('/markers', (req, res) => {
             res.send(err)
         })
 })
+
+
+router.put('/markers/:id', (req, res) => {
+    db.updateMarkerDescription(req.body, req.params.id)
+        .then(numberOfUpdated => {
+            res.sendStatus(200)
+        })
+        .catch(err => {
+            console.log(err)
+            res.send(err)
+        })
+})
+
 
 router.delete('/markers/:id', (req, res) => {
     db.deletePost(req.params.id)

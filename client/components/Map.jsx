@@ -1,7 +1,7 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup, Polygon, LayersControl } from 'react-leaflet'
 import { getTotalUniqueUsersApi } from '../api/geoLocationApi'
-import { getMarkerLocationsApi, addMarkerLocationApi, deleteMarkerApi } from '../api/markerLocationApi'
+import { getMarkerLocationsApi, addMarkerLocationApi, deleteMarkerApi, addMarkerDescriptionApi } from '../api/markerLocationApi'
 import HeatmapLayer from 'react-leaflet-heatmap-layer';
 
 
@@ -15,7 +15,6 @@ class Map extends React.Component {
       zoom: 16,
       markers: [],
       description: '',
-      uniqueUsers: null,
       maxZoom: 19,
       savedMarkers: [],
       addressPoints: [],
@@ -36,12 +35,9 @@ class Map extends React.Component {
 
 
   componentDidMount() {
-    getTotalUniqueUsersApi()
-      .then(data => {
-        this.setState({ uniqueUsers: data })
-      })
     this.getMarkerLocations()
   }
+
 
   getMarkerLocations = () => {
     getMarkerLocationsApi()
@@ -49,28 +45,31 @@ class Map extends React.Component {
         this.refreshState(data)
       })
   }
-
   refreshState = data => {
-    this.setState({ savedMarkers: data })
+    this.setState({ savedMarkers: data, description: '' })
   }
 
-  addMarker = e => {
-    const { markers } = this.state
 
-    markers.push(e.latlng)
-    this.setState({ markers })
+  addMarker = e => {
     addMarkerLocationApi(e.latlng)
       .then(this.getMarkerLocations())
   }
+
 
   deletePost = e => {
     deleteMarkerApi(e.target.id)
       .then(this.getMarkerLocations())
   }
 
+
   handleDescriptionChange = e => {
     this.setState({description: e.target.value})
-    console.log(this.state.description)
+  }
+
+
+  handleDescriptionSubmit = e => {
+    addMarkerDescriptionApi(this.state.description, e.target.dataset.marker)
+      .then(this.getMarkerLocations())
   }
 
   render() {
@@ -93,8 +92,8 @@ class Map extends React.Component {
                   {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}
                   <span>New pin!</span><br/>
                   <button onClick={this.deletePost} id={position.id}>Delete</button>
-                  Description: {this.state.description}<input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description}/>
-                    <input type="submit" value="Add"/>
+                  Description: {position.description}<input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description}/>
+                    <input data-marker={position.id} type="submit" value="Add" onClick={this.handleDescriptionSubmit}/>
                 </Popup>
               </Marker>
                     )}

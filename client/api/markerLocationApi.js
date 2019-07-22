@@ -1,7 +1,6 @@
 import request from 'superagent'
 
 const route = '/api/v1/dashboard/markers'
-const descriptionRoute = '/api/v1/dashboard/markers/description'
 
 export function getMarkerLocationsApi() {
     return request.get(route)
@@ -9,6 +8,7 @@ export function getMarkerLocationsApi() {
             return res.body
         })
 }
+
 
 export function addMarkerLocationApi(body) {
     return request.post(route)
@@ -21,16 +21,19 @@ export function addMarkerLocationApi(body) {
         })
 }
 
-export function addMarkerDescriptionApi(body) {
-    return request.post(descriptionRoute)
-        .send({ description: body.description })
+
+export function addMarkerDescriptionApi(body, id) {
+    return request.put(`${route}/${id}`)
+        .send({ description: body })
         .then(res => {
             return res.body
         })
         .catch(err => {
+            console.log(err)
             return err
         })
 }
+
 
 export function deleteMarkerApi(id) {
     return request.del(`${route}/${id}`)

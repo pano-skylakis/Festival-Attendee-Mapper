@@ -128,9 +128,6 @@ class App extends React.Component {
     let unixTimestamp = moment(`${date}`).unix();
 
     getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601)
-      .then(data => {
-        console.log(data)
-      })
   };
 
   handleClick = () => {

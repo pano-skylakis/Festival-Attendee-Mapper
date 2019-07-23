@@ -28,7 +28,7 @@ function doTheThing (db = connection) {
         .then(() => convertTheBigOnes())
         .then(() => logTheSmalls())
         .then(() => deleteTheBigOnes())
-        .finally(() => db.destroy())
+        .catch(() => console.log('oops'))
 }
 
 // doTheThing()

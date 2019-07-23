@@ -51,7 +51,7 @@ class UserLanding extends React.Component {
     let crd = pos.coords;
     const locationTag = {}
 
-    if (!this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
+    if (this.outOfBoundsChecker(crd.latitude, crd.longitude)) {
             locationTag.latitude = crd.latitude
             locationTag.longitude = crd.longitude
             locationTag.accuracy = crd.accuracy

@@ -38,7 +38,7 @@ class Stats extends React.Component {
         return (  
           <div className="statsbar enter">
               <div className="stats-1">
-                <p className="stats-1-big">{`${this.state.currentUsers}`}</p>
+                <p className="stats-1-big stats-big">{`${this.state.currentUsers}`}</p>
                 <p>users currently being tracked</p>
               </div>
               

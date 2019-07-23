@@ -12,7 +12,8 @@ import {
   getGeoLocationsApi,
   getGeoLocationByTimeApi,
   getHeatMapValues,
-  getHeatMapIntensity
+  getHeatMapIntensity,
+  getHeatmapValuesByHour
 } from "../api/geoLocationApi";
 
 
@@ -21,32 +22,32 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-        locs: [],
-        currentDate: "",
-        sliderValue: "12",
-        barGraph: true,
-        lineGraph: false,
-        geoTags: {},
-        heatmapData:[],
-      };
-  
-    }
-  
+      locs: [],
+      currentDate: "",
+      sliderValue: "12",
+      barGraph: true,
+      lineGraph: false,
+      geoTags: {},
+      heatmapData: [],
+    };
+
+  }
+
   componentDidMount() {
-  
+
     // gets unique heatmap values + intensities.
     getHeatMapValues()
-    .then(res=>{
-      Promise.all(res.map(getHeatMapIntensity)).then(info => {
-        this.setState({
-          heatmapData: info
+      .then(res => {
+        Promise.all(res.map(getHeatMapIntensity)).then(info => {
+          this.setState({
+            heatmapData: info
+          })
         })
       })
-    })
 
     this.getLocations();
   }
-    
+
   // Get Locations from Database
   getLocations = () => {
     getGeoLocationsApi().then(locations => {
@@ -62,7 +63,7 @@ class Dashboard extends React.Component {
 
 
   handleGraphButtonClick = () => {
-      this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true}) : this.setState({ barGraph: true, lineGraph: false})
+    this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true }) : this.setState({ barGraph: true, lineGraph: false })
   }
 
   handleDateChange = e => {
@@ -71,53 +72,71 @@ class Dashboard extends React.Component {
 
 
   handleSliderChange = e => {
-      // 2019-07-20T11:06:55+0000  <<< this is the format the date must be in (ISO8106)
-      let date = "";
-  
-      this.setState({ sliderValue: e.target.value });
-      Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
-      
-      let unixTimestamp = moment(`${date}`).unix();
-      getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601)
-  };
+    // 2019-07-20T11:06:55+0000  <<< this is the format the date must be in (ISO8106)
+    let date = "";
+
+    this.setState({ sliderValue: e.target.value });
+    Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
+
+    let unixTimestamp = moment(`${date}`).unix();
+    getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601)
+      .then(locByTime => {
+        let ids = []
+        locByTime.map(loc => {
+          ids.push(loc.id)
+        })
+        return ids
+      })
+      .then(ids=>{
+        getHeatmapValuesByHour(ids)
+        .then(res => {
+          Promise.all(res.map(getHeatMapIntensity))
+          .then(info => {
+            this.setState({
+              heatmapData: info
+            })
+          })
+        })
+      })
+    }
 
   render() {
     return (
-        <React.Fragment>
-          <Splash />
-          <div className="content">
-            <div data-aos="flip-up" data-aos-duration="2000">
-              <Stats geoLocationData={this.state.locs} />
-            </div>
-            <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
-
-              {/* slider */}
-              <input type="date" onChange={this.handleDateChange} defaultValue="2019/07/23"/>
-              <div className="slidecontainer">
-                <p>{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
-                <input
-                  type="range"
-                  min="0"
-                  max="23"
-                  value={this.state.sliderValue}
-                  className="slider"
-                  id="myRange"
-                  onChange={this.handleSliderChange}
-                />
-              </div>
-
-              <Map addressPoints={this.state.heatmapData} />
-              <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
-                {this.state.barGraph && <BarGraph />}
-                {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}
-                <p onClick={this.handleGraphButtonClick} className="toggle-button">
-                  Toggle Graph
-                </p>
-              </div>
-            </div>
-            <Footer />
+      <React.Fragment>
+        <Splash />
+        <div className="content">
+          <div data-aos="flip-up" data-aos-duration="2000">
+            <Stats geoLocationData={this.state.locs} />
           </div>
-        </React.Fragment>
+          <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
+
+            {/* slider */}
+            <input type="date"  onChange={this.handleDateChange} defaultValue="23/07/2019" />
+            <div className="slidecontainer">
+              <p>{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00`}</p>
+              <input
+                type="range"
+                min="0"
+                max="23"
+                value={this.state.sliderValue}
+                className="slider"
+                id="myRange"
+                onChange={this.handleSliderChange}
+              />
+            </div>
+
+            <Map addressPoints={this.state.heatmapData} />
+            <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
+              {this.state.barGraph && <BarGraph />}
+              {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}
+              <p onClick={this.handleGraphButtonClick} className="toggle-button">
+                Toggle Graph
+                </p>
+            </div>
+          </div>
+          <Footer />
+        </div>
+      </React.Fragment>
     );
   }
 }

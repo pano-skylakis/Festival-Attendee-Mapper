@@ -330,7 +330,7 @@ body {
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  width: 100%; /* Full-width */
+  width: 80vw; /* Full-width */
   height: 2rem; /* Specified height */
   background: #9b9b9b; /* Grey background */
   outline: none; /* Remove outline */
@@ -350,6 +350,15 @@ body {
     }
 }
 
+.slider-and-data {
+  display: block;
+
+}
+
+.just-data {
+ display: flex;
+ justify-content: space-around; 
+}
 
 //track colour of slider
 input[type=range]::-webkit-slider-runnable-track {

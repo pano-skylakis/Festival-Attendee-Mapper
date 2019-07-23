@@ -199,7 +199,7 @@ body {
   -webkit-appearance: none;
   /* Override default CSS styles */
   appearance: none;
-  width: 100%;
+  width: 80vw;
   /* Full-width */
   height: 2rem;
   /* Specified height */
@@ -220,6 +220,13 @@ body {
     .slider-time {
       font-size: 2rem;
       margin: 1.5rem 0 0.4rem 0; } }
+
+.slider-and-data {
+  display: block; }
+
+.just-data {
+  display: flex;
+  justify-content: space-around; }
 
 input[type=range]::-webkit-slider-runnable-track {
   -webkit-appearance: none;

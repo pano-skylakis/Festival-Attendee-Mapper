@@ -91,8 +91,11 @@ class Dashboard extends React.Component {
               <Stats geoLocationData={this.state.locs} />
             </div>
             <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
+            <div className="slider-and-data">
+              <div className="just-data">
               <input className="date-input" type="date" defaultValue="2019/07/23" onChange={this.handleDateChange} />
                 <p className="slider-time">{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
+              </div> 
                 <div className="slidecontainer">
                 <input
                   type="range"
@@ -103,6 +106,7 @@ class Dashboard extends React.Component {
                   id="myRange"
                   onChange={this.handleSliderChange}
                 />
+               </div>
               </div>
               <Map addressPoints={this.state.heatmapData} />
               

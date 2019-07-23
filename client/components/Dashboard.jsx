@@ -151,7 +151,7 @@ class Dashboard extends React.Component {
 
               <Map addressPoints={this.state.heatmapData} />
               
-              <div>
+              <div className="graph-margin">
                 {isDesktop ? (<Graphs geoLocationData={this.state.locs}/>) : (<Unavailable />)}
               </div>
               

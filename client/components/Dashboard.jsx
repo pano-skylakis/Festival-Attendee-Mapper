@@ -28,6 +28,7 @@ class Dashboard extends React.Component {
         geoTags: {},
         heatmapData:[],
         isDesktop: false,
+        datePicker: Date.now()
       };
   
     }
@@ -120,26 +121,12 @@ class Dashboard extends React.Component {
           <div data-aos="flip-up" data-aos-duration="2000">
             <Stats geoLocationData={this.state.locs} />
           </div>
-          <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
 
-            {/* slider */}
-            <input type="date"  onChange={this.handleDateChange} defaultValue="23/07/2019" />
-            <div className="slidecontainer">
-              <p>{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00`}</p>
-              <input
-                type="range"
-                min="0"
-                max="23"
-                value={this.state.sliderValue}
-                className="slider"
-                id="myRange"
-                onChange={this.handleSliderChange}
-              />
-            </div>
+          <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
             <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
             <div className="slider-and-data">
               <div className="just-data">
-              <input className="date-input" type="date" defaultValue="2019/07/23" onChange={this.handleDateChange} />
+              <input type="date" className="date-input" defaultValue="2019/07/23" onChange={this.handleDateChange} />
                 <p className="slider-time">{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
               </div> 
                 <div className="slidecontainer">
@@ -154,10 +141,13 @@ class Dashboard extends React.Component {
                 />
                </div>
               </div>
+
               <Map addressPoints={this.state.heatmapData} />
+
               <div>
                 {isDesktop ? (<Graphs geoLocationData={this.state.locs}/>) : (<Unavailable />)}
               </div>
+              
             </div>
           </div>
           <Footer />

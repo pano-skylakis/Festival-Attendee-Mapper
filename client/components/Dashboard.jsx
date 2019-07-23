@@ -1,5 +1,7 @@
 import React from "react";
 
+import moment from "moment";
+
 import Splash from "./Splash";
 import Footer from "./Footer";
 import Map from "./Map";

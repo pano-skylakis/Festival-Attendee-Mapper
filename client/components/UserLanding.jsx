@@ -57,8 +57,7 @@ class UserLanding extends React.Component {
             locationTag.accuracy = crd.accuracy
             locationTag.user = window.localStorage.userId
             locationTag.timestamp =Math.floor(Date.now()/1000)
-            console.log(locationTag.timestamp)
-
+            
             this.setState({
             geoTags: locationTag
             })

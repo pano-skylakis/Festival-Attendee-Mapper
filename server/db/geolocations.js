@@ -48,10 +48,12 @@ function getHeatMapIntensity(data, db = connection){
 }
 
 function getHeatmapValuesByHour(ids, db = connection){
+    console.log('hitting DB: ', ids)
     return db('geolocation')
     .whereIn('id', ids)
     .distinct('latitude_rounded', 'longitude_rounded')
     .then(res =>{
+        console.log('DB response: ', res)
         return res
     })
 }

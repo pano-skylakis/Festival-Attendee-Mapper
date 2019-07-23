@@ -11,13 +11,31 @@ class LineGraph extends React.Component {
         this.state={
             geoLocationData: this.props.geoLocationData,
             time: 8,
-            graphData: [['Time', '2019-07-23']]
+            graphData: [['Time', '2019-07-23']],
+            chartHeight: '500px',
+            chartWidth: '500px',
         }
     }
 
 
     componentDidMount() {
         this.getLocationByTime()
+        this.updatePredicate();
+        window.addEventListener("resize", this.updatePredicate);
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updatePredicate);
+    }
+      
+    
+    updatePredicate = () => {
+        switch(true) {
+            case window.innerWidth > 1023:
+              this.setState({ chartHeight: '500px', chartWidth: '800px'})   
+              break;
+            
+        }
     }
 
     
@@ -35,8 +53,6 @@ class LineGraph extends React.Component {
             await getGeoLocationByTimeApi(unixGreaterThan, unixLessThan)
                 .then(locationByTime => {
 
-                    console.log(locationByTime)
-
                     let timeArr = []
                     let timeString = `${time}:00`
                     
@@ -48,25 +64,23 @@ class LineGraph extends React.Component {
                     unixGreaterThan = unixGreaterThan + 3600
                     unixLessThan = unixLessThan + 3600
                     time = time + 1
-
-                    console.log('unixGreaterThan: ', unixGreaterThan)
-                    console.log('unixLessThan: ', unixLessThan)
-                    console.log('timeArr: ', timeArr)
-                    console.log(timeString)
                 })
             }
-           await console.log(this.state.graphData)
         }
 
+        
+        
 
     render() { 
+        
+
         return (  
             <>
-                <div className="graph-padding">
+                <div className="graph-align" align="center">
                     <Chart
-                        className="chart graph-shadow"
-                        width={'84rem'}
-                        height={'40rem'}
+                        className="chart"
+                        width={this.state.chartWidth}
+                        height={this.state.chartHeight}
                         chartType="LineChart"
                         loader={<div>Loading Chart</div>}
                         data={this.state.graphData}

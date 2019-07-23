@@ -1,5 +1,8 @@
 import React from 'react'
+import moment from "moment";
+
 import { addGeoLocationApi } from '../api/geoLocationApi'
+
 const uuidv4 = require("uuid/v4");
 
 class UserLanding extends React.Component {
@@ -53,8 +56,8 @@ class UserLanding extends React.Component {
             locationTag.longitude = crd.longitude
             locationTag.accuracy = crd.accuracy
             locationTag.user = window.localStorage.userId
-            locationTag.timestamp = Date.now()
-
+            locationTag.timestamp =Math.floor(Date.now()/1000)
+            
             this.setState({
             geoTags: locationTag
             })

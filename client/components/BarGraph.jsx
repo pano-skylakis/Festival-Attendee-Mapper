@@ -6,18 +6,37 @@ class BarGraph extends React.Component {
         super(props)
         
         this.state = {
-
+            chartHeight: '500px',
+            chartWidth: '500px',
         }
     }
 
+    componentDidMount() {
+        this.updatePredicate();
+        window.addEventListener("resize", this.updatePredicate);
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updatePredicate);
+    }
+      
+    
+    updatePredicate = () => {
+        switch(true) {
+            case window.innerWidth > 1023:
+              this.setState({ chartHeight: '500px', chartWidth: '800px'})   
+              break;
+        }
+        
+    }
 
     render() { 
         return (  
             <>
-                <div className="graph-padding">
-                            <Chart className="chart graph-shadow graph-border"
-                                width={'84rem'}
-                                height={'40rem'}
+                <div className="graph-align" align="center">
+                            <Chart className="chart"
+                                width={this.state.chartWidth}
+                                height={this.state.chartHeight}
                                 chartType="Bar"
                                 loader={<div>Loading Chart</div>}
                                 data={[

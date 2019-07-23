@@ -6,7 +6,7 @@ class Splash extends React.Component {
     render() { 
         return (  
             <div className="splash">
-                <h1 className="tracking-in-contract middle">Festival Attendee Mapper</h1>
+                <h1 className="tracking-in-contract middle"><span className="festival-fade">Festival</span> <span className="attendee-fade">Attendee</span> <span className="mapper-fade">Mapper</span></h1>
                 <Link 
                     activeClass='active'
                     to='enter'

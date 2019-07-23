@@ -31,8 +31,9 @@ class Map extends React.Component {
         './images/toilet.svg',
         './images/trash.svg',
         './images/food.svg',
-        './images/water.svg'],
-      selectedIcon: ''
+        './images/water.svg',
+        './images/defaultMarker.png'],
+      selectedIcon: 'defaultMarkerIcon'
     }
   }
 
@@ -67,8 +68,6 @@ class Map extends React.Component {
 
   //adds marker on map-click event
   addMarker = e => {
-
-    console.log(e.target)
     addMarkerLocationApi(e.latlng, this.state.selectedIcon)
       .then(this.getMarkerLocations)
   }
@@ -94,14 +93,15 @@ class Map extends React.Component {
       .then(this.getMarkerLocations)
   }
 
+
   //toggles heat map
   handleToggleHeatMap = e => {
     this.setState({ heatChange: true })
   }
 
+
   //icon click handler
   handleIconClick = e => {
-    console.log(e.target.dataset.icon)
     switch(true) {
       case e.target.dataset.icon === 'babyCarriage': 
         this.setState({selectedIcon: 'babyCarriageIcon'})
@@ -129,6 +129,9 @@ class Map extends React.Component {
         break;
       case e.target.dataset.icon === 'water': 
         this.setState({selectedIcon: 'waterIcon'})
+        break;
+      case e.target.dataset.icon === 'defaultMarker':
+        this.setState({selectedIcon: 'defaultMarkerIcon'})
         break;
     }
 }
@@ -185,7 +188,7 @@ class Map extends React.Component {
                   mapIconKey = mapIconKey[2].split('.')
                   mapIconKey = mapIconKey[0]
 
-                  return <li key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="30px"/></a></li>
+                  return <p key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="30px"/></a></p>
               })}
           </ul>
         </section>

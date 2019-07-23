@@ -180,22 +180,24 @@ body {
 //   margin-left: 10%;
 // }
 
-.graph-container {
+.graph-align {
+  display: block;
+  margin: 0 auto;
+}
 
+.graph-container {
   justify-content: center;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
 
-// .graph-shadow {
-//   -webkit-box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
-//   -moz-box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
-//   box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
-// }
+
+.graph-margin {
+  width: 100vw;
+}
 
 .graph-border {
-  // padding: 1rem;
   background-color: white;
   border: solid white .5rem;
 }

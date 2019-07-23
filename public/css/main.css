@@ -88,11 +88,18 @@ body {
       .footer p {
         font-size: 1rem; } }
 
+.graph-align {
+  display: block;
+  margin: 0 auto; }
+
 .graph-container {
   justify-content: center;
   display: flex;
   align-items: center;
   flex-wrap: wrap; }
+
+.graph-margin {
+  width: 100vw; }
 
 .graph-border {
   background-color: white;

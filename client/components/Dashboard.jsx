@@ -27,8 +27,6 @@ class Dashboard extends React.Component {
       locs: [],
       currentDate: "",
       sliderValue: "12",
-      lineGraph: true,
-      barGraph: false,
       geoTags: {},
       heatmapData: [],
       isDesktop: false,
@@ -123,11 +121,6 @@ class Dashboard extends React.Component {
       locs: locations || []
     });
   };
-
-
-  handleGraphButtonClick = () => {
-    this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true }) : this.setState({ barGraph: true, lineGraph: false })
-  }
 
 
   handleDateChange = e => {

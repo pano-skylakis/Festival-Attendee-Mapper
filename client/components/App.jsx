@@ -29,11 +29,6 @@ class App extends React.Component {
     this.setState({ isDesktop: window.innerWidth > 1023 })
   }
 
-
-  handleClick = () => {
-    this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true }) : this.setState({ barGraph: true, lineGraph: false })
-  }
-
   render() {
 
     const isDesktop = this.state.isDesktop;

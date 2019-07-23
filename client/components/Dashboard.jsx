@@ -4,9 +4,9 @@ import moment from "moment";
 import Splash from "./Splash";
 import Footer from "./Footer";
 import Map from "./Map";
-import BarGraph from "./BarGraph";
-import LineGraph from "./LineGraph";
+import Graphs from "./Graphs";
 import Stats from "./Stats";
+import Unavailable from "./Unavailable"
 
 import {
   getGeoLocationsApi,
@@ -24,8 +24,6 @@ class Dashboard extends React.Component {
         locs: [],
         currentDate: "",
         sliderValue: "12",
-        barGraph: true,
-        lineGraph: false,
         geoTags: {},
         heatmapData:[],
         isDesktop: false,
@@ -34,6 +32,8 @@ class Dashboard extends React.Component {
     }
   
   componentDidMount() {
+    this.updatePredicate();
+    window.addEventListener("resize", this.updatePredicate);
   
     // gets unique heatmap values + intensities.
     getHeatMapValues()
@@ -82,7 +82,18 @@ class Dashboard extends React.Component {
       getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601)
   };
 
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updatePredicate);
+  }
+
+  updatePredicate = () => {
+    this.setState({ isDesktop: window.innerWidth > 1023 })
+  }
+
   render() {
+
+    const isDesktop = this.state.isDesktop;
+
     return (
         <React.Fragment>
           <Splash />
@@ -109,14 +120,9 @@ class Dashboard extends React.Component {
                </div>
               </div>
               <Map addressPoints={this.state.heatmapData} />
-              
-              {/* <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
-                {this.state.barGraph && <BarGraph />}
-                {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}
-                <p onClick={this.handleGraphButtonClick} className="toggle-button">
-                  Toggle Graph
-                </p>
-              </div> */}
+              <div>
+                {isDesktop ? (<Graphs geoLocationData={this.state.locs}/>) : (<Unavailable />)}
+              </div>
             </div>
             <Footer />
           </div>

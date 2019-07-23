@@ -45,6 +45,14 @@ router.get('/totaluniqueusers', (req, res)=>{
         res.json(users)
     })
 })
+
+router.get('/currentuniqueusers', (req, res)=>{
+    db.getCurrentUniqueUsers()
+    .then(users =>{
+        res.json(users)
+    })
+})
+
 router.get('/heatmapvalues', (req, res)=> {
     db.getHeatMapValues()
     .then(values =>{

@@ -36,8 +36,6 @@ class LineGraph extends React.Component {
               break;
             
         }
-
-        
     }
 
     

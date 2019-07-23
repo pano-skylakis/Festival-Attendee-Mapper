@@ -27,7 +27,6 @@ class BarGraph extends React.Component {
               this.setState({ chartHeight: '500px', chartWidth: '800px'})   
               break;
         }
-
         
     }
 

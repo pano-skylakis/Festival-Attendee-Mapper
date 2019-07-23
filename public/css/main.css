@@ -91,6 +91,9 @@ body {
   height: 70vh;
   width: 80vw; }
 
+.leaflet-container path {
+  transition: opacity 2.0s; }
+
 .map-margin {
   margin-top: 2rem;
   margin-bottom: 2rem;

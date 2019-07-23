@@ -53,14 +53,14 @@ class Map extends React.Component {
   //adds marker on map-click event
   addMarker = e => {
     addMarkerLocationApi(e.latlng)
-      .then(this.getMarkerLocations())
+      .then(this.getMarkerLocations)
   }
 
 
   //deletes selected marker
   deleteMarker = e => {
     deleteMarkerApi(e.target.id)
-      .then(this.getMarkerLocations())
+      .then(this.getMarkerLocations)
   }
 
 
@@ -74,13 +74,14 @@ class Map extends React.Component {
   handleDescriptionSubmit = e => {
     e.preventDefault()
     addMarkerDescriptionApi(this.state.description, e.target.dataset.marker)
-      .then(this.getMarkerLocations())
+      .then(this.getMarkerLocations)
   }
 
 
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
+<<<<<<< Updated upstream
       <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin"  center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>      
         <Polygon color="black" positions = {this.state.positions}/>
         
@@ -117,6 +118,55 @@ class Map extends React.Component {
         </LayersControl>
 
       </LeafletMap>
+=======
+      <React.Fragment>
+        <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin"  center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>      
+          <Polygon color="black" positions = {this.state.positions}/>
+          
+
+          <HeatmapLayer
+                fitBoundsOnLoad
+                // fitBoundsOnUpdate
+                points={this.props.addressPoints}
+                longitudeExtractor={m => m[1]}
+                latitudeExtractor={m => m[0]}
+                intensityExtractor={m => parseFloat(m[2])} />
+
+
+              {this.state.savedMarkers.map((position, idx) =>
+                <Marker key={`marker-${idx}`} icon={toiletIcon} position={{ lat: position.latitude, lng: position.longitude }}>
+                  <Popup>
+                    {/* this changes whatever is in the pop-up --v*/}
+                    <span>New pin!</span><br/>
+                    <button onClick={this.deleteMarker} id={position.id}>Delete</button>
+                    Description: {position.description}<input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description}/>
+                      <input data-marker={position.id} type="submit" value="Add" onClick={this.handleDescriptionSubmit}/>
+                  </Popup>
+                </Marker>
+                      )}
+
+
+                {/* map layer-control */}
+          <LayersControl position='topright'>
+            <LayersControl.BaseLayer checked name='Street View'>
+              <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name='Satellite'>
+              <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' />
+            </LayersControl.BaseLayer>
+          </LayersControl>
+
+        </LeafletMap>
+                {/* map-icons */}
+        <section className="icon-select-wrapper">
+        <ul>
+            {this.state.images.map((url, idx) => {
+                return <li key={idx}><img onClick={this.handleAnchorClick} data-icon={url} src={url} width="30px"/></li>
+            })}
+        </ul>
+        </section>
+      </React.Fragment>
+>>>>>>> Stashed changes
     )
   }
 }

@@ -31,7 +31,7 @@ function doTheThing (db = connection) {
         .finally(() => db.destroy())
 }
 
-doTheThing()
+// doTheThing()
 
 // ACTUAL CODE
 

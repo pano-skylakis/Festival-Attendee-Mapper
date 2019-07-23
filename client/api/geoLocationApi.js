@@ -38,6 +38,14 @@ export function getHeatMapValues(){
     })
 }
 
+export function getHeatmapValuesByHour(ids){
+    return request.post(`${route}/heatmapvaluesbyid`)
+    .send(ids)
+    .then(res=>{
+        return JSON.parse(res.text)
+    })
+}
+
 
 export function getHeatMapIntensity(obj){
     return request.post(`${route}/intensity`)

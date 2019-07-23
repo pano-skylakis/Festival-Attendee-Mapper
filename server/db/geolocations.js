@@ -47,6 +47,17 @@ function getHeatMapIntensity(data, db = connection){
         })
 }
 
+function getHeatmapValuesByHour(ids, db = connection){
+    return db('geolocation')
+    .whereIn('id', ids)
+    .distinct('latitude_rounded', 'longitude_rounded')
+    .then(res =>{
+        return res
+    })
+}
+
+
+
 
 module.exports = {
     getGeoLocations,
@@ -55,6 +66,7 @@ module.exports = {
     getTotalUniqueUsers,
     getHeatMapValues,
     getHeatMapIntensity,
+    getHeatmapValuesByHour,
 }
 
 

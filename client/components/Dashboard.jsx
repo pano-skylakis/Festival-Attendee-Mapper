@@ -122,11 +122,6 @@ class Dashboard extends React.Component {
   };
 
 
-  handleGraphButtonClick = () => {
-    this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true }) : this.setState({ barGraph: true, lineGraph: false })
-  }
-
-
   handleDateChange = e => {
     this.setState({ currentDate: e.target.value });
   };

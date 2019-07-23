@@ -12,7 +12,8 @@ function addGeoLocation(coords, db = connection) {
 
 
 function getGeoLocationsByTime(timeGreaterThan, timeLessThan, db = connection) {
-    return db('geolocation').where('timestamp', '>', timeGreaterThan).andWhere('timestamp', '<', timeLessThan)
+    console.log('db: '+ timeGreaterThan, timeLessThan)
+    return db('geolocation').where('timestamp', '>', timeGreaterThan+'').andWhere('timestamp', '<', timeLessThan+'')
 }
 
 
@@ -48,7 +49,6 @@ function getHeatMapIntensity(data, db = connection){
 }
 
 function getHeatmapValuesByHour(ids, db = connection){
-    console.log('hitting DB: ', ids)
     return db('geolocation')
     .whereIn('id', ids)
     .distinct('latitude_rounded', 'longitude_rounded')

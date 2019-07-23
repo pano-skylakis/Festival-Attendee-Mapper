@@ -83,33 +83,18 @@ class Dashboard extends React.Component {
 
     getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601)
       .then(locByTime => {
-        
-        console.log('locByTime: ' + locByTime)
-
         let idsArr = []
         locByTime.map(loc => {
-
-          console.log('loc: ' + loc.id)
-
           idsArr.push(loc.id)
         })
-        console.log('idsArr: ' + idsArr)
         return idsArr
       })
       .then(ids=>{
-
-        console.log('ids: ' + ids)
-
         getHeatmapValuesByHour(ids)
         .then(res => {
 
-          console.log('getHeatMapValuesByHour - res:' + res)
-
           Promise.all(res.map(getHeatMapIntensity))
           .then(info => {
-
-            console.log('info: ', info)
-
             this.setState({
               heatmapData: info
             })

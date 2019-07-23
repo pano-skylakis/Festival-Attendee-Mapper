@@ -25,12 +25,12 @@ router.post('/', (req, res) => {
 
 
 router.get('/timestamp/:timestamp', (req, res) => {
-
-    console.log('requestExpress: ' + req.params.timestamp)
-
     let dates = req.params.timestamp.split('-')
     let greaterThan = parseInt(dates[0])
     let lessThan = parseInt(dates[1])
+
+    console.log('greaterThan: '+greaterThan)
+    console.log('lessThan: '+ lessThan)
     db.getGeoLocationsByTime(greaterThan, lessThan)
         .then(data => {
 

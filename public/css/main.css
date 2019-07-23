@@ -65,8 +65,7 @@ body {
 .footer {
   background-color: rgba(44, 44, 44, 0.89);
   color: #e9e9e9;
-  left: 0;
-  right: 0;
+  width: 100vw;
   padding: 1rem 2rem 1rem 1rem; }
   @media (min-width: 48rem) {
     .footer {
@@ -74,6 +73,9 @@ body {
   @media (min-width: 64rem) {
     .footer {
       padding: 1rem 6.5rem; } }
+  @media (min-width: 90rem) {
+    .footer {
+      padding: 1rem 40rem 1rem 9.2rem; } }
   .footer p {
     font-size: .8rem; }
     @media (min-width: 48rem) {
@@ -82,6 +84,9 @@ body {
     @media (min-width: 64rem) {
       .footer p {
         font-size: 0.9rem; } }
+    @media (min-width: 90rem) {
+      .footer p {
+        font-size: 1rem; } }
 
 .graph-container {
   justify-content: space-around;
@@ -130,6 +135,9 @@ body {
   display: flex;
   flex-flow: row wrap;
   align-content: center; }
+  @media (min-width: 90rem) {
+    .statsbar {
+      margin: 10vh 10vw 0 10vw; } }
 
 .stats-1, .stats-2, .stats-3, .stats-4 {
   height: 25vh;
@@ -148,6 +156,9 @@ body {
       height: 22vh;
       width: 25vw;
       font-size: 1rem; } }
+  @media (min-width: 90rem) {
+    .stats-1, .stats-2, .stats-3, .stats-4 {
+      width: 20vw; } }
 
 .stats-big {
   font-size: 3rem;
@@ -161,6 +172,9 @@ body {
     .stats-big {
       font-size: 3rem;
       margin-top: 1.3rem; } }
+  @media (min-width: 90rem) {
+    .stats-big {
+      margin-top: 2.45rem; } }
 
 .stats-little {
   color: rgba(44, 44, 44, 0.89); }

@@ -140,8 +140,7 @@ body {
 .footer {
   background-color:$color-grey;
   color: $color-lightgrey;
-  left: 0;
-  right: 0;
+  width: 100vw;
   padding: 1rem 2rem 1rem 1rem;
     
   @include tablet{
@@ -151,6 +150,10 @@ body {
     padding: 1rem 6.5rem;
   }
 
+  @include desktop-large {
+    padding: 1rem 40rem 1rem 9.2rem;
+  }
+
   p {
     font-size: .8rem;
       @include tablet {
@@ -158,6 +161,9 @@ body {
       }
       @include desktop {
         font-size: 0.9rem;
+      }
+      @include desktop-large {
+        font-size: 1rem;
       }
   }
 }
@@ -249,6 +255,9 @@ body {
   flex-flow: row wrap;
   // padding: 5vh 0 0 10vw;
   align-content: center;
+    @include desktop-large{
+      margin: 10vh 10vw 0 10vw;
+    }
 }
 
 .stats-1, .stats-2, .stats-3, .stats-4 {
@@ -269,6 +278,11 @@ body {
       width: 25vw;
       font-size: 1rem;
     }
+
+    @include desktop-large{
+      width: 20vw
+    }
+
 } 
 
 .stats-big {
@@ -282,6 +296,9 @@ body {
     @include desktop {
       font-size: 3rem;
       margin-top: 1.3rem;
+    }
+    @include desktop-large{
+      margin-top: 2.45rem;
     }
 }
 

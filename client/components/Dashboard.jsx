@@ -89,12 +89,19 @@ class Dashboard extends React.Component {
         return ids
       })
       .then(ids=>{
+
+        console.log('ids: ', id)
+
         getHeatmapValuesByHour(ids)
         .then(res => {
+
           console.log('getHeatMapValuesByHour - res:', res)
+
           Promise.all(res.map(getHeatMapIntensity))
           .then(info => {
+
             console.log('info: ', info)
+            
             this.setState({
               heatmapData: info
             })

@@ -1,70 +1,79 @@
 import { Map as LeafletMap, TileLayer, Marker, Popup, Polygon, LayersControl } from 'react-leaflet'
 
 
+export default {
 
-export const toiletIcon = L.icon({
-    iconUrl: './images/toilet.svg',
+  "babyCarriageIcon": new L.icon ({
+    iconUrl: './images/babyCarriage.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
-  });
+  }),
 
-  export const babyCarriageIcon = L.icon({
-    iconUrl: './images/baby-carriage.svg',
+
+  "firstAidIcon": new L.icon({
+    iconUrl: './images/firstAid.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
-  });
+  }),
 
-  export const firstAidIcon = L.icon({
-    iconUrl: './images/first-aid.svg',
-    iconSize: [15, 35],
-    iconAnchor: [9, 25],
-    popupAnchor: [10, -44],
-  });
 
-  export const coffeeIcon = L.icon({
+  "coffeeIcon": new L.icon({
     iconUrl: './images/coffee.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
-  });
+  }),
 
-  export const guitarIcon = L.icon({
+
+  "guitarIcon": new L.icon({
     iconUrl: './images/guitar.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
-  });
+  }),
 
-  export const informationIcon = L.icon({
+
+  "informationIcon": new L.icon({
     iconUrl: './images/information.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
-  });
+  }),
 
-  export const trashIcon = L.icon({
+
+  "trashIcon": new L.icon({
     iconUrl: './images/trash.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
-  });
-  
-  export const foodIcon = L.icon({
+  }),
+
+
+  "foodIcon": new L.icon({
     iconUrl: './images/food.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
-  });
+  }),
 
-  export const waterIcon = L.icon({
+
+  "waterIcon": new L.icon({
     iconUrl: './images/water.svg',
     iconSize: [15, 35],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44],
-  });
-  
+  }),
+
+
+  "toiletIcon": new L.icon({
+    iconUrl: './images/toilet.svg',
+    iconSize: [15, 35],
+    iconAnchor: [9, 25],
+    popupAnchor: [10, -44],
+  })
+}
   
   // L.marker([50.505, 30.57], {icon: toiletIcon}).addTo(map);
   

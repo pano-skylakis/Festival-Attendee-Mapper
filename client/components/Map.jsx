@@ -3,8 +3,8 @@ import { Map as LeafletMap, TileLayer, Marker, Popup, Polygon, LayersControl } f
 import { getMarkerLocationsApi, addMarkerLocationApi, deleteMarkerApi, addMarkerDescriptionApi } from '../api/markerLocationApi'
 import HeatmapLayer from 'react-leaflet-heatmap-layer';
 
-import { toiletIcon, babyCarriageIcon, firstAidIcon, coffeeIcon, guitarIcon, informationIcon, trashIcon, foodIcon, waterIcon } from './mapIcons'
 
+import MapIcons from './MapIcons'
 
 
 class Map extends React.Component {
@@ -23,8 +23,8 @@ class Map extends React.Component {
       positions: [[-41.297850, 174.775803], [-41.296085, 174.771753], [-41.288876, 174.776126], [-41.291125, 174.779602]],
       heatChange: false,
       images: [
-        './images/baby-carriage.svg', 
-        './images/first-aid.svg', 
+        './images/babyCarriage.svg', 
+        './images/firstAid.svg', 
         './images/coffee.svg', 
         './images/guitar.svg', 
         './images/information.svg', 
@@ -32,7 +32,7 @@ class Map extends React.Component {
         './images/trash.svg',
         './images/food.svg',
         './images/water.svg'],
-      selectedIcon: ''
+      selectedIcon: MapIcons.toiletIcon
     }
   }
 
@@ -67,6 +67,8 @@ class Map extends React.Component {
 
   //adds marker on map-click event
   addMarker = e => {
+
+    console.log(e.target)
     addMarkerLocationApi(e.latlng)
       .then(this.getMarkerLocations)
   }
@@ -98,10 +100,37 @@ class Map extends React.Component {
   }
 
   //icon click handler
-  handleIconClick = e => {
-    e.preventDefault()
-    this.setState({selectedIcon: e.target.dataset.icon})
-}
+//   setIcons = (iconString) => {
+//     switch(true) {
+//       case iconString === 'babyCarriageIcon': 
+//         this.setState({selectedIcon: babyCarriageIcon})
+//         break;
+//       case iconString === 'coffeeIcon': 
+//         this.setState({selectedIcon: coffeeIcon})
+//         break;
+//       case iconString === 'firstAidIcon': 
+//         this.setState({selectedIcon: firstAidIcon})
+//         break;
+//       case iconString === 'foodIcon': 
+//         this.setState({selectedIcon: foodIcon})
+//         break;
+//       case iconString === 'guitarIcon': 
+//         this.setState({selectedIcon: guitarIcon})
+//         break;
+//       case iconString === 'informationIcon': 
+//         this.setState({selectedIcon: informationIcon})
+//         break;
+//       case iconString === 'toiletIcon': 
+//         this.setState({selectedIcon: toiletIcon})
+//         break;
+//       case iconString === 'trashIcon': 
+//         this.setState({selectedIcon: trashIcon})
+//         break;
+//       case iconString === 'waterIcon': 
+//         this.setState({selectedIcon: waterIcon})
+//         break;
+//     }
+// }
 
 
   render() {
@@ -112,8 +141,8 @@ class Map extends React.Component {
           <Polygon color="black" positions = {this.state.positions}/>
 
 
-              {this.state.savedMarkers.map((position, idx) =>
-                <Marker key={`marker-${idx}`} icon={toiletIcon} position={{ lat: position.latitude, lng: position.longitude }}>
+              {this.state.savedMarkers.map((position, idx) => {
+                return <Marker key={`marker-${idx}`} icon={MapIcons[position['markers']]} position={{ lat: position.latitude, lng: position.longitude }}>
                   <Popup>
                     {/* this changes whatever is in the pop-up --v*/}
                     <span>New pin!</span><br/>
@@ -122,7 +151,7 @@ class Map extends React.Component {
                       <input data-marker={position.id} type="submit" value="Add" onClick={this.handleDescriptionSubmit}/>
                   </Popup>
                 </Marker>
-                      )}
+              })}
 
 
                 {/* map layer-control */}
@@ -149,11 +178,15 @@ class Map extends React.Component {
 
                 {/* map-icons */}
         <section className="icon-select-wrapper">
-        <ul>
-            {this.state.images.map((url, idx) => {
-                return <li key={idx}><img onClick={this.handleAnchorClick} data-icon={url} src={url} width="30px"/></li>
-            })}
-        </ul>
+          <ul>
+              {this.state.images.map((url, idx) => {
+                  let mapIconKey = url.split('/')
+                  mapIconKey = mapIconKey[2].split('.')
+                  mapIconKey = mapIconKey[0]
+
+                  return <li key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="30px"/></a></li>
+              })}
+          </ul>
         </section>
       </React.Fragment>
     )

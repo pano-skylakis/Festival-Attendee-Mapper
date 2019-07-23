@@ -1,5 +1,39 @@
 const connection = require('./connection')
 
+function convertTheBigOnes (db = connection) {
+    return  db('geolocation').where('timestamp', '>', 15638617030)
+        .then(bigs => {
+            bigs = bigs.map(convert)
+            return db('geolocation').insert(bigs)
+        })
+}
+
+function logTheSmalls (db = connection) {
+    return  db('geolocation').where('timestamp', '<', 15638617030)
+        .then(all => console.log(all.length))
+}
+
+function deleteTheBigOnes (db = connection) {
+    return  db('geolocation').where('timestamp', '>', 15638617030).delete()
+}
+
+function convert(obj) {
+    obj.timestamp = Math.floor(obj.timestamp / 1000)
+    delete obj.id
+    return obj
+}
+
+function doTheThing (db = connection) {
+    return logTheSmalls()
+        .then(() => convertTheBigOnes())
+        .then(() => logTheSmalls())
+        .then(() => deleteTheBigOnes())
+        .finally(() => db.destroy())
+}
+
+doTheThing()
+
+// ACTUAL CODE
 
 function getGeoLocations(db = connection) {
     return db('geolocation').select()

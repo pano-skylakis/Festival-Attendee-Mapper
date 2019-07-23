@@ -54,14 +54,14 @@ class Map extends React.Component {
   //adds marker on map-click event
   addMarker = e => {
     addMarkerLocationApi(e.latlng)
-      .then(this.getMarkerLocations())
+      .then(this.getMarkerLocations)
   }
 
 
   //deletes selected marker
   deleteMarker = e => {
     deleteMarkerApi(e.target.id)
-      .then(this.getMarkerLocations())
+      .then(this.getMarkerLocations)
   }
 
 
@@ -75,7 +75,7 @@ class Map extends React.Component {
   handleDescriptionSubmit = e => {
     e.preventDefault()
     addMarkerDescriptionApi(this.state.description, e.target.dataset.marker)
-      .then(this.getMarkerLocations())
+      .then(this.getMarkerLocations)
   }
 
   //toggles heat map
@@ -86,8 +86,10 @@ class Map extends React.Component {
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
-      <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin" center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
+      <LeafletMap className="map-margin" center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
         <Polygon color="black" positions={this.state.positions} />
+
+
         {this.state.savedMarkers.map((position, idx) =>
           <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
             <Popup>
@@ -100,6 +102,8 @@ class Map extends React.Component {
             </Popup>
           </Marker>
         )}
+
+
         <LayersControl position='topright'>
           <LayersControl.BaseLayer checked name='Street View' >
             <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'>
@@ -118,6 +122,8 @@ class Map extends React.Component {
             />
           </LayersControl.Overlay>
         </LayersControl>
+
+        
       </LeafletMap>
     )
   }

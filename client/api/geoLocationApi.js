@@ -24,8 +24,13 @@ export function addGeoLocationApi(body) {
 
 
 export function getGeoLocationByTimeApi(greaterThan, lessThan) {
+
+    console.log('greaterThan:' + greaterThan)
+    console.log('lessThan: ' + lessThan)
+
     return request.get(`${route}/timestamp/${greaterThan}-${lessThan}`)
             .then(res => {
+                console.log(res.body)
                 return res.body
             })
 }

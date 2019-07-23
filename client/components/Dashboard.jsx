@@ -89,7 +89,7 @@ class Dashboard extends React.Component {
         let idsArr = []
         locByTime.map(loc => {
 
-          console.log('loc: ' + loc)
+          console.log('loc: ' + loc.id)
 
           idsArr.push(loc.id)
         })

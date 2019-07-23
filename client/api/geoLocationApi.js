@@ -38,6 +38,7 @@ export function getHeatMapValues(){
     })
 }
 
+
 export function getHeatmapValuesByHour(ids){
     return request.post(`${route}/heatmapvaluesbyid`)
     .send(ids)
@@ -58,6 +59,13 @@ export function getHeatMapIntensity(obj){
 
 export function getTotalUniqueUsersApi() {
     return request.get(`${route}/totaluniqueusers`)
+        .then(res => {
+            return res.body
+        })
+}
+
+export function getCurrentUniqueUsersApi() {
+    return request.get(`${route}/currentuniqueusers`)
         .then(res => {
             return res.body
         })

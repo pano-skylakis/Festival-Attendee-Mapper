@@ -11,6 +11,8 @@ class LineGraph extends React.Component {
         this.state={
             // geoLocationData: this.props.geoLocationData,
             time: 8,
+            chartHeight: '500px',
+            chartWidth: '500px',
             graphData: [['Time', '2018-07-24'],
                         ['8:00', 56],
                         ['9:00', 102],
@@ -30,12 +32,29 @@ class LineGraph extends React.Component {
                         ['23:00', 1000],
 
         ]
+            
         }
     }
 
 
     componentDidMount() {
         this.getLocationByTime()
+        this.updatePredicate();
+        window.addEventListener("resize", this.updatePredicate);
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updatePredicate);
+    }
+      
+    
+    updatePredicate = () => {
+        switch(true) {
+            case window.innerWidth > 1023:
+              this.setState({ chartHeight: '500px', chartWidth: '800px'})   
+              break;
+            
+        }
     }
 
     
@@ -68,15 +87,19 @@ class LineGraph extends React.Component {
             }
         }
 
+        
+        
 
     render() { 
+        
+
         return (  
             <>
-                <div className="graph-padding">
+                <div className="graph-align" align="center">
                     <Chart
-                        className="chart graph-shadow"
-                        width={'84rem'}
-                        height={'40rem'}
+                        className="chart"
+                        width={this.state.chartWidth}
+                        height={this.state.chartHeight}
                         chartType="LineChart"
                         loader={<div>Loading Chart</div>}
                         data={this.state.graphData}

@@ -1,7 +1,4 @@
 import React from 'react'
-import Logo from './Logo'
-import Loading from './Loading'
-
 import {Link, animateScroll as scroll} from 'react-scroll'
 
 class Splash extends React.Component {

@@ -4,9 +4,9 @@ import moment from "moment";
 import Splash from "./Splash";
 import Footer from "./Footer";
 import Map from "./Map";
-import BarGraph from "./BarGraph";
-import LineGraph from "./LineGraph";
+import Graphs from "./Graphs";
 import Stats from "./Stats";
+import Unavailable from "./Unavailable"
 
 import {
   getGeoLocationsApi,
@@ -22,19 +22,21 @@ class Dashboard extends React.Component {
     super(props);
 
     this.state = {
-      locs: [],
-      currentDate: "",
-      sliderValue: "12",
-      barGraph: true,
-      lineGraph: false,
-      geoTags: {},
-      heatmapData: [],
-    };
-
-  }
-
+        locs: [],
+        currentDate: "",
+        sliderValue: "12",
+        geoTags: {},
+        heatmapData:[],
+        isDesktop: false,
+        datePicker: Date.now()
+      };
+  
+    }
+  
   componentDidMount() {
-
+    this.updatePredicate();
+    window.addEventListener("resize", this.updatePredicate);
+  
     // gets unique heatmap values + intensities.
     getHeatMapValues()
       .then(res => {
@@ -90,8 +92,10 @@ class Dashboard extends React.Component {
       .then(ids=>{
         getHeatmapValuesByHour(ids)
         .then(res => {
+          console.log('getHeatMapValuesByHour - res:', res)
           Promise.all(res.map(getHeatMapIntensity))
           .then(info => {
+            console.log('info: ', info)
             this.setState({
               heatmapData: info
             })
@@ -100,7 +104,18 @@ class Dashboard extends React.Component {
       })
     }
 
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updatePredicate);
+  }
+
+  updatePredicate = () => {
+    this.setState({ isDesktop: window.innerWidth > 1023 })
+  }
+
   render() {
+
+    const isDesktop = this.state.isDesktop;
+
     return (
       <React.Fragment>
         <Splash />
@@ -108,30 +123,33 @@ class Dashboard extends React.Component {
           <div data-aos="flip-up" data-aos-duration="2000">
             <Stats geoLocationData={this.state.locs} />
           </div>
+
           <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
+            <div data-aos="fade-up" data-aos-duration="2000" className="graph-container">
+            <div className="slider-and-data">
+              <div className="just-data">
+              <input type="date" className="date-input" defaultValue="2019/07/23" onChange={this.handleDateChange} />
+                <p className="slider-time">{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00` }</p>
+              </div> 
+                <div className="slidecontainer">
+                <input
+                  type="range"
+                  min="0"
+                  max="23"
+                  value={this.state.sliderValue}
+                  className="slider"
+                  id="myRange"
+                  onChange={this.handleSliderChange}
+                />
+               </div>
+              </div>
 
-            {/* slider */}
-            <input type="date"  onChange={this.handleDateChange} defaultValue="23/07/2019" />
-            <div className="slidecontainer">
-              <p>{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00`}</p>
-              <input
-                type="range"
-                min="0"
-                max="23"
-                value={this.state.sliderValue}
-                className="slider"
-                id="myRange"
-                onChange={this.handleSliderChange}
-              />
-            </div>
+              <Map addressPoints={this.state.heatmapData} />
 
-            <Map addressPoints={this.state.heatmapData} />
-            <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
-              {this.state.barGraph && <BarGraph />}
-              {this.state.lineGraph && <LineGraph geoLocationData={this.state.locs} />}
-              <p onClick={this.handleGraphButtonClick} className="toggle-button">
-                Toggle Graph
-                </p>
+              <div>
+                {isDesktop ? (<Graphs geoLocationData={this.state.locs}/>) : (<Unavailable />)}
+              </div>
+              
             </div>
           </div>
           <Footer />

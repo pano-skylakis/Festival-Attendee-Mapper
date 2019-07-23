@@ -54,14 +54,14 @@ class Map extends React.Component {
   //adds marker on map-click event
   addMarker = e => {
     addMarkerLocationApi(e.latlng)
-      .then(this.getMarkerLocations())
+      .then(this.getMarkerLocations)
   }
 
 
   //deletes selected marker
   deleteMarker = e => {
     deleteMarkerApi(e.target.id)
-      .then(this.getMarkerLocations())
+      .then(this.getMarkerLocations)
   }
 
 
@@ -75,7 +75,7 @@ class Map extends React.Component {
   handleDescriptionSubmit = e => {
     e.preventDefault()
     addMarkerDescriptionApi(this.state.description, e.target.dataset.marker)
-      .then(this.getMarkerLocations())
+      .then(this.getMarkerLocations)
   }
 
   //toggles heat map
@@ -86,6 +86,7 @@ class Map extends React.Component {
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
+<<<<<<< HEAD
       <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin"  center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>      
         <Polygon color="black" positions = {this.state.positions}/>
     
@@ -101,6 +102,41 @@ class Map extends React.Component {
                 </Popup>
               </Marker>
                     )}
+||||||| merged common ancestors
+      <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin" center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
+        <Polygon color="black" positions={this.state.positions} />
+        {this.state.savedMarkers.map((position, idx) =>
+          <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
+            <Popup>
+              {/* this changes whatever is in the pop-up --v*/}
+              {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}
+              <span>New pin!</span><br />
+              <button onClick={this.deleteMarker} id={position.id}>Delete</button>
+              Description: {position.description}<input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description} />
+              <input data-marker={position.id} type="submit" value="Add" onClick={this.handleDescriptionSubmit} />
+            </Popup>
+          </Marker>
+        )}
+=======
+      <LeafletMap className="map-margin" center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
+        <Polygon color="black" positions={this.state.positions} />
+
+
+        {this.state.savedMarkers.map((position, idx) =>
+          <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
+            <Popup>
+              {/* this changes whatever is in the pop-up --v*/}
+              {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}
+              <span>New pin!</span><br />
+              <button onClick={this.deleteMarker} id={position.id}>Delete</button>
+              Description: {position.description}<input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description} />
+              <input data-marker={position.id} type="submit" value="Add" onClick={this.handleDescriptionSubmit} />
+            </Popup>
+          </Marker>
+        )}
+
+
+>>>>>>> 5a7ce291648a5314f7cff6867f70df96e021fe3c
         <LayersControl position='topright'>
           <LayersControl.BaseLayer checked name='Street View' >
             <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png'>
@@ -119,6 +155,8 @@ class Map extends React.Component {
                   />
               </LayersControl.Overlay>
         </LayersControl>
+
+        
       </LeafletMap>
     )
   }

@@ -14,7 +14,6 @@ $screen-md: 64rem;
 $screen-lg: 90rem;
 $screen-xl: 100rem;
 
-
 @mixin tablet {
     @media (min-width: #{$screen-sm}) {
         @content;
@@ -53,15 +52,17 @@ body {
 // // Splash animation for the title.
 
 .tracking-in-contract {
-    padding-top: 20%;
+    padding-top: 25vh;
     margin: 0;
     animation: tracking-in-contract 2.4s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
     font-family: 'Raleway', sans-serif;
     font-size: 4rem;
     font-weight: semi-bold;
     color:black;
-
-
+      
+    @include tablet {
+      padding: 40vh 15vw 0 15vw;
+    }
 }
 
 .splash {
@@ -69,7 +70,7 @@ body {
   height: 100vh;
   background-image:  url("https://images.unsplash.com/photo-1468234560893-89c00b6385c8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2693&q=80");
   background-size: cover;
-  box-shadow: 0 .5rem 1rem 0 rgba(0,0,0,0.5);
+  // box-shadow: 0 .5rem 1rem 0 rgba(0,0,0,0.5);
 }
   
 @keyframes tracking-in-contract {
@@ -99,7 +100,7 @@ body {
   cursor: pointer;
   position: relative;
   bottom: -2rem;
-  left: 50%;
+  left: 50vw;
   margin-left:-1rem;
   width: 2rem;
   height: 2rem;
@@ -117,7 +118,7 @@ body {
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-20px);
+    transform: translateY(-1rem);
   }
 
 }
@@ -125,7 +126,7 @@ body {
 .content {
     font-family: 'Raleway', sans-serif;
     // background-color: $color-white;
-    box-shadow: 0 .5rem 1rem 0 rgba(0,0,0,0.5);
+    // box-shadow: 0 .5rem 1rem 0 rgba(0,0,0,0.5);
     display: flex;
     flex-wrap: wrap;
 }
@@ -139,13 +140,31 @@ body {
 .footer {
   background-color:$color-grey;
   color: $color-lightgrey;
-  left: 0;
-  right: 0;
-  padding: 1rem 60rem 1rem 6rem;
-  box-shadow: 0 1rem 3rem 0 rgba(0,0,0,0.75);
+  width: 100vw;
+  padding: 1rem 2rem 1rem 1rem;
+    
+  @include tablet{
+    padding: 1rem 4.5rem; 
+  }
+  @include desktop {
+    padding: 1rem 6.5rem;
+  }
+
+  @include desktop-large {
+    padding: 1rem 40rem 1rem 9.2rem;
+  }
 
   p {
     font-size: .8rem;
+      @include tablet {
+        font-size: 1.1rem;
+      }
+      @include desktop {
+        font-size: 0.9rem;
+      }
+      @include desktop-large {
+        font-size: 1rem;
+      }
   }
 }
 
@@ -169,11 +188,11 @@ body {
   flex-wrap: wrap;
 }
 
-.graph-shadow {
-  -webkit-box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
-  -moz-box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
-  box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
-}
+// .graph-shadow {
+//   -webkit-box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
+//   -moz-box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
+//   box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
+// }
 
 .graph-border {
   // padding: 1rem;
@@ -186,7 +205,7 @@ body {
 
 .leaflet-container {
   display: flex;
-  height: 70vh;
+  height: 75vh;
   width: 80vw;
 }
 
@@ -196,12 +215,17 @@ body {
 
 
 .map-margin {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   margin-bottom: 2rem;
   border-radius: 1rem;
   // border: orange solid;
   // border-width: 15px 15px 15px 15px;
   box-shadow: 0 0 1rem 0 rgba(0,0,0,0.75);
+
+  @include desktop {
+    margin-bottom: 3.2rem;
+    margin-top: 1.8rem;
+  }
 }
 
 //Button (Just the button to change between Bar Graph and Line Graph components)
@@ -233,15 +257,36 @@ body {
 .statsbar {
   display: flex;
   flex-flow: row wrap;
-  padding: 5vh 0 0 10vw;
+  // padding: 5vh 0 0 10vw;
   align-content: center;
+    @include desktop-large{
+      margin: 10vh 10vw 0 10vw;
+    }
 }
 
 .stats-1, .stats-2, .stats-3, .stats-4 {
-  height: 10rem;
-  width: 24rem;
+  height: 25vh;
+  width: 100vw;
   background-color: $color-orange;
   text-align: center;
+  border-top: solid 1px #ffb641;
+    @include tablet {
+      height:18vh;
+      width:50vw;
+      border: 0;
+      font-size: 1.3rem
+    }
+
+    @include desktop {
+      height: 22vh;
+      width: 25vw;
+      font-size: 1rem;
+    }
+
+    @include desktop-large{
+      width: 20vw
+    }
+
 } 
 
 .stats-big {
@@ -249,6 +294,16 @@ body {
   color: $color-grey;
   margin-bottom: 0;
   margin-top: 1.8rem;
+    @include tablet {
+      font-size: 4rem;
+    }
+    @include desktop {
+      font-size: 3rem;
+      margin-top: 1.3rem;
+    }
+    @include desktop-large{
+      margin-top: 2.45rem;
+    }
 }
 
 .stats-little {
@@ -258,30 +313,28 @@ body {
 .stats-1 {
   background-color: $color-grey;
   color: white;
+  border-top: #9b9b9b
 }
 
 .stats-1-big {
   color: $color-orange;
-  font-size: 3rem;
-  margin-bottom: 0;
-  margin-top: 1.8rem;
 }
 
 .padding-title {
-  padding-left: 13vw;
+  // padding-left: 13vw;
   color: $color-button;
 }
 
 // Slider 
 .slidecontainer {
-  width: 40rem; /* Width of the outside container */
+  width: 80vw; /* Width of the outside container */
 }
 
 /* The slider itself */
 .slider {
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
-  width: 100%; /* Full-width */
+  width: 80vw; /* Full-width */
   height: 2rem; /* Specified height */
   background: #9b9b9b; /* Grey background */
   outline: none; /* Remove outline */
@@ -289,8 +342,26 @@ body {
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
   // border-radius: 25px;
-  margin-top: 2rem;
+  // margin-top: 2rem;
   background-color: $color-lightgrey;
+}
+
+.slider-time {
+  font-size: 1.5rem;
+    @include tablet {
+      font-size: 2rem;
+      margin: 1.5rem 0 0.4rem 0
+    }
+}
+
+.slider-and-data {
+  display: block;
+
+}
+
+.just-data {
+ display: flex;
+ justify-content: space-around; 
 }
 
 //track colour of slider
@@ -343,199 +414,206 @@ input[type=range]::-moz-range-thumb {
   transition: border 1000ms ease;
 }
 
+.date-input {
+  @include tablet {
+    font-size: 1.7rem;
+    margin: 1.5rem 0 0.4rem 0rem;
+  }
+}
+
 .date-picker {
   margin-top: 2rem;
 }
 
 // Bridey experimenting
 
-* {
-  -webkit-font-smoothing: antialiased;
-}
-a {
-  color: #000;
-  text-decoration: none;
-}
-a:hover {
-  color: #000;
-  text-decoration: none;
-}
-.scroller-container {
-  background: #fafafa;
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.container {
-  width: 100%;
-  height: 50px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-left: -25%;
-  margin-top: -25px;
-}
-p {
-  color: #888;
-}
-.scroller {
-  height: 170px;
-  line-height: 70px;
-  float: left;
-  margin-left: 5px;
-  overflow: hidden;
-  font-size: 2.6rem;
-  margin-right: 0.2rem;
-}
-.scroller span {
-  display: block;
-  font-size: 200%;
-  color: #000;
-}
-.scroller .inner {
-  -webkit-animation: scroll 10s 1 ease-out;
-  -moz-animation: scroll 10s 1 ease-out;
-  animation: scroll 10s 1 ease-out;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  text-align: center;
-}
-.orange {
-  -webkit-animation: color 0.25s 1 linear;
-  -moz-animation: color 0.25s 1 linear;
-  animation: color 0.25s 1 linear;
-  -webkit-animation-delay: 8s;
-  -moz-animation-delay: 8s;
-  animation-delay: 8s;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-.orangeb {
-  -webkit-animation: color 0.25s 1 linear;
-  -moz-animation: color 0.25s 1 linear;
-  animation: color 0.25s 1 linear;
-  -webkit-animation-delay: 8.25s;
-  -moz-animation-delay: 8.25s;
-  animation-delay: 8.25s;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-@-webkit-keyframes color {
-  0% {
-    color: #000;
-  }
-  100% {
-    color: #E67E22;
-  }
-}
-@-moz-keyframes color {
-  0% {
-    color: #000;
-  }
-  100% {
-    color: #E67E22;
-  }
-}
-@keyframes color {
-  0% {
-    color: #000;
-  }
-  100% {
-    color: #E67E22;
-  }
-}
-@-webkit-keyframes scroll {
-  11% {
-    margin-top: 0px;
-  }
-  22% {
-    margin-top: 0px;
-  }
-  33% {
-    margin-top: -100px;
-  }
-  44% {
-    margin-top: -100px;
-  }
-  55% {
-    margin-top: -200px;
-  }
-  66% {
-    margin-top: -200px;
-  }
-  77% {
-    margin-top: -300px;
-  }
-  88% {
-    margin-top: -300px;
-  }
-  100% {
-    margin-top: -300px;
-  }
-}
-@-moz-keyframes scroll {
-  11% {
-    margin-top: 0px;
-  }
-  22% {
-    margin-top: 0px;
-  }
-  33% {
-    margin-top: -100px;
-  }
-  44% {
-    margin-top: -100px;
-  }
-  55% {
-    margin-top: -200px;
-  }
-  66% {
-    margin-top: -200px;
-  }
-  77% {
-    margin-top: -300px;
-  }
-  88% {
-    margin-top: -300px;
-  }
-  100% {
-    margin-top: -300px;
-  }
-}
-@keyframes scroll {
-  0% {
-    margin-top: 50px;
-  }
-  11% {
-    margin-top: 50px;
-  }
-  22% {
-    margin-top: 50px;
-  }
-  33% {
-    margin-top: -100px;
-  }
-  44% {
-    margin-top: -100px;
-  }
-  55% {
-    margin-top: -280px;
-  }
-  66% {
-    margin-top: -280px;
-  }
-  77% {
-    margin-top: -480px;
-  }
-  88% {
-    margin-top: -480px;
-  }
-  100% {
-    margin-top: -480px;
-  }
-}
+// * {
+//   -webkit-font-smoothing: antialiased;
+// }
+// a {
+//   color: #000;
+//   text-decoration: none;
+// }
+// a:hover {
+//   color: #000;
+//   text-decoration: none;
+// }
+// .scroller-container {
+//   background: #fafafa;
+//   width: 100vw;
+//   height: 100vh;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+// .container {
+//   width: 100%;
+//   height: 50px;
+//   position: fixed;
+//   top: 50%;
+//   left: 50%;
+//   margin-left: -25%;
+//   margin-top: -25px;
+// }
+// p {
+//   color: #888;
+// }
+// .scroller {
+//   height: 170px;
+//   line-height: 70px;
+//   float: left;
+//   margin-left: 5px;
+//   overflow: hidden;
+//   font-size: 2.6rem;
+//   margin-right: 0.2rem;
+// }
+// .scroller span {
+//   display: block;
+//   font-size: 200%;
+//   color: #000;
+// }
+// .scroller .inner {
+//   -webkit-animation: scroll 10s 1 ease-out;
+//   -moz-animation: scroll 10s 1 ease-out;
+//   animation: scroll 10s 1 ease-out;
+//   -webkit-animation-fill-mode: forwards;
+//   -moz-animation-fill-mode: forwards;
+//   animation-fill-mode: forwards;
+//   text-align: center;
+// }
+// .orange {
+//   -webkit-animation: color 0.25s 1 linear;
+//   -moz-animation: color 0.25s 1 linear;
+//   animation: color 0.25s 1 linear;
+//   -webkit-animation-delay: 8s;
+//   -moz-animation-delay: 8s;
+//   animation-delay: 8s;
+//   -webkit-animation-fill-mode: forwards;
+//   -moz-animation-fill-mode: forwards;
+//   animation-fill-mode: forwards;
+// }
+// .orangeb {
+//   -webkit-animation: color 0.25s 1 linear;
+//   -moz-animation: color 0.25s 1 linear;
+//   animation: color 0.25s 1 linear;
+//   -webkit-animation-delay: 8.25s;
+//   -moz-animation-delay: 8.25s;
+//   animation-delay: 8.25s;
+//   -webkit-animation-fill-mode: forwards;
+//   -moz-animation-fill-mode: forwards;
+//   animation-fill-mode: forwards;
+// }
+// @-webkit-keyframes color {
+//   0% {
+//     color: #000;
+//   }
+//   100% {
+//     color: #E67E22;
+//   }
+// }
+// @-moz-keyframes color {
+//   0% {
+//     color: #000;
+//   }
+//   100% {
+//     color: #E67E22;
+//   }
+// }
+// @keyframes color {
+//   0% {
+//     color: #000;
+//   }
+//   100% {
+//     color: #E67E22;
+//   }
+// }
+// @-webkit-keyframes scroll {
+//   11% {
+//     margin-top: 0px;
+//   }
+//   22% {
+//     margin-top: 0px;
+//   }
+//   33% {
+//     margin-top: -100px;
+//   }
+//   44% {
+//     margin-top: -100px;
+//   }
+//   55% {
+//     margin-top: -200px;
+//   }
+//   66% {
+//     margin-top: -200px;
+//   }
+//   77% {
+//     margin-top: -300px;
+//   }
+//   88% {
+//     margin-top: -300px;
+//   }
+//   100% {
+//     margin-top: -300px;
+//   }
+// }
+// @-moz-keyframes scroll {
+//   11% {
+//     margin-top: 0px;
+//   }
+//   22% {
+//     margin-top: 0px;
+//   }
+//   33% {
+//     margin-top: -100px;
+//   }
+//   44% {
+//     margin-top: -100px;
+//   }
+//   55% {
+//     margin-top: -200px;
+//   }
+//   66% {
+//     margin-top: -200px;
+//   }
+//   77% {
+//     margin-top: -300px;
+//   }
+//   88% {
+//     margin-top: -300px;
+//   }
+//   100% {
+//     margin-top: -300px;
+//   }
+// }
+// @keyframes scroll {
+//   0% {
+//     margin-top: 50px;
+//   }
+//   11% {
+//     margin-top: 50px;
+//   }
+//   22% {
+//     margin-top: 50px;
+//   }
+//   33% {
+//     margin-top: -100px;
+//   }
+//   44% {
+//     margin-top: -100px;
+//   }
+//   55% {
+//     margin-top: -280px;
+//   }
+//   66% {
+//     margin-top: -280px;
+//   }
+//   77% {
+//     margin-top: -480px;
+//   }
+//   88% {
+//     margin-top: -480px;
+//   }
+//   100% {
+//     margin-top: -480px;
+//   }
+// }

@@ -12,10 +12,13 @@ function addGeoLocation(coords, db = connection) {
 
 
 function getGeoLocationsByTime(timeGreaterThan, timeLessThan, db = connection) {
+    let timeArr = []
+    timeArr.push(timeGreaterThan, timeLessThan)
+
+    console.log(timeArr)
     console.log('db: '+ timeGreaterThan, timeLessThan)
-    timeGreaterThan = timeGreaterThan+''
-    timeLessThan = timeLessThan+''
-    return db('geolocation').where('timestamp', '>', timeGreaterThan).andWhere('timestamp', '<', timeLessThan)
+    // return db('geolocation').where('timestamp', '>', timeGreaterThan).andWhere('timestamp', '<', timeLessThan)
+    return db('geolocation').whereBetween('timestamp', timeArr)
     .then(data =>{
         console.log('DB response: ', data)
         return data

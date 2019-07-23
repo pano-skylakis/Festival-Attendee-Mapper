@@ -77,7 +77,7 @@ export default {
 
   "defaultMarkerIcon": new L.icon({
     iconUrl: './images/defaultMarker.png',
-    iconSize: [18, 35],
+    iconSize: [18, 25],
     iconAnchor: [9, 25],
     popupAnchor: [10, -44]
   })

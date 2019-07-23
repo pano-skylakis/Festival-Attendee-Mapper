@@ -13,7 +13,7 @@ function addGeoLocation(coords, db = connection) {
 
 function getGeoLocationsByTime(timeGreaterThan, timeLessThan, db = connection) {
     let timeArr = []
-    timeArr.push(timeGreaterThan, timeLessThan)
+    timeArr.push(timeGreaterThan + 43200, timeLessThan + 43200)
 
     console.log(timeArr)
     console.log('db: '+ timeGreaterThan, timeLessThan)

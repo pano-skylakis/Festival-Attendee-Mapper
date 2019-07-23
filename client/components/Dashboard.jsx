@@ -80,10 +80,17 @@ class Dashboard extends React.Component {
     Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
 
     let unixTimestamp = moment(`${date}`).unix();
+
     getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601)
       .then(locByTime => {
+        
+        console.log('locByTime: ' + locByTime)
+
         let idsArr = []
         locByTime.map(loc => {
+
+          console.log('loc: ' + loc)
+
           idsArr.push(loc.id)
         })
         console.log('idsArr: ' + idsArr)

@@ -89,7 +89,7 @@ body {
         font-size: 1rem; } }
 
 .graph-container {
-  justify-content: space-around;
+  justify-content: center;
   display: flex;
   align-items: center;
   flex-wrap: wrap; }
@@ -273,10 +273,13 @@ input[type=range]::-moz-range-thumb {
   -moz-transition: border 1000ms ease;
   transition: border 1000ms ease; }
 
-@media (min-width: 48rem) {
-  .date-input {
-    font-size: 1.7rem;
-    margin: 1.5rem 0 0.4rem 0rem; } }
+.date-input {
+  background-color: #e9e9e9;
+  border: 0; }
+  @media (min-width: 48rem) {
+    .date-input {
+      font-size: 1.7rem;
+      margin: 1.5rem 0 0.4rem 0rem; } }
 
 .date-picker {
   margin-top: 2rem; }

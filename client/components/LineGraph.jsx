@@ -50,6 +50,9 @@ class LineGraph extends React.Component {
             }
         }
 
+        // const chartWidth = 
+
+        // const chartHeight =
 
     render() { 
         return (  
@@ -57,8 +60,8 @@ class LineGraph extends React.Component {
                 <div className="graph-padding">
                     <Chart
                         className="chart graph-shadow"
-                        width={'84rem'}
-                        height={'40rem'}
+                        width={chartWidth}
+                        height={chartHeight}
                         chartType="LineChart"
                         loader={<div>Loading Chart</div>}
                         data={this.state.graphData}

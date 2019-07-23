@@ -10,9 +10,9 @@ export function getMarkerLocationsApi() {
 }
 
 
-export function addMarkerLocationApi(body) {
+export function addMarkerLocationApi(latLng, markerName) {
     return request.post(route)
-        .send({ latitude: body.lat, longitude: body.lng })
+        .send({ latitude: latLng.lat, longitude: latLng.lng, markers: markerName })
         .then(res => {
             return res.body
         })

@@ -27,15 +27,30 @@ class LineGraph extends React.Component {
                         ['20:00', 1400],
                         ['21:00', 1200],
                         ['22:00', 1100],
-                        ['23:00', 1000],
-
-        ]
+                        ['23:00', 1000]],
+            chartHeight: '500px',
+            chartWidth: '500px',
         }
     }
 
-
     componentDidMount() {
         this.getLocationByTime()
+        this.updatePredicate();
+        window.addEventListener("resize", this.updatePredicate);
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updatePredicate);
+    }
+      
+    
+    updatePredicate = () => {
+        switch(true) {
+            case window.innerWidth > 1023:
+              this.setState({ chartHeight: '500px', chartWidth: '800px'})   
+              break;
+            
+        }
     }
 
     
@@ -68,15 +83,19 @@ class LineGraph extends React.Component {
             }
         }
 
+        
+        
 
     render() { 
+        
+
         return (  
             <>
-                <div className="graph-padding">
+                <div className="graph-align" align="center">
                     <Chart
-                        className="chart graph-shadow"
-                        width={'84rem'}
-                        height={'40rem'}
+                        className="chart"
+                        width={this.state.chartWidth}
+                        height={this.state.chartHeight}
                         chartType="LineChart"
                         loader={<div>Loading Chart</div>}
                         data={this.state.graphData}

@@ -93,8 +93,8 @@ class Map extends React.Component {
               intensityExtractor={m => parseFloat(m[2])} />
 
 
-            {this.state.savedMarkers.map((position, idx) =>
-              <Marker key={`marker-${idx}`} position={{ lat: position.latitude, lng: position.longitude }}>
+            {this.state.savedMarkers.map((position) =>
+              <Marker key={`marker-${position.id}`} position={{ lat: position.latitude, lng: position.longitude }}>
                 <Popup>
                   {/* this changes whatever is in the pop-up --v*/}
                   {/* <span>Number of Unique Users: {`${this.state.uniqueUsers}`}</span><br/> */}

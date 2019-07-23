@@ -2,6 +2,7 @@ const router = require('express').Router()
 const db = require('../db/geolocations')
 
 
+//gets all geolocation data from DB
 router.get('/', (req, res) => {
     db.getGeoLocations()
         .then(coords => {
@@ -13,6 +14,7 @@ router.get('/', (req, res) => {
 })
 
 
+//adds geolocation data from user to DB
 router.post('/', (req, res) => {
     db.addGeoLocation(req.body)
         .then(id => {
@@ -24,18 +26,14 @@ router.post('/', (req, res) => {
 })
 
 
+//gets locations based on time periods
 router.get('/timestamp/:timestamp', (req, res) => {
     let dates = req.params.timestamp.split('-')
     let greaterThan = parseInt(dates[0])
     let lessThan = parseInt(dates[1])
 
-    console.log('greaterThan: '+greaterThan)
-    console.log('lessThan: '+ lessThan)
     db.getGeoLocationsByTime(greaterThan, lessThan)
         .then(data => {
-
-            console.log('dataExpress: ' + data)
-
             res.send(data)
         })
         .catch(err => {
@@ -51,6 +49,8 @@ router.get('/totaluniqueusers', (req, res)=>{
         res.json(users)
     })
 })
+
+
 router.get('/heatmapvalues', (req, res)=> {
     db.getHeatMapValues()
     .then(values =>{

@@ -1,39 +1,44 @@
 const connection = require('./connection')
 
-function convertTheBigOnes (db = connection) {
-    return  db('geolocation').where('timestamp', '>', 15638617030)
-        .then(bigs => {
-            bigs = bigs.map(convert)
-            return db('geolocation').insert(bigs)
-        })
-}
 
-function logTheSmalls (db = connection) {
-    return  db('geolocation').where('timestamp', '<', 15638617030)
-        .then(all => console.log(all.length))
-}
+// uncomment this section of code to convert 13-digit timestamps in 'timestamp' column into 10-digit timestamps
 
-function deleteTheBigOnes (db = connection) {
-    return  db('geolocation').where('timestamp', '>', 15638617030).delete()
-}
+// function convertTheBigOnes (db = connection) {
+//     return  db('geolocation').where('timestamp', '>', 15638617030)
+//         .then(bigs => {
+//             bigs = bigs.map(convert)
+//             return db('geolocation').insert(bigs)
+//         })
+// }
 
-function convert(obj) {
-    obj.timestamp = Math.floor(obj.timestamp / 1000)
-    delete obj.id
-    return obj
-}
+// function logTheSmalls (db = connection) {
+//     return  db('geolocation').where('timestamp', '<', 15638617030)
+//         .then(all => console.log(all.length))
+// }
 
-function doTheThing (db = connection) {
-    return logTheSmalls()
-        .then(() => convertTheBigOnes())
-        .then(() => logTheSmalls())
-        .then(() => deleteTheBigOnes())
-        .catch(() => console.log('oops'))
-}
+// function deleteTheBigOnes (db = connection) {
+//     return  db('geolocation').where('timestamp', '>', 15638617030).delete()
+// }
+
+// function convert(obj) {
+//     obj.timestamp = Math.floor(obj.timestamp / 1000)
+//     delete obj.id
+//     return obj
+// }
+
+// function doTheThing (db = connection) {
+//     return logTheSmalls()
+//         .then(() => convertTheBigOnes())
+//         .then(() => logTheSmalls())
+//         .then(() => deleteTheBigOnes())
+//         .catch(() => console.log('oops'))
+// }
 
 // doTheThing()
 
-// ACTUAL CODE
+
+
+// DB Functions >>>
 
 function getGeoLocations(db = connection) {
     return db('geolocation').select()
@@ -48,23 +53,9 @@ function addGeoLocation(coords, db = connection) {
 function getGeoLocationsByTime(timeGreaterThan, timeLessThan, db = connection) {
     let timeArr = []
     timeArr.push(timeGreaterThan - 43200, timeLessThan - 43200)
-
-    console.log(timeArr)
-    console.log('db: '+ timeGreaterThan, timeLessThan)
-
-    return  db('geolocation').where('timestamp', '>', timeGreaterThan)
-    .then(thing => {
-        console.log("min: ", timeGreaterThan)
-        console.log("max: ", timeLessThan)
-
-        console.log(thing[0])
-        // return db('geolocation').where('timestamp', '>', timeGreaterThan).andWhere('timestamp', '<', timeLessThan)
         return db('geolocation').whereBetween('timestamp', timeArr)
-        .then(data =>{
-            console.log('DB response: ', data)
-            return data
-            
-        })
+        .then(locationsByTime =>{
+            return locationsByTime
     })
 }
 
@@ -100,6 +91,7 @@ function getHeatMapIntensity(data, db = connection){
         })
 }
 
+
 function getHeatmapValuesByHour(ids, db = connection){
     return db('geolocation')
     .whereIn('id', ids)
@@ -108,8 +100,6 @@ function getHeatmapValuesByHour(ids, db = connection){
         return res
     })
 }
-
-
 
 
 module.exports = {

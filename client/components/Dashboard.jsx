@@ -25,8 +25,8 @@ class Dashboard extends React.Component {
       locs: [],
       currentDate: "",
       sliderValue: "12",
-      barGraph: true,
-      lineGraph: false,
+      barGraph: false,
+      lineGraph: true,
       geoTags: {},
       heatmapData: [],
     };

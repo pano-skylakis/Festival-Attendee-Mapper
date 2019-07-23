@@ -1,6 +1,6 @@
 import React from 'react'
 import { Chart } from "react-google-charts";
-import { getGeoLocationByTimeApi } from '../api/geoLocationApi';
+// import { getGeoLocationByTimeApi } from '../api/geoLocationApi';
 import regeneratorRuntime from "regenerator-runtime";
 import { unix } from 'moment';
 
@@ -9,9 +9,27 @@ class LineGraph extends React.Component {
         super(props)
 
         this.state={
-            geoLocationData: this.props.geoLocationData,
+            // geoLocationData: this.props.geoLocationData,
             time: 8,
-            graphData: [['Time', '2019-07-23']]
+            graphData: [['Time', '2018-07-24'],
+                        ['8:00', 56],
+                        ['9:00', 102],
+                        ['10:00', 708],
+                        ['11:00', 600],
+                        ['12:00', 1300],
+                        ['13:00', 1200],
+                        ['14:00', 1200],
+                        ['15:00', 1100],
+                        ['16:00', 1000],
+                        ['17:00', 1400],
+                        ['18:00', 1800],
+                        ['19:00', 1700],
+                        ['20:00', 1400],
+                        ['21:00', 1200],
+                        ['22:00', 1100],
+                        ['23:00', 1000],
+
+        ]
         }
     }
 

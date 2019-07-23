@@ -1,5 +1,5 @@
 import React from 'react'
-import { getTotalUniqueUsersApi } from '../api/geoLocationApi';
+import { getTotalUniqueUsersApi, getCurrentUniqueUsersApi } from '../api/geoLocationApi';
 
 
 
@@ -9,12 +9,20 @@ class Stats extends React.Component {
         
         this.state = {
           uniqueUsers: null,
+          currentUsers: 0,
           geoLocationData: this.props.geoLocationData
         }
     }
 
     
     componentDidMount() {
+      getCurrentUniqueUsersApi()
+      .then(uniqueUsersInt=>{
+        console.
+        this.setState({
+          currentUsers: uniqueUsersInt
+        })
+      })
       getTotalUniqueUsersApi()
         .then(data => {
           this.setState({uniqueUsers: data})
@@ -31,7 +39,7 @@ class Stats extends React.Component {
         return (  
           <div className="statsbar enter">
               <div className="stats-1">
-                <p className="stats-1-big">2,410</p>
+                <p className="stats-1-big">{`${this.state.currentUsers}`}</p>
                 <p>users currently being tracked</p>
               </div>
               

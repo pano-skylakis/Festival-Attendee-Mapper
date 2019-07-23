@@ -26,6 +26,19 @@ function getTotalUniqueUsers(db = connection) {
 }
 
 
+function getCurrentUniqueUsers(db = connection) {
+    let currentTime = Math.floor(Date.now()/1000)
+    currentTime -= 300
+    return db('geolocation')
+        .where('timestamp', '>=', currentTime )
+        .distinct('user')
+        .then(user => {
+            return user.length
+        })
+}
+
+
+
 function getHeatMapValues(db = connection) {
     return db('geolocation')
         .distinct('latitude_rounded', 'longitude_rounded')
@@ -67,6 +80,5 @@ module.exports = {
     getHeatMapValues,
     getHeatMapIntensity,
     getHeatmapValuesByHour,
+    getCurrentUniqueUsers
 }
-
-

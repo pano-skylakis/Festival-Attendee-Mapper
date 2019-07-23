@@ -35,7 +35,6 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-
     // gets unique heatmap values + intensities.
     getHeatMapValues()
       .then(res => {
@@ -56,6 +55,7 @@ class Dashboard extends React.Component {
     });
   };
 
+
   refreshLocations = locations => {
     this.setState({
       locs: locations || []
@@ -67,6 +67,7 @@ class Dashboard extends React.Component {
     this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true }) : this.setState({ barGraph: true, lineGraph: false })
   }
 
+
   handleDateChange = e => {
     this.setState({ currentDate: e.target.value });
   };
@@ -77,6 +78,8 @@ class Dashboard extends React.Component {
     let date = "";
 
     this.setState({ sliderValue: e.target.value });
+
+    // >>> stop reformatting my ternary-operators <<<
     Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
 
     let unixTimestamp = moment(`${date}`).unix();

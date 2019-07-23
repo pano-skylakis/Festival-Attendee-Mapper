@@ -5,9 +5,9 @@ exports.seed = function(knex) {
     .then(function () {
       // Inserts seed entries
       return knex('marker_locations').insert([
-        {id: 1, latitude: '-41.294132', longitude: '174.775354'},
-        {id: 2, latitude: '-41.291847', longitude: '174.776518'},
-        {id: 3, latitude: '-41.291846', longitude: '174.776516'}
+        {id: 1, latitude: '-41.294132', longitude: '174.775354', markers: 'toiletIcon'},
+        {id: 2, latitude: '-41.291847', longitude: '174.776518', markers: 'firstAidIcon'},
+        {id: 3, latitude: '-41.291846', longitude: '174.776516', markers: 'trashIcon'}
       ]);
     });
 };

@@ -28,8 +28,14 @@ router.get('/timestamp/:timestamp', (req, res) => {
     let dates = req.params.timestamp.split('-')
     let greaterThan = parseInt(dates[0])
     let lessThan = parseInt(dates[1])
+
+    console.log('greaterThan: '+greaterThan)
+    console.log('lessThan: '+ lessThan)
     db.getGeoLocationsByTime(greaterThan, lessThan)
         .then(data => {
+
+            console.log('dataExpress: ' + data)
+
             res.send(data)
         })
         .catch(err => {

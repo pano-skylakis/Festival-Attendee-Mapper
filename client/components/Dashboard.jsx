@@ -82,21 +82,21 @@ class Dashboard extends React.Component {
     Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
 
     let unixTimestamp = moment(`${date}`).unix();
+
     getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601)
       .then(locByTime => {
-        let ids = []
+        let idsArr = []
         locByTime.map(loc => {
-          ids.push(loc.id)
+          idsArr.push(loc.id)
         })
-        return ids
+        return idsArr
       })
       .then(ids=>{
         getHeatmapValuesByHour(ids)
         .then(res => {
-          console.log('getHeatMapValuesByHour - res:', res)
+
           Promise.all(res.map(getHeatMapIntensity))
           .then(info => {
-            console.log('info: ', info)
             this.setState({
               heatmapData: info
             })

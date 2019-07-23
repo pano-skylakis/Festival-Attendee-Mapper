@@ -46,7 +46,6 @@ class LineGraph extends React.Component {
                     unixGreaterThan = unixGreaterThan + 3600
                     unixLessThan = unixLessThan + 3600
                     time = time + 1
-
                 })
             }
         }

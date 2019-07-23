@@ -34,7 +34,7 @@ class LineGraph extends React.Component {
     }
 
     componentDidMount() {
-        this.getLocationByTime()
+        // this.getLocationByTime()
         this.updatePredicate();
         window.addEventListener("resize", this.updatePredicate);
     }

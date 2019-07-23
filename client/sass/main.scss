@@ -1,3 +1,8 @@
+//a tags
+a:active {
+  background-color: yellow;
+}
+
 //Colours
 
 $color-white:white;
@@ -180,22 +185,24 @@ body {
 //   margin-left: 10%;
 // }
 
-.graph-container {
+.graph-align {
+  display: block;
+  margin: 0 auto;
+}
 
-  justify-content: space-around;
+.graph-container {
+  justify-content: center;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
 }
 
-// .graph-shadow {
-//   -webkit-box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
-//   -moz-box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
-//   box-shadow: 0 0 1rem 0 rgba(0,0,0,0.6);
-// }
+
+.graph-margin {
+  width: 100vw;
+}
 
 .graph-border {
-  // padding: 1rem;
   background-color: white;
   border: solid white .5rem;
 }
@@ -356,7 +363,6 @@ body {
 
 .slider-and-data {
   display: block;
-
 }
 
 .just-data {
@@ -415,6 +421,9 @@ input[type=range]::-moz-range-thumb {
 }
 
 .date-input {
+  background-color: #e9e9e9; 
+  border: 0;
+
   @include tablet {
     font-size: 1.7rem;
     margin: 1.5rem 0 0.4rem 0rem;

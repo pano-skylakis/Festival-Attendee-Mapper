@@ -38,6 +38,7 @@ export function getHeatMapValues(){
     })
 }
 
+
 export function getHeatmapValuesByHour(ids){
     return request.post(`${route}/heatmapvaluesbyid`)
     .send(ids)

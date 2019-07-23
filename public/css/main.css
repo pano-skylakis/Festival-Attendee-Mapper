@@ -1,3 +1,6 @@
+a:active {
+  background-color: yellow; }
+
 body {
   margin: 0;
   padding: 0;
@@ -88,11 +91,18 @@ body {
       .footer p {
         font-size: 1rem; } }
 
+.graph-align {
+  display: block;
+  margin: 0 auto; }
+
 .graph-container {
-  justify-content: space-around;
+  justify-content: center;
   display: flex;
   align-items: center;
   flex-wrap: wrap; }
+
+.graph-margin {
+  width: 100vw; }
 
 .graph-border {
   background-color: white;
@@ -273,10 +283,13 @@ input[type=range]::-moz-range-thumb {
   -moz-transition: border 1000ms ease;
   transition: border 1000ms ease; }
 
-@media (min-width: 48rem) {
-  .date-input {
-    font-size: 1.7rem;
-    margin: 1.5rem 0 0.4rem 0rem; } }
+.date-input {
+  background-color: #e9e9e9;
+  border: 0; }
+  @media (min-width: 48rem) {
+    .date-input {
+      font-size: 1.7rem;
+      margin: 1.5rem 0 0.4rem 0rem; } }
 
 .date-picker {
   margin-top: 2rem; }

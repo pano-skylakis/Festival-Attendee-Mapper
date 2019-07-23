@@ -1,6 +1,45 @@
 const connection = require('./connection')
 
 
+// uncomment this section of code to convert 13-digit timestamps in 'timestamp' column into 10-digit timestamps
+
+// function convertTheBigOnes (db = connection) {
+//     return  db('geolocation').where('timestamp', '>', 15638617030)
+//         .then(bigs => {
+//             bigs = bigs.map(convert)
+//             return db('geolocation').insert(bigs)
+//         })
+// }
+
+// function logTheSmalls (db = connection) {
+//     return  db('geolocation').where('timestamp', '<', 15638617030)
+//         .then(all => console.log(all.length))
+// }
+
+// function deleteTheBigOnes (db = connection) {
+//     return  db('geolocation').where('timestamp', '>', 15638617030).delete()
+// }
+
+// function convert(obj) {
+//     obj.timestamp = Math.floor(obj.timestamp / 1000)
+//     delete obj.id
+//     return obj
+// }
+
+// function doTheThing (db = connection) {
+//     return logTheSmalls()
+//         .then(() => convertTheBigOnes())
+//         .then(() => logTheSmalls())
+//         .then(() => deleteTheBigOnes())
+//         .catch(() => console.log('oops'))
+// }
+
+// doTheThing()
+
+
+
+// DB Functions >>>
+
 function getGeoLocations(db = connection) {
     return db('geolocation').select()
 }
@@ -12,7 +51,12 @@ function addGeoLocation(coords, db = connection) {
 
 
 function getGeoLocationsByTime(timeGreaterThan, timeLessThan, db = connection) {
-    return db('geolocation').where('timestamp', '>', timeGreaterThan).andWhere('timestamp', '<', timeLessThan)
+    let timeArr = []
+    timeArr.push(timeGreaterThan - 43200, timeLessThan - 43200)
+        return db('geolocation').whereBetween('timestamp', timeArr)
+        .then(locationsByTime =>{
+            return locationsByTime
+    })
 }
 
 
@@ -59,6 +103,7 @@ function getHeatMapIntensity(data, db = connection){
         })
 }
 
+
 function getHeatmapValuesByHour(ids, db = connection){
     return db('geolocation')
     .whereIn('id', ids)
@@ -67,8 +112,6 @@ function getHeatmapValuesByHour(ids, db = connection){
         return res
     })
 }
-
-
 
 
 module.exports = {

@@ -32,7 +32,7 @@ class Map extends React.Component {
         './images/trash.svg',
         './images/food.svg',
         './images/water.svg'],
-      selectedIcon: MapIcons.toiletIcon
+      selectedIcon: ''
     }
   }
 
@@ -69,7 +69,7 @@ class Map extends React.Component {
   addMarker = e => {
 
     console.log(e.target)
-    addMarkerLocationApi(e.latlng)
+    addMarkerLocationApi(e.latlng, this.state.selectedIcon)
       .then(this.getMarkerLocations)
   }
 
@@ -100,37 +100,38 @@ class Map extends React.Component {
   }
 
   //icon click handler
-//   setIcons = (iconString) => {
-//     switch(true) {
-//       case iconString === 'babyCarriageIcon': 
-//         this.setState({selectedIcon: babyCarriageIcon})
-//         break;
-//       case iconString === 'coffeeIcon': 
-//         this.setState({selectedIcon: coffeeIcon})
-//         break;
-//       case iconString === 'firstAidIcon': 
-//         this.setState({selectedIcon: firstAidIcon})
-//         break;
-//       case iconString === 'foodIcon': 
-//         this.setState({selectedIcon: foodIcon})
-//         break;
-//       case iconString === 'guitarIcon': 
-//         this.setState({selectedIcon: guitarIcon})
-//         break;
-//       case iconString === 'informationIcon': 
-//         this.setState({selectedIcon: informationIcon})
-//         break;
-//       case iconString === 'toiletIcon': 
-//         this.setState({selectedIcon: toiletIcon})
-//         break;
-//       case iconString === 'trashIcon': 
-//         this.setState({selectedIcon: trashIcon})
-//         break;
-//       case iconString === 'waterIcon': 
-//         this.setState({selectedIcon: waterIcon})
-//         break;
-//     }
-// }
+  handleIconClick = e => {
+    console.log(e.target.dataset.icon)
+    switch(true) {
+      case e.target.dataset.icon === 'babyCarriage': 
+        this.setState({selectedIcon: 'babyCarriageIcon'})
+        break;
+      case e.target.dataset.icon === 'coffee': 
+        this.setState({selectedIcon: 'coffeeIcon'})
+        break;
+      case e.target.dataset.icon === 'firstAid': 
+        this.setState({selectedIcon: 'firstAidIcon'})
+        break;
+      case e.target.dataset.icon === 'food': 
+        this.setState({selectedIcon: 'foodIcon'})
+        break;
+      case e.target.dataset.icon === 'guitar': 
+        this.setState({selectedIcon: 'guitarIcon'})
+        break;
+      case e.target.dataset.icon === 'information': 
+        this.setState({selectedIcon: 'informationIcon'})
+        break;
+      case e.target.dataset.icon === 'toilet': 
+        this.setState({selectedIcon: 'toiletIcon'})
+        break;
+      case e.target.dataset.icon === 'trash': 
+        this.setState({selectedIcon: 'trashIcon'})
+        break;
+      case e.target.dataset.icon === 'water': 
+        this.setState({selectedIcon: 'waterIcon'})
+        break;
+    }
+}
 
 
   render() {

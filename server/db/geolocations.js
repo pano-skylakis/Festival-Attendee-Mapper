@@ -18,7 +18,7 @@ function getGeoLocationsByTime(timeGreaterThan, timeLessThan, db = connection) {
     console.log(timeArr)
     console.log('db: '+ timeGreaterThan, timeLessThan)
 
-    return  db('geolocation')
+    return  db('geolocation').where('timestamp', '>', timeGreaterThan)
     .then(thing => {
         console.log(thing)
         // return db('geolocation').where('timestamp', '>', timeGreaterThan).andWhere('timestamp', '<', timeLessThan)

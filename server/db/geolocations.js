@@ -17,12 +17,17 @@ function getGeoLocationsByTime(timeGreaterThan, timeLessThan, db = connection) {
 
     console.log(timeArr)
     console.log('db: '+ timeGreaterThan, timeLessThan)
-    // return db('geolocation').where('timestamp', '>', timeGreaterThan).andWhere('timestamp', '<', timeLessThan)
-    return db('geolocation').whereBetween('timestamp', timeArr)
-    .then(data =>{
-        console.log('DB response: ', data)
-        return data
 
+    return  db('geolocation')
+    .then(thing => {
+        console.log(thing)
+        // return db('geolocation').where('timestamp', '>', timeGreaterThan).andWhere('timestamp', '<', timeLessThan)
+        return db('geolocation').whereBetween('timestamp', timeArr)
+        .then(data =>{
+            console.log('DB response: ', data)
+            return data
+            
+        })
     })
 }
 

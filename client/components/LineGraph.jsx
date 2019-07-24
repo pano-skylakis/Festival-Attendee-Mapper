@@ -37,7 +37,6 @@ class LineGraph extends React.Component {
         this.getLocationByTime()
         this.updatePredicate();
         window.addEventListener("resize", this.updatePredicate);
-        console.log(this.getLocationByTime)
     }
     
     componentWillUnmount() {
@@ -57,8 +56,8 @@ class LineGraph extends React.Component {
     
     getLocationByTime = async () => {
 
-        let unixGreaterThan = 1563911000 // 2019-07-23T08:00:00+00:00
-        let unixLessThan = 1563915600 // 2019-07-23T09:00:00+00:00
+        let unixGreaterThan = 1563868800 // 2019-07-23T08:00:00+00:00
+        let unixLessThan = 1563872400 // 2019-07-23T09:00:00+00:00
 
         // let unixLessThan = 1563883199 // 2019-07-23T11:59:59+00:00
 

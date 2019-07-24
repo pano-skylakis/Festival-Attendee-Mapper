@@ -52,11 +52,9 @@ function addGeoLocation(coords, db = connection) {
 
 function getGeoLocationsByTime(timeGreaterThan, timeLessThan, db = connection) {
     let timeArr = []
-    // - 43200
-    timeArr.push(timeGreaterThan , timeLessThan)
+    timeArr.push(timeGreaterThan - 43200 , timeLessThan - 43200)
         return db('geolocation').whereBetween('timestamp', timeArr)
         .then(locationsByTime =>{
-            console.log('locations by time: ', locationsByTime)
             return locationsByTime
     })
 }

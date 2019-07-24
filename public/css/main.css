@@ -108,10 +108,10 @@ body {
       padding: 1rem 4.5rem; } }
   @media (min-width: 64rem) {
     .footer {
-      padding: 1rem 6.5rem; } }
+      padding: 2rem 12rem; } }
   @media (min-width: 90rem) {
     .footer {
-      padding: 1rem 40rem 1rem 9.2rem; } }
+      padding: 2rem 40rem 1rem 9.2rem; } }
   .footer p {
     font-size: .8rem; }
     @media (min-width: 48rem) {
@@ -137,7 +137,6 @@ body {
 .graph-margin {
   width: 100vw;
   background-color: white;
-  padding-top: 5vh;
   display: flex;
   justify-content: space-around;
   align-items: center; }
@@ -161,7 +160,7 @@ body {
   display: flex;
   height: 75vh;
   width: 80vw;
-  border: solid 1px #6699eed1; }
+  border: solid 1px white; }
 
 .icon-size {
   height: 1.2rem;
@@ -374,7 +373,7 @@ input[type=range]::-moz-range-thumb {
 ul {
   margin: 0;
   padding: 0;
-  background-color: #6699eed1;
+  background-color: white;
   height: 75vh;
   margin-top: 3vh;
   margin-top: 29px;
@@ -382,4 +381,4 @@ ul {
   padding-left: 2vh;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
-  border: 1px solid #6699eed1; }
+  border: 1px solid white; }

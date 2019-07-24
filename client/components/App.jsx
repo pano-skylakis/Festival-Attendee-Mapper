@@ -35,7 +35,7 @@ class App extends React.Component {
 
     return (
       <div>
-        <Dashboard />
+        {isDesktop ? <Dashboard /> : <UserLanding/>}
       </div>
     )
   } 

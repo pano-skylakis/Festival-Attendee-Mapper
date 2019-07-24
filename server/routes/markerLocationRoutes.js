@@ -36,7 +36,7 @@ router.put('/markers/:id', (req, res) => {
 
 
 router.delete('/markers/:id', (req, res) => {
-    db.deletePost(req.params.id)
+    db.deleteMarker(req.params.id)
         .then(numberOfDeleted => {
             res.sendStatus(200)
         })

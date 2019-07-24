@@ -139,7 +139,8 @@ body {
   background-color: white;
   display: flex;
   justify-content: space-around;
-  align-items: center; }
+  align-items: center;
+  margin-top: 6.5vh; }
 
 .graph-margin-left {
   margin-left: 10vh; }
@@ -375,8 +376,7 @@ ul {
   padding: 0;
   background-color: white;
   height: 75vh;
-  margin-top: 3vh;
-  margin-top: 29px;
+  margin-top: -22px;
   width: 38px;
   padding-left: 2vh;
   border-top-right-radius: 1rem;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { getTotalUniqueUsersApi } from '../api/geoLocationApi';
+import { getTotalUniqueUsersApi, getCurrentUniqueUsersApi } from '../api/geoLocationApi';
 
 
 
@@ -8,20 +8,47 @@ class Stats extends React.Component {
         super(props)
         
         this.state = {
-          uniqueUsers: null,
+          uniqueUsers: 0,
+          currentUsers: 0,
           geoLocationData: this.props.geoLocationData
         }
-    }
+        this.refreshStats = this.refreshStats.bind(this)
 
+    }
     
-    componentDidMount() {
+    refreshStats(){
+      this.interval = setInterval(() => {
+        getCurrentUniqueUsersApi()
+      .then(uniqueUsersInt=>{
+        this.setState({
+          currentUsers: uniqueUsersInt
+        })
+      })
       getTotalUniqueUsersApi()
         .then(data => {
           this.setState({uniqueUsers: data})
         })
+      }, 3000);
     }
 
 
+    componentDidMount() {
+      this.refreshStats()
+      // getCurrentUniqueUsersApi()
+      // .then(uniqueUsersInt=>{
+      //   this.setState({
+      //     currentUsers: uniqueUsersInt
+      //   })
+      // })
+      // getTotalUniqueUsersApi()
+      //   .then(data => {
+      //     this.setState({uniqueUsers: data})
+      //   })
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.interval)
+  }
     componentWillReceiveProps(nextProps) {
       this.setState({geoLocationData: nextProps.geoLocationData})
     }
@@ -31,7 +58,7 @@ class Stats extends React.Component {
         return (  
           <div className="statsbar enter">
               <div className="stats-1">
-                <p className="stats-1-big stats-big">2,410</p>
+                <p className="stats-1-big stats-big">{`${this.state.currentUsers}`}</p>
                 <p>users currently being tracked</p>
               </div>
               
@@ -56,5 +83,3 @@ class Stats extends React.Component {
 }
  
 export default Stats;
-
-

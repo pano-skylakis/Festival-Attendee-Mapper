@@ -35,8 +35,7 @@ class App extends React.Component {
 
     return (
       <div>
-        {/* {isDesktop ? (<Dashboard />) : (<UserLanding />)} */}
-        <Dashboard />
+        {isDesktop ? <Dashboard /> : <UserLanding/>}
       </div>
     )
   } 

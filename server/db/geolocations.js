@@ -52,7 +52,7 @@ function addGeoLocation(coords, db = connection) {
 
 function getGeoLocationsByTime(timeGreaterThan, timeLessThan, db = connection) {
     let timeArr = []
-    timeArr.push(timeGreaterThan - 43200, timeLessThan - 43200)
+    timeArr.push(timeGreaterThan - 43200 , timeLessThan - 43200)
         return db('geolocation').whereBetween('timestamp', timeArr)
         .then(locationsByTime =>{
             return locationsByTime
@@ -64,6 +64,18 @@ function getTotalUniqueUsers(db = connection) {
     return db('geolocation')
         .distinct()
         .pluck('user')
+        .then(user => {
+            return user.length
+        })
+}
+
+
+function getCurrentUniqueUsers(db = connection) {
+    let currentTime = Math.floor(Date.now()/1000)
+    currentTime -= 300
+    return db('geolocation')
+        .where('timestamp', '>=', currentTime )
+        .distinct('user')
         .then(user => {
             return user.length
         })
@@ -110,6 +122,7 @@ module.exports = {
     getHeatMapValues,
     getHeatMapIntensity,
     getHeatmapValuesByHour,
+    getCurrentUniqueUsers
 }
 
 

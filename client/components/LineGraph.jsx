@@ -9,56 +9,92 @@ class LineGraph extends React.Component {
         super(props)
 
         this.state={
-            geoLocationData: this.props.geoLocationData,
+            // geoLocationData: this.props.geoLocationData,
             time: 8,
-            graphData: [['Time', '2019-07-23']]
+            graphData: [['Time', '2018-07-23', '2019-07-23'],
+                        ['8:00', 56, 0],
+                        ['9:00', 102, 0],
+                        ['10:00', 708, 0],
+                        ['11:00', 600, 0],
+                        ['12:00', 1300, 0],
+                        ['13:00', 1200, 0],
+                        ['14:00', 1200, 0],
+                        ['15:00', 1100, 0],
+                        ['16:00', 1000, 0],
+                        ['17:00', 1400, 0],
+                        ['18:00', 1800, 0],
+                        ['19:00', 1700, 0],
+                        ['20:00', 1400, 0],
+                        ['21:00', 1200, 0],
+                        ['22:00', 1100, 0],
+                        ['23:00', 1000, 0]],
+            chartHeight: '500px',
+            chartWidth: '500px',
         }
     }
 
-
     componentDidMount() {
         this.getLocationByTime()
+        this.updatePredicate();
+        window.addEventListener("resize", this.updatePredicate);
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updatePredicate);
+    }
+      
+    
+    updatePredicate = () => {
+        switch(true) {
+            case window.innerWidth > 1023:
+              this.setState({ chartHeight: '500px', chartWidth: '800px'})   
+              break;
+        }
     }
 
     
     getLocationByTime = async () => {
 
         let unixGreaterThan = 1563868800 // 2019-07-23T08:00:00+00:00
-        let unixLessThan = 1563872401 // 2019-07-23T09:00:00+00:00
+        let unixLessThan = 1563872400 // 2019-07-23T09:00:00+00:00
 
         // let unixLessThan = 1563883199 // 2019-07-23T11:59:59+00:00
 
-        let time = 8
+        let index = 1
 
         for(let i = 0; i < 16; i++) {
 
             await getGeoLocationByTimeApi(unixGreaterThan, unixLessThan)
                 .then(locationByTime => {
 
-                    let timeArr = []
-                    let timeString = `${time}:00`
+                    let newState = [...this.state.graphData]
+
                     
+                    newState[index][2] = locationByTime.length
+                    this.setState({graphData: newState})
 
-                    timeArr.push(timeString, locationByTime.length)
-                    this.setState({graphData: [...this.state.graphData, timeArr]})
-                    timeArr = []
-
+                    newState = [...this.state.graphData]
                     unixGreaterThan = unixGreaterThan + 3600
                     unixLessThan = unixLessThan + 3600
-                    time = time + 1
+
+                    index = index + 1
                 })
             }
         }
 
+        
+        
 
     render() { 
+        
+
         return (  
             <>
-                <div className="graph-padding">
+                <div className="graph-align" align="center">
                     <Chart
-                        className="chart graph-shadow"
-                        width={'84rem'}
-                        height={'40rem'}
+                        className="chart"
+                        width={this.state.chartWidth}
+                        height={this.state.chartHeight}
                         chartType="LineChart"
                         loader={<div>Loading Chart</div>}
                         data={this.state.graphData}

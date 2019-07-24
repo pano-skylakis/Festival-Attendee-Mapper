@@ -6,37 +6,56 @@ class BarGraph extends React.Component {
         super(props)
         
         this.state = {
-
+            chartHeight: '500px',
+            chartWidth: '500px',
         }
     }
 
+    componentDidMount() {
+        this.updatePredicate();
+        window.addEventListener("resize", this.updatePredicate);
+    }
+    
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.updatePredicate);
+    }
+      
+    
+    updatePredicate = () => {
+        switch(true) {
+            case window.innerWidth > 1023:
+              this.setState({ chartHeight: '500px', chartWidth: '800px'})   
+              break;
+        }
+        
+    }
 
     render() { 
         return (  
             <>
-                <div className="graph-padding">
-                            <Chart className="chart graph-shadow graph-border"
-                                width={'84rem'}
-                                height={'40rem'}
+                <div className="graph-align" align="center">
+                            <Chart className="chart"
+                                width={this.state.chartWidth}
+                                height={this.state.chartHeight}
                                 chartType="Bar"
                                 loader={<div>Loading Chart</div>}
                                 data={[
                                     ['Time', '2019', '2018'],
-                                    ['10AM', 7328,  8440],
-                                    ['11AM', 6863,  5600],
-                                    ['12PM', 15877, 12187],
-                                    ['1PM', 13449, 12149],
-                                    ['2PM', 12888, 11388],
-                                    ['3PM', 10999, 9999],
-                                    ['4PM', 12098, 10098],
-                                    ['5PM', 13788, 10788],
-                                    ['6PM', 17668, 14668],
-                                    ['7PM', 16872, 12872],
-                                    ['8PM', 14092, 11092],
-                                    ['9PM', 13908, 12908],
-                                    ['10PM', 12331, 9543],
-                                    ['11PM', 11721, 10829],
-                                    ['12AM', 9003,  7892]
+                                    ['10AM', 732,  844],
+                                    ['11AM', 686,  560],
+                                    ['12PM', 1587, 1218],
+                                    ['1PM', 1344, 1214],
+                                    ['2PM', 1288, 1138],
+                                    ['3PM', 1099, 999],
+                                    ['4PM', 1209, 1009],
+                                    ['5PM', 1378, 1078],
+                                    ['6PM', 1766, 1466],
+                                    ['7PM', 1687, 1287],
+                                    ['8PM', 1409, 1109],
+                                    ['9PM', 1390, 1290],
+                                    ['10PM', 1233, 954],
+                                    ['11PM', 1172, 1082],
+                                    ['12AM', 900,  789]
                                     
                                 ]}
                                 options={{

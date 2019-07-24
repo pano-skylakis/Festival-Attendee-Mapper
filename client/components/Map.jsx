@@ -203,7 +203,7 @@ class Map extends React.Component {
               mapIconKey = mapIconKey[2].split('.')
               mapIconKey = mapIconKey[0]
 
-              return <p key={idx}><a className='field-tip' onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="25px" /><span className='tip-content'>{this.state.iconDescription[idx]}</span></a></p>
+              return <p key={idx} className='icon-wrapper'><a className='field-tip' onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="25px" /><span className='tip-content'>{this.state.iconDescription[idx]}</span></a></p>
             })}
           </ul>
         </section>

@@ -566,3 +566,6 @@ ul {
 .field-tip:hover .tip-content {
   left: -20px;
   opacity: 1; }
+
+.icon-wrapper {
+  margin: 60% 0; }

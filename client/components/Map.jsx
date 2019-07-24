@@ -17,7 +17,10 @@ class Map extends React.Component {
       zoom: 16,
       markers: [],
       description: '',
+      scrollWheelZoom: false,
+      minZoom: 15,
       maxZoom: 19,
+      zoomSnap: 0.5,
       savedMarkers: [],
       addressPoints: [],
       positions: [[-41.297850, 174.775803], [-41.296085, 174.771753], [-41.288876, 174.776126], [-41.291125, 174.779602]],
@@ -152,7 +155,7 @@ class Map extends React.Component {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
       <React.Fragment>
-        <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin" center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
+        <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin" center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} scrollWheelZoom={this.state.scrollWheelZoom} zoomSnap={this.state.zoomSnap} minZoom={this.state.minZoom} maxZoom={this.state.maxZoom}>
           <Polygon color="orange" positions={this.state.positions} />
 
 

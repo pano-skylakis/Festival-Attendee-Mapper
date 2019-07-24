@@ -81,12 +81,11 @@ body {
 }
 
 .mapper-fade {
-  // animation: map-fadein 10s;
-  animation: color 5s;
+  animation: map-color 5s;
   animation-fill-mode: forwards;
 }
 
-@keyframes color {
+@keyframes map-color {
   0% {
     opacity: 0;
     color: #fff;
@@ -545,19 +544,8 @@ ul {
   border: 1px solid $color-iconbar
 }
 
-Bridey experimenting
+// Bridey experimenting
 
-* {
-  -webkit-font-smoothing: antialiased;
-}
-a {
-  color: #000;
-  text-decoration: none;
-}
-a:hover {
-  color: #000;
-  text-decoration: none;
-}
 .scroller-container {
   background: #fafafa;
   width: 100vw;
@@ -575,11 +563,9 @@ a:hover {
   margin-left: -25%;
   margin-top: -25px;
 }
-p {
-  color: #888;
-}
+
 .scroller {
-  height: 100px;
+  height: 150px;
   line-height: 40px;
   float: left;
   margin-left: 5px;
@@ -716,24 +702,24 @@ p {
     margin-top: 50px;
   }
   33% {
-    margin-top: -50px;
+    margin-top: -70px;
   }
   44% {
-    margin-top: -50px;
+    margin-top: -70px;
   }
   55% {
-    margin-top: -150px;
+    margin-top: -200px;
   }
   66% {
-    margin-top: -150px;
+    margin-top: -200px;
   }
   77% {
-    margin-top: -275px;
+    margin-top: -350px;
   }
   88% {
-    margin-top: -275px;
+    margin-top: -350px;
   }
   100% {
-    margin-top: -275px;
+    margin-top: -350px;
   }
 }

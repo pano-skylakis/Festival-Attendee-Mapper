@@ -25,7 +25,7 @@ class Graphs extends React.Component {
                     {this.state.lineGraph && <LineGraph geoLocationData={this.props.geoLocationData} />}
                 </div>
                     
-                    <h1 className="graph-text">Collecting data, providing insights and inspiring action.</h1>
+                    <h1 className="graph-text">Festival Attendee Mapper<hr></hr>Making event management easy.</h1>
                 </div> 
             
                 <div>

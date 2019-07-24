@@ -150,24 +150,46 @@ body {
   border: solid white .5rem; }
 
 .graph-text {
-  padding-right: 25vh;
+  padding-right: 18vh;
   padding-left: 15vh;
   display: block;
-  color: #E67E22; }
+  color: #E67E22;
+  font-size: 2.5rem;
+  margin-top: 10vh; }
 
 .leaflet-container {
   display: flex;
   height: 75vh;
-  width: 80vw; }
+  width: 80vw;
+  border: solid 1px #6699eed1; }
+
+.icon-size {
+  height: 1.2rem;
+  width: 1.2rem; }
+
+.leaflet-popup-content {
+  background-color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  color: black;
+  flex-direction: column; }
+
+.leaflet-popup-content-wrapper {
+  background-color: white;
+  border: solid 2px #E67E22; }
 
 .leaflet-container path {
   transition: opacity 2.0s; }
 
+.map-container {
+  display: flex; }
+
 .map-margin {
   margin-top: 1.5rem;
   margin-bottom: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.75); }
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem; }
   @media (min-width: 64rem) {
     .map-margin {
       margin-bottom: 3.2rem;
@@ -231,7 +253,7 @@ body {
   @media (min-width: 64rem) {
     .stats-big {
       font-size: 3rem;
-      margin-top: 1.3rem; } }
+      margin-top: 1.8rem; } }
   @media (min-width: 90rem) {
     .stats-big {
       margin-top: 2.45rem; } }
@@ -332,7 +354,8 @@ input[type=range]::-moz-range-thumb {
 
 .date-input {
   background-color: #e9e9e9;
-  border: 0; }
+  border: 0;
+  font-family: Arial, Helvetica, sans-serif; }
   @media (min-width: 48rem) {
     .date-input {
       font-size: 1.7rem;
@@ -340,3 +363,23 @@ input[type=range]::-moz-range-thumb {
 
 .date-picker {
   margin-top: 2rem; }
+
+.icon-select-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0; }
+
+ul {
+  margin: 0;
+  padding: 0;
+  background-color: #6699eed1;
+  height: 75vh;
+  margin-top: 3vh;
+  margin-top: 29px;
+  width: 38px;
+  padding-left: 2vh;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border: 1px solid #6699eed1; }

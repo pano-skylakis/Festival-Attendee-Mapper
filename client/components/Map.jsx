@@ -141,57 +141,56 @@ class Map extends React.Component {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
       <React.Fragment>
-        <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin"  center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>      
-          <Polygon color="black" positions = {this.state.positions}/>
+        <div className="map-container">
+          <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin"  center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>      
+            <Polygon color="black" positions = {this.state.positions}/>
 
 
-              {this.state.savedMarkers.map((position, idx) => {
-                return <Marker key={`marker-${idx}`} icon={MapIcons[position['markers']]} position={{ lat: position.latitude, lng: position.longitude }}>
-                  <Popup>
-                    {/* this changes whatever is in the pop-up --v*/}
-                    <span>New pin!</span><br/>
-                    <button onClick={this.deleteMarker} id={position.id}>Delete</button>
-                    Description: {position.description}<input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description}/>
-                      <input data-marker={position.id} type="submit" value="Add" onClick={this.handleDescriptionSubmit}/>
-                  </Popup>
-                </Marker>
-              })}
+                {this.state.savedMarkers.map((position, idx) => {
+                  return <Marker key={`marker-${idx}`} icon={MapIcons[position['markers']]} position={{ lat: position.latitude, lng: position.longitude }}>
+                    <Popup>
+                      {/* this changes whatever is in the pop-up --v*/}
+                      <span>New pin!</span>
+                      
+                      Description: {position.description}<input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description}/><br/>
+                        <input data-marker={position.id} type="submit" value="Add" onClick={this.handleDescriptionSubmit}/>
+                      <button onClick={this.deleteMarker} id={position.id}>Delete</button>
+                    </Popup>
+                  </Marker>
+                })}
 
 
-                {/* map layer-control */}
-          <LayersControl position='topright'>
-            <LayersControl.BaseLayer checked name='Street View'>
-              <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
-            </LayersControl.BaseLayer>
-            <LayersControl.BaseLayer name='Satellite'>
-              <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' />
-            </LayersControl.BaseLayer>
-            <LayersControl.Overlay name="Heatmap" checked>
-              <HeatmapLayer
-                fitBoundsOnLoad
-                points={this.props.addressPoints}
-                longitudeExtractor={m => m[1]}
-                latitudeExtractor={m => m[0]}
-                intensityExtractor={m => parseFloat(m[2])}
-              />
-            </LayersControl.Overlay>
-          </LayersControl>
+                  {/* map layer-control */}
+            <LayersControl position='topright'>
+              <LayersControl.BaseLayer checked name='Street View'>
+                <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+              </LayersControl.BaseLayer>
+              <LayersControl.BaseLayer name='Satellite'>
+                <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' />
+              </LayersControl.BaseLayer>
+              <LayersControl.Overlay name="Heatmap" checked>
+                <HeatmapLayer
+                  fitBoundsOnLoad
+                  points={this.props.addressPoints}
+                  longitudeExtractor={m => m[1]}
+                  latitudeExtractor={m => m[0]}
+                  intensityExtractor={m => parseFloat(m[2])}
+                />
+              </LayersControl.Overlay>
+            </LayersControl>
+          </LeafletMap>
+          <section className="icon-select-wrapper">
+            <ul>
+                {this.state.images.map((url, idx) => {
+                    let mapIconKey = url.split('/')
+                    mapIconKey = mapIconKey[2].split('.')
+                    mapIconKey = mapIconKey[0]
 
-        </LeafletMap>
-
-
-                {/* map-icons */}
-        <section className="icon-select-wrapper">
-          <ul>
-              {this.state.images.map((url, idx) => {
-                  let mapIconKey = url.split('/')
-                  mapIconKey = mapIconKey[2].split('.')
-                  mapIconKey = mapIconKey[0]
-
-                  return <p key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="30px"/></a></p>
-              })}
-          </ul>
+                    return <p key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="25px"/></a></p>
+                })}
+            </ul>
         </section>
+        </div>
       </React.Fragment>
     )
   }

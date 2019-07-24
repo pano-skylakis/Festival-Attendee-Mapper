@@ -151,8 +151,8 @@ class Map extends React.Component {
               <Popup>
                 <form>
                   <span>{position.description}</span><br />
-                  <input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description} />
-                  <input data-marker={position.id} type="submit" value="Add Description" onClick={this.handleDescriptionSubmit} />
+                  <input type="text" name="lname" placeholder="Location Name" onChange={this.handleDescriptionChange} value={this.state.description} />
+                  <input data-marker={position.id} type="submit" value="Add" onClick={this.handleDescriptionSubmit} />
                   <button onClick={this.deleteMarker} id={position.id}>Delete</button>
                 </form>
               </Popup>

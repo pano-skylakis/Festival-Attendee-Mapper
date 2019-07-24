@@ -8,15 +8,17 @@ class Stats extends React.Component {
         super(props)
         
         this.state = {
-          uniqueUsers: null,
+          uniqueUsers: 0,
           currentUsers: 0,
           geoLocationData: this.props.geoLocationData
         }
-    }
+        this.refreshStats = this.refreshStats.bind(this)
 
+    }
     
-    componentDidMount() {
-      getCurrentUniqueUsersApi()
+    refreshStats(){
+      this.interval = setInterval(() => {
+        getCurrentUniqueUsersApi()
       .then(uniqueUsersInt=>{
         this.setState({
           currentUsers: uniqueUsersInt
@@ -26,9 +28,27 @@ class Stats extends React.Component {
         .then(data => {
           this.setState({uniqueUsers: data})
         })
+      }, 3000);
     }
 
 
+    componentDidMount() {
+      this.refreshStats()
+      // getCurrentUniqueUsersApi()
+      // .then(uniqueUsersInt=>{
+      //   this.setState({
+      //     currentUsers: uniqueUsersInt
+      //   })
+      // })
+      // getTotalUniqueUsersApi()
+      //   .then(data => {
+      //     this.setState({uniqueUsers: data})
+      //   })
+    }
+
+    componentWillUnmount() {
+      clearInterval(this.interval)
+  }
     componentWillReceiveProps(nextProps) {
       this.setState({geoLocationData: nextProps.geoLocationData})
     }

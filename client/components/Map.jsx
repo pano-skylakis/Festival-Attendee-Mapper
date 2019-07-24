@@ -23,11 +23,11 @@ class Map extends React.Component {
       positions: [[-41.297850, 174.775803], [-41.296085, 174.771753], [-41.288876, 174.776126], [-41.291125, 174.779602]],
       heatChange: false,
       images: [
-        './images/babyCarriage.svg', 
-        './images/firstAid.svg', 
-        './images/coffee.svg', 
-        './images/guitar.svg', 
-        './images/information.svg', 
+        './images/babyCarriage.svg',
+        './images/firstAid.svg',
+        './images/coffee.svg',
+        './images/guitar.svg',
+        './images/information.svg',
         './images/toilet.svg',
         './images/trash.svg',
         './images/food.svg',
@@ -75,6 +75,7 @@ class Map extends React.Component {
 
   //deletes selected marker
   deleteMarker = e => {
+    e.preventDefault()
     deleteMarkerApi(e.target.id)
       .then(this.getMarkerLocations)
   }
@@ -102,99 +103,102 @@ class Map extends React.Component {
 
   //icon click handler
   handleIconClick = e => {
-    switch(true) {
-      case e.target.dataset.icon === 'babyCarriage': 
-        this.setState({selectedIcon: 'babyCarriageIcon'})
+    switch (true) {
+      case e.target.dataset.icon === 'babyCarriage':
+        this.setState({ selectedIcon: 'babyCarriageIcon' })
         break;
-      case e.target.dataset.icon === 'coffee': 
-        this.setState({selectedIcon: 'coffeeIcon'})
+      case e.target.dataset.icon === 'coffee':
+        this.setState({ selectedIcon: 'coffeeIcon' })
         break;
-      case e.target.dataset.icon === 'firstAid': 
-        this.setState({selectedIcon: 'firstAidIcon'})
+      case e.target.dataset.icon === 'firstAid':
+        this.setState({ selectedIcon: 'firstAidIcon' })
         break;
-      case e.target.dataset.icon === 'food': 
-        this.setState({selectedIcon: 'foodIcon'})
+      case e.target.dataset.icon === 'food':
+        this.setState({ selectedIcon: 'foodIcon' })
         break;
-      case e.target.dataset.icon === 'guitar': 
-        this.setState({selectedIcon: 'guitarIcon'})
+      case e.target.dataset.icon === 'guitar':
+        this.setState({ selectedIcon: 'guitarIcon' })
         break;
-      case e.target.dataset.icon === 'information': 
-        this.setState({selectedIcon: 'informationIcon'})
+      case e.target.dataset.icon === 'information':
+        this.setState({ selectedIcon: 'informationIcon' })
         break;
-      case e.target.dataset.icon === 'toilet': 
-        this.setState({selectedIcon: 'toiletIcon'})
+      case e.target.dataset.icon === 'toilet':
+        this.setState({ selectedIcon: 'toiletIcon' })
         break;
-      case e.target.dataset.icon === 'trash': 
-        this.setState({selectedIcon: 'trashIcon'})
+      case e.target.dataset.icon === 'trash':
+        this.setState({ selectedIcon: 'trashIcon' })
         break;
-      case e.target.dataset.icon === 'water': 
-        this.setState({selectedIcon: 'waterIcon'})
+      case e.target.dataset.icon === 'water':
+        this.setState({ selectedIcon: 'waterIcon' })
         break;
       case e.target.dataset.icon === 'defaultMarker':
-        this.setState({selectedIcon: 'defaultMarkerIcon'})
+        this.setState({ selectedIcon: 'defaultMarkerIcon' })
         break;
     }
-}
+  }
 
 
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
       <React.Fragment>
-        <div className="map-container">
-          <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin"  center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>      
+        <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin" center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>
+          <Polygon color="black" positions={this.state.positions} />
+
+
+          {this.state.savedMarkers.map((position, idx) => {
+            return <Marker key={`marker-${idx}`} icon={MapIcons[position['markers']]} position={{ lat: position.latitude, lng: position.longitude }}>
+              <Popup>
+                <form>
+                  <span>{position.description}</span><br />
+                  <input type="text" name="lname" placeholder="Location Name" onChange={this.handleDescriptionChange} value={this.state.description} />
+                  <input data-marker={position.id} type="submit" value="Add" onClick={this.handleDescriptionSubmit} />
+                  <button onClick={this.deleteMarker} id={position.id}>Delete</button>
+                </form>
+              </Popup>
+            </Marker>
+          })}
+
+
+          {/* map layer-control */}
+          <LayersControl position='topright'>
+            <LayersControl.BaseLayer checked name='Street View'>
             <Polygon color="black" positions = {this.state.positions}/>
+              <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+            </LayersControl.BaseLayer>
+            <LayersControl.BaseLayer name='Satellite'>
+              <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' />
+            </LayersControl.BaseLayer>
+            <LayersControl.Overlay name="Heatmap" checked>
+              <HeatmapLayer
+                fitBoundsOnLoad
+                points={this.props.addressPoints}
+                longitudeExtractor={m => m[1]}
+                latitudeExtractor={m => m[0]}
+                intensityExtractor={m => parseFloat(m[2])}
+              />
+            </LayersControl.Overlay>
+          </LayersControl>
+
+        </LeafletMap>
 
 
-                {this.state.savedMarkers.map((position, idx) => {
-                  return <Marker key={`marker-${idx}`} icon={MapIcons[position['markers']]} position={{ lat: position.latitude, lng: position.longitude }}>
-                    <Popup>
-                      {/* this changes whatever is in the pop-up --v*/}
-                      <span>New pin!</span>
-                      
-                      Description: {position.description}<input type="text" name="lname" onChange={this.handleDescriptionChange} value={this.state.description}/><br/>
-                        <input data-marker={position.id} type="submit" value="Add" onClick={this.handleDescriptionSubmit}/>
-                      <button onClick={this.deleteMarker} id={position.id}>Delete</button>
-                    </Popup>
-                  </Marker>
-                })}
+        {/* map-icons */}
+        <section className="icon-select-wrapper">
+          <ul>
+            {this.state.images.map((url, idx) => {
+              let mapIconKey = url.split('/')
+              mapIconKey = mapIconKey[2].split('.')
+              mapIconKey = mapIconKey[0]
 
-
-                  {/* map layer-control */}
-            <LayersControl position='topright'>
-              <LayersControl.BaseLayer checked name='Street View'>
-                <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
-              </LayersControl.BaseLayer>
-              <LayersControl.BaseLayer name='Satellite'>
-                <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' />
-              </LayersControl.BaseLayer>
-              <LayersControl.Overlay name="Heatmap" checked>
-                <HeatmapLayer
-                  fitBoundsOnLoad
-                  points={this.props.addressPoints}
-                  longitudeExtractor={m => m[1]}
-                  latitudeExtractor={m => m[0]}
-                  intensityExtractor={m => parseFloat(m[2])}
-                />
-              </LayersControl.Overlay>
-            </LayersControl>
-          </LeafletMap>
-          <section className="icon-select-wrapper">
-            <ul>
-                {this.state.images.map((url, idx) => {
-                    let mapIconKey = url.split('/')
-                    mapIconKey = mapIconKey[2].split('.')
-                    mapIconKey = mapIconKey[0]
-
-                    return <p key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="25px"/></a></p>
-                })}
-            </ul>
+              return <li key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="25px" /></a></li>
+            })}
+          </ul>
         </section>
-        </div>
       </React.Fragment>
     )
   }
 }
- 
+
 
 export default Map;

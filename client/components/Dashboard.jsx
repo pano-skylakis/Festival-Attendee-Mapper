@@ -27,6 +27,7 @@ class Dashboard extends React.Component {
       locs: [],
       currentDate: "",
       sliderValue: "12",
+      sliderTotalValue: "Total",
       geoTags: {},
       heatmapData: [],
       isDesktop: false,
@@ -109,9 +110,11 @@ class Dashboard extends React.Component {
 
   // Get Locations from Database
   getLocations = () => {
+   this.interval = setInterval(() => {
     getGeoLocationsApi().then(locations => {
       this.refreshLocations(locations);
     });
+   }, 3000); 
   };
 
 
@@ -133,7 +136,7 @@ class Dashboard extends React.Component {
 
     this.setState({ sliderValue: e.target.value })
 
-    if (e.target.value == "0") {
+    if (e.target.value == "24") {
       getHeatMapValues()
         .then(res => {
           Promise.all(res.map(getHeatMapIntensity)).then(info => {
@@ -176,6 +179,7 @@ class Dashboard extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.updatePredicate);
+    clearInterval(this.interval)
   }
 
   updatePredicate = () => {
@@ -199,13 +203,14 @@ class Dashboard extends React.Component {
               <div className="slider-and-data">
                 <div className="just-data">
                   <input type="date" className="date-input" defaultValue="2019/07/23" onChange={this.handleDateChange} />
-                  <p className="slider-time">{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00`}</p>
+                  {Number(this.state.sliderValue) === 24 ? <p className="slider-total">Total</p> : <p className="slider-time">{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00`}</p>}
                 </div>
                 <div className="slidecontainer">
                   <input
                     type="range"
                     min="0"
-                    max="23"
+                    max="24"
+                    data-slider={this.state.sliderTotalValue}
                     value={this.state.sliderValue}
                     className="slider"
                     id="myRange"

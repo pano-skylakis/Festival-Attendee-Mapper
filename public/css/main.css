@@ -1,5 +1,5 @@
 a:active {
-  background-color: yellow; }
+  border: solid 1px black; }
 
 body {
   margin: 0;
@@ -29,10 +29,10 @@ body {
   animation-fill-mode: forwards; }
 
 .mapper-fade {
-  animation: color 5s;
+  animation: map-color 5s;
   animation-fill-mode: forwards; }
 
-@keyframes color {
+@keyframes map-color {
   0% {
     opacity: 0;
     color: #fff; }
@@ -139,7 +139,8 @@ body {
   background-color: white;
   display: flex;
   justify-content: space-around;
-  align-items: center; }
+  align-items: center;
+  margin-top: 6.5vh; }
 
 .graph-margin-left {
   margin-left: 10vh; }
@@ -375,10 +376,151 @@ ul {
   padding: 0;
   background-color: white;
   height: 75vh;
-  margin-top: 3vh;
-  margin-top: 29px;
+  margin-top: -22px;
   width: 38px;
   padding-left: 2vh;
   border-top-right-radius: 1rem;
   border-bottom-right-radius: 1rem;
   border: 1px solid white; }
+
+.scroller-container {
+  background: #fafafa;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.container {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -25%;
+  margin-top: -25px; }
+
+.scroller {
+  height: 150px;
+  line-height: 40px;
+  float: left;
+  margin-left: 5px;
+  overflow: hidden;
+  font-size: 2rem;
+  margin-right: 0.2rem; }
+
+.scroller span {
+  display: block;
+  font-size: 100%;
+  color: #000; }
+
+.scroller .inner {
+  -webkit-animation: scroll 10s 1 ease-out;
+  -moz-animation: scroll 10s 1 ease-out;
+  animation: scroll 10s 1 ease-out;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  text-align: center; }
+
+.orange {
+  -webkit-animation: color 0.25s 1 linear;
+  -moz-animation: color 0.25s 1 linear;
+  animation: color 0.25s 1 linear;
+  -webkit-animation-delay: 8s;
+  -moz-animation-delay: 8s;
+  animation-delay: 8s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
+.orangeb {
+  -webkit-animation: color 0.25s 1 linear;
+  -moz-animation: color 0.25s 1 linear;
+  animation: color 0.25s 1 linear;
+  -webkit-animation-delay: 8.25s;
+  -moz-animation-delay: 8.25s;
+  animation-delay: 8.25s;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  animation-fill-mode: forwards; }
+
+@-webkit-keyframes color {
+  0% {
+    color: #000; }
+  100% {
+    color: #E67E22; } }
+
+@-moz-keyframes color {
+  0% {
+    color: #000; }
+  100% {
+    color: #E67E22; } }
+
+@keyframes color {
+  0% {
+    color: #000; }
+  100% {
+    color: #E67E22; } }
+
+@-webkit-keyframes scroll {
+  11% {
+    margin-top: 0px; }
+  22% {
+    margin-top: 0px; }
+  33% {
+    margin-top: -100px; }
+  44% {
+    margin-top: -100px; }
+  55% {
+    margin-top: -200px; }
+  66% {
+    margin-top: -200px; }
+  77% {
+    margin-top: -300px; }
+  88% {
+    margin-top: -300px; }
+  100% {
+    margin-top: -300px; } }
+
+@-moz-keyframes scroll {
+  11% {
+    margin-top: 0px; }
+  22% {
+    margin-top: 0px; }
+  33% {
+    margin-top: -100px; }
+  44% {
+    margin-top: -100px; }
+  55% {
+    margin-top: -200px; }
+  66% {
+    margin-top: -200px; }
+  77% {
+    margin-top: -300px; }
+  88% {
+    margin-top: -300px; }
+  100% {
+    margin-top: -300px; } }
+
+@keyframes scroll {
+  0% {
+    margin-top: 50px; }
+  11% {
+    margin-top: 50px; }
+  22% {
+    margin-top: 50px; }
+  33% {
+    margin-top: -70px; }
+  44% {
+    margin-top: -70px; }
+  55% {
+    margin-top: -200px; }
+  66% {
+    margin-top: -200px; }
+  77% {
+    margin-top: -350px; }
+  88% {
+    margin-top: -350px; }
+  100% {
+    margin-top: -350px; } }

@@ -163,7 +163,7 @@ class Map extends React.Component {
           {/* map layer-control */}
           <LayersControl position='topright'>
             <LayersControl.BaseLayer checked name='Street View'>
-              <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
+              <TileLayer url='https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png' />
             </LayersControl.BaseLayer>
             <LayersControl.BaseLayer name='Satellite'>
               <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}' />
@@ -190,7 +190,7 @@ class Map extends React.Component {
               mapIconKey = mapIconKey[2].split('.')
               mapIconKey = mapIconKey[0]
 
-              return <li key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="25px" /></a></li>
+              return <p key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="25px" /></a></p>
             })}
           </ul>
         </section>

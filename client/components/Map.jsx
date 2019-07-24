@@ -33,7 +33,17 @@ class Map extends React.Component {
         './images/food.svg',
         './images/water.svg',
         './images/defaultMarker.png'],
-      selectedIcon: 'defaultMarkerIcon'
+      selectedIcon: 'defaultMarkerIcon',
+      iconDescription: [
+        "Parent's Facilities", 
+        'First Aid', 'Cafe', 
+        'Stage', 
+        'Info Centre', 
+        'Toilets', 
+        'Waste/Recycling Stations', 
+        'Food Stalls', 
+        'Water Fountains', 
+        'Location Marker'] 
     }
   }
 
@@ -190,7 +200,7 @@ class Map extends React.Component {
               mapIconKey = mapIconKey[2].split('.')
               mapIconKey = mapIconKey[0]
 
-              return <p key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="25px" /></a></p>
+              return <p key={idx}><a className='field-tip' onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="25px" /><span className='tip-content'>{this.state.iconDescription[idx]}</span></a></p>
             })}
           </ul>
         </section>

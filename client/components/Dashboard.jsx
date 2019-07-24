@@ -110,9 +110,11 @@ class Dashboard extends React.Component {
 
   // Get Locations from Database
   getLocations = () => {
+   this.interval = setInterval(() => {
     getGeoLocationsApi().then(locations => {
       this.refreshLocations(locations);
     });
+   }, 3000); 
   };
 
 
@@ -177,6 +179,7 @@ class Dashboard extends React.Component {
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.updatePredicate);
+    clearInterval(this.interval)
   }
 
   updatePredicate = () => {

@@ -1,7 +1,8 @@
 a:active {
   border: solid 1px black; }
 
-body {
+body, html {
+  max-width: 100%;
   margin: 0;
   padding: 0;
   font-weight: 200;
@@ -96,7 +97,8 @@ body {
 .content {
   font-family: 'Raleway', sans-serif;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  width: inherit; }
 
 .footer {
   background-color: rgba(44, 44, 44, 0.89);
@@ -129,6 +131,7 @@ body {
   margin: 0 auto; }
 
 .graph-container {
+  width: inherit;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -240,7 +243,7 @@ body {
       font-size: 1rem; } }
   @media (min-width: 90rem) {
     .stats-1, .stats-2, .stats-3, .stats-4 {
-      width: 20vw; } }
+      width: 19.7vw; } }
 
 .stats-big {
   font-size: 3rem;

@@ -44,7 +44,9 @@ $screen-xl: 100rem;
     }
 }
 
-body {
+
+body,html{
+  max-width: 100%;
   margin: 0;
   padding: 0;
   font-weight: 200;
@@ -181,6 +183,7 @@ body {
     // box-shadow: 0 .5rem 1rem 0 rgba(0,0,0,0.5);
     display: flex;
     flex-wrap: wrap;
+    width: inherit;
 }
 
 //Other components
@@ -238,6 +241,8 @@ body {
 }
 
 .graph-container {
+  // overflow: hidden; 
+  width: inherit;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -379,7 +384,7 @@ body {
     }
 
     @include desktop-large{
-      width: 20vw
+      width: 19.7vw
     }
 
 } 

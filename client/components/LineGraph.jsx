@@ -49,7 +49,6 @@ class LineGraph extends React.Component {
             case window.innerWidth > 1023:
               this.setState({ chartHeight: '500px', chartWidth: '800px'})   
               break;
-            
         }
     }
 

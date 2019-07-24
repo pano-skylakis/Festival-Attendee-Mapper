@@ -191,7 +191,7 @@ class Map extends React.Component {
               mapIconKey = mapIconKey[2].split('.')
               mapIconKey = mapIconKey[0]
 
-              return <li key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="30px" /></a></li>
+              return <li key={idx}><a onClick={this.handleIconClick}><img data-icon={mapIconKey} src={url} width="25px" /></a></li>
             })}
           </ul>
         </section>

@@ -220,9 +220,9 @@ class Dashboard extends React.Component {
               </div>
 
               <Map addressPoints={this.state.heatmapData} />
-
-              <div>
-                {isDesktop ? (<Graphs geoLocationData={this.state.locs} />) : (<Unavailable />)}
+              
+              <div className="graph-margin">
+                {isDesktop ? (<Graphs geoLocationData={this.state.locs}/>) : (<Unavailable />)}
               </div>
 
             </div>

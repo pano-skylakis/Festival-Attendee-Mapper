@@ -18,12 +18,21 @@ class Graphs extends React.Component {
 
     render() {
         return(
+           <div>
            <div className="graph-margin" data-aos="fade-up" data-aos-duration="2000">
-                {this.state.barGraph && <BarGraph />}
-                {this.state.lineGraph && <LineGraph geoLocationData={this.props.geoLocationData} />}
-                <p onClick={this.handleGraphButtonClick} className="toggle-button">
-                    Toggle Graph
-                </p>
+                <div className="graph-margin-left">
+                    {this.state.barGraph && <BarGraph />}
+                    {this.state.lineGraph && <LineGraph geoLocationData={this.props.geoLocationData} />}
+                </div>
+                    
+                    <h1 className="graph-text">Festival Attendee Mapper<hr></hr>Making event management easy.</h1>
+                </div> 
+            
+                <div>
+                    <p onClick={this.handleGraphButtonClick} className="toggle-button">
+                        Toggle Graph
+                    </p>
+                </div>
             </div> 
         )
     }

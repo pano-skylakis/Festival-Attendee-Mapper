@@ -54,34 +54,34 @@ class LineGraph extends React.Component {
     }
 
     
-    getLocationByTime = async () => {
+    // getLocationByTime = async () => {
 
-        let unixGreaterThan = 1563868800 // 2019-07-23T08:00:00+00:00
-        let unixLessThan = 1563872401 // 2019-07-23T09:00:00+00:00
+    //     let unixGreaterThan = 1563868800 // 2019-07-23T08:00:00+00:00
+    //     let unixLessThan = 1563872401 // 2019-07-23T09:00:00+00:00
 
-        // let unixLessThan = 1563883199 // 2019-07-23T11:59:59+00:00
+    //     // let unixLessThan = 1563883199 // 2019-07-23T11:59:59+00:00
 
-        let time = 8
+    //     let time = 8
 
-        for(let i = 0; i < 16; i++) {
+    //     for(let i = 0; i < 16; i++) {
 
-            await getGeoLocationByTimeApi(unixGreaterThan, unixLessThan)
-                .then(locationByTime => {
+    //         await getGeoLocationByTimeApi(unixGreaterThan, unixLessThan)
+    //             .then(locationByTime => {
 
-                    let timeArr = []
-                    let timeString = `${time}:00`
+    //                 let timeArr = []
+    //                 let timeString = `${time}:00`
                     
 
-                    timeArr.push(timeString, locationByTime.length)
-                    this.setState({graphData: [...this.state.graphData, timeArr]})
-                    timeArr = []
+    //                 timeArr.push(timeString, locationByTime.length)
+    //                 this.setState({graphData: [...this.state.graphData, timeArr]})
+    //                 timeArr = []
 
-                    unixGreaterThan = unixGreaterThan + 3600
-                    unixLessThan = unixLessThan + 3600
-                    time = time + 1
-                })
-            }
-        }
+    //                 unixGreaterThan = unixGreaterThan + 3600
+    //                 unixLessThan = unixLessThan + 3600
+    //                 time = time + 1
+    //             })
+    //         }
+    //     }
 
         
         

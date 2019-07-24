@@ -153,7 +153,7 @@ class Dashboard extends React.Component {
               <div className="slider-and-data">
                 <div className="just-data">
                   <input type="date" className="date-input" defaultValue="2019/07/23" onChange={this.handleDateChange} />
-                  {Number(this.state.sliderValue) === 24 ? <p className="slider-total">Total</p> : <p className="slider-time">{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00`}</p>}
+                  {Number(this.state.sliderValue) === 24 ? <p className="slider-time">Total</p> : <p className="slider-time">{Number(this.state.sliderValue) < 10 ? `0${this.state.sliderValue}:00` : `${this.state.sliderValue}:00`}</p>}
                 </div>
                 <div className="slidecontainer">
                   <input

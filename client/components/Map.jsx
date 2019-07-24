@@ -142,7 +142,7 @@ class Map extends React.Component {
     return (
       <React.Fragment>
         <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin"  center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} maxZoom={this.state.maxZoom}>      
-          <Polygon color="black" positions = {this.state.positions}/>
+          
 
 
               {this.state.savedMarkers.map((position, idx) => {
@@ -161,6 +161,7 @@ class Map extends React.Component {
                 {/* map layer-control */}
           <LayersControl position='topright'>
             <LayersControl.BaseLayer checked name='Street View'>
+            <Polygon color="black" positions = {this.state.positions}/>
               <TileLayer url='https://{s}.tile.osm.org/{z}/{x}/{y}.png' />
             </LayersControl.BaseLayer>
             <LayersControl.BaseLayer name='Satellite'>

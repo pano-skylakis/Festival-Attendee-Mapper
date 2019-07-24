@@ -28,9 +28,6 @@ class Stats extends React.Component {
         .then(data => {
           this.setState({uniqueUsers: data})
         })
-        .then(()=>{
-        console.log("refreshing stats'")
-        })
       }, 3000);
     }
 

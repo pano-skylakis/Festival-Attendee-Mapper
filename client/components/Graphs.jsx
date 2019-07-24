@@ -7,13 +7,13 @@ class Graphs extends React.Component {
         super(props)
 
         this.state = {
-            barGraph: false,
-            lineGraph: true,
+            barGraph: true,
+            lineGraph: false,
         }
     }
 
     handleGraphButtonClick = e => {
-        this.state.lineGraph ? this.setState({ barGraph: true, lineGraph: false }) : this.setState({ barGraph: false, lineGraph: true }) 
+        this.state.barGraph ? this.setState({ barGraph: false, lineGraph: true }) : this.setState({ barGraph: true, lineGraph: false })
       }
 
     render() {

@@ -1,4 +1,9 @@
 //a tags
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 a:active {
   border: solid 1px black;
 }
@@ -446,10 +451,10 @@ body,html{
   background-color: $color-lightgrey;
 }
 
-.slider-total{
-  font-size: 1.5rem;
-  margin: 1.5rem 0 0.4rem 0
-}
+// .slider-total{
+//   font-size: 1.5rem;
+//   margin: 1.5rem 0 0.4rem 0
+// }
 
 .slider-time {
   font-size: 1.5rem;

@@ -51,9 +51,9 @@ class Dashboard extends React.Component {
         .then(res => {
           trackPromise (
           Promise.all(res.map(getHeatMapIntensity)).then(info => {
-            setTimeout(() => this.setState({
+            this.setState({
               heatmapData: info
-            }), 10000)
+            })
           }))
       })
 

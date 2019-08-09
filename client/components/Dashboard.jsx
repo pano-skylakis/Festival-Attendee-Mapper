@@ -47,15 +47,15 @@ class Dashboard extends React.Component {
     }
 
     // gets unique heatmap values + intensities.
-    trackPromise (
       getHeatMapValues()
         .then(res => {
+          trackPromise (
           Promise.all(res.map(getHeatMapIntensity)).then(info => {
             setTimeout(() => this.setState({
               heatmapData: info
             }), 10000)
-          })
-      }))
+          }))
+      })
 
     this.getLocations();
   }

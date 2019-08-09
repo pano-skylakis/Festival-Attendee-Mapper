@@ -1,13 +1,3 @@
-//a tags
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-a:active {
-  border: solid 1px black;
-}
-
 //Colours
 
 $color-white:white;
@@ -58,6 +48,19 @@ body,html{
   font-family: helvetica neue, helvetica, arial, sans-serif;
   background-color: $color-lightgrey;
   font-size: 16px;
+}
+
+//a tags
+a {
+  color: inherit;
+
+  &:hover {
+    color: $color-orange;
+  }
+}
+
+a:active {
+  border: solid 1px black;
 }
 
 //Splash Component

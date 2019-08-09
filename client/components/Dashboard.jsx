@@ -92,6 +92,7 @@ class Dashboard extends React.Component {
     this.setState({ sliderValue: e.target.value })
 
     if (e.target.value == "24") {
+      trackPromise (
       getHeatMapValues()
         .then(res => {
           Promise.all(res.map(getHeatMapIntensity)).then(info => {
@@ -99,13 +100,13 @@ class Dashboard extends React.Component {
               heatmapData: info
             })
           })
-        })
+        }), 'map-area')
     } else {
       // >>> stop reformatting my ternary-operators <<<
       Number(this.state.sliderValue) < 10 ? (date = `${this.state.currentDate}T0${this.state.sliderValue}:00:55+0000`) : (date = `${this.state.currentDate}T${this.state.sliderValue}:00:55+0000`);
 
       let unixTimestamp = moment(`${date}`).unix();
-
+      
       getGeoLocationByTimeApi(unixTimestamp, unixTimestamp + 3601)
         .then(locByTime => {
           let idsArr = []
@@ -115,15 +116,17 @@ class Dashboard extends React.Component {
           return idsArr
         })
         .then(ids => {
+          
           getHeatmapValuesByHour(ids)
             .then(res => {
 
+              trackPromise (
               Promise.all(res.map(getHeatMapIntensity))
                 .then(info => {
                   this.setState({
                     heatmapData: info
                   })
-                })
+                }), 'map-area')
             })
         })
     }

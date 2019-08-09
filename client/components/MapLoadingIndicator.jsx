@@ -6,9 +6,9 @@ export const MapLoadingIndicator = props => {
 
   return (
     <React.Fragment>
-      { promiseInProgress === true ?
-      console.log('inProgress') 
-       : null
+      {console.log(promiseInProgress)}
+      { promiseInProgress === true ? 
+      <h1>Hey some async call in progress !</h1> : null
     }
     </React.Fragment>
   )

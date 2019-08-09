@@ -64,6 +64,7 @@ export function getTotalUniqueUsersApi() {
         })
 }
 
+
 export function getCurrentUniqueUsersApi() {
     return request.get(`${route}/currentuniqueusers`)
         .then(res => {

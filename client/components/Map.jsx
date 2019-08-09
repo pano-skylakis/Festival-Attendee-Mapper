@@ -150,7 +150,6 @@ class Map extends React.Component {
     }
   }
 
-
   render() {
     const centerPosition = [this.state.lat, this.state.lng];
     return (

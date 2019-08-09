@@ -1,6 +1,7 @@
 import React from "react";
 
 import moment from "moment";
+import { trackPromise } from 'react-promise-tracker'
 
 import Splash from "./Splash";
 import Footer from "./Footer";
@@ -8,6 +9,7 @@ import Map from "./Map";
 import Graphs from "./Graphs";
 import Stats from "./Stats";
 import Unavailable from "./Unavailable"
+import { LoadingIndicator } from "./MapLoadingIndicator"
 
 import {
   getGeoLocationsApi,
@@ -46,14 +48,15 @@ class Dashboard extends React.Component {
     }
 
     // gets unique heatmap values + intensities.
-    getHeatMapValues()
-      .then(res => {
-        Promise.all(res.map(getHeatMapIntensity)).then(info => {
-          this.setState({
-            heatmapData: info
+    trackPromise (
+      getHeatMapValues()
+        .then(res => {
+          Promise.all(res.map(getHeatMapIntensity)).then(info => {
+            this.setState({
+              heatmapData: info
+            })
           })
-        })
-      })
+      }))
 
     this.getLocations();
   }
@@ -169,6 +172,7 @@ class Dashboard extends React.Component {
                 </div>
               </div>
 
+              <LoadingIndicator />
               <Map addressPoints={this.state.heatmapData} />
               
               <div className="graph-margin">

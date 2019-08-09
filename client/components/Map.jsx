@@ -2,6 +2,7 @@ import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup, Polygon, LayersControl } from 'react-leaflet'
 import { getMarkerLocationsApi, addMarkerLocationApi, deleteMarkerApi, addMarkerDescriptionApi } from '../api/markerLocationApi'
 import HeatmapLayer from 'react-leaflet-heatmap-layer';
+import { MapLoadingIndicator } from './MapLoadingIndicator';
 
 
 import MapIcons from './MapIcons'
@@ -154,6 +155,8 @@ class Map extends React.Component {
     const centerPosition = [this.state.lat, this.state.lng];
     return (
       <React.Fragment>
+        
+        <MapLoadingIndicator  area="map-area"/>
         <LeafletMap oncontextmenu={this.addPolyPosition} className="map-margin" center={centerPosition} zoom={this.state.zoom} fitBoundsOnLoad={this.state.positions} onClick={this.addMarker} scrollWheelZoom={this.state.scrollWheelZoom} zoomSnap={this.state.zoomSnap} minZoom={this.state.minZoom} maxZoom={this.state.maxZoom}>
           <Polygon color="orange" positions={this.state.positions} />
 

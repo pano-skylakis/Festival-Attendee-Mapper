@@ -289,9 +289,16 @@ a:active {
 
 //loading spinner for heatmap
 .map-loader {
-  background-color: white;
-  position: absolute;
+  width: 100%;
+  height: 100%;
 }
+
+.map-loader > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 
 .leaflet-container {
   display: flex;

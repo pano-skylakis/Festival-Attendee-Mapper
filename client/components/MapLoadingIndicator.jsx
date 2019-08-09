@@ -9,13 +9,14 @@ export const MapLoadingIndicator = props => {
     <React.Fragment>
       {console.log(promiseInProgress)}
       { promiseInProgress === true ? 
-      <Loader
-        className="map-loader"
-        type="MutatingDots"
-        color="#E67E22"
-        height={100}
-        width={100}
-        /> : null
+        <div className="map-loader">
+          <Loader
+            type="MutatingDots"
+            color="#E67E22"
+            height={100}
+            width={100}
+            />
+        </div> : null
     }
     </React.Fragment>
   )

@@ -55,7 +55,9 @@ class Dashboard extends React.Component {
             this.setState({
               heatmapData: info
             })
-          }), 'leaflet-container')
+          }),
+          'map-area',
+          )
       })
 
     this.getLocations();

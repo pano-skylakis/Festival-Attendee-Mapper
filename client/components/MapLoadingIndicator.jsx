@@ -3,7 +3,7 @@ import Loader from 'react-loader-spinner'
 import { usePromiseTracker } from "react-promise-tracker"
 
 export const MapLoadingIndicator = props => {
-  const { promiseInProgress } = usePromiseTracker()
+  const { promiseInProgress } = usePromiseTracker({area: props.area})
 
   return (
     <React.Fragment>

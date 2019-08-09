@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <React.Fragment>
       <App />
-      <MapLoadingIndicator />
+      <MapLoadingIndicator area="leaflet-container"/>
     </React.Fragment>,
     document.getElementById('app')
   )

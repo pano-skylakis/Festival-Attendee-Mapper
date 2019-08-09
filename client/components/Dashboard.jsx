@@ -51,9 +51,9 @@ class Dashboard extends React.Component {
       getHeatMapValues()
         .then(res => {
           Promise.all(res.map(getHeatMapIntensity)).then(info => {
-            this.setState({
+            setTimeout(() => this.setState({
               heatmapData: info
-            })
+            }), 10000)
           })
       }))
 

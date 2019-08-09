@@ -33,7 +33,7 @@ export function getGeoLocationByTimeApi(greaterThan, lessThan) {
 
 export function getHeatMapValues(){
     return request.get(`${route}/heatmapvalues`)
-    .then(res =>{
+    .then(res => {
         return res.body
     })
 }

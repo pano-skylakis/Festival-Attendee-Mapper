@@ -285,7 +285,13 @@ a:active {
   margin-top: 10vh;
 }
 
-// map ? 
+// map 
+
+//loading spinner for heatmap
+.map-loader {
+  background-color: white;
+  position: absolute;
+}
 
 .leaflet-container {
   display: flex;

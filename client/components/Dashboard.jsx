@@ -9,7 +9,6 @@ import Map from "./Map";
 import Graphs from "./Graphs";
 import Stats from "./Stats";
 import Unavailable from "./Unavailable"
-import { LoadingIndicator } from "./MapLoadingIndicator"
 
 import {
   getGeoLocationsApi,
@@ -172,7 +171,6 @@ class Dashboard extends React.Component {
                 </div>
               </div>
 
-              <LoadingIndicator />
               <Map addressPoints={this.state.heatmapData} />
               
               <div className="graph-margin">

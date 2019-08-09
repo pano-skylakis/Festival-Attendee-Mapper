@@ -1,4 +1,5 @@
 import React from 'react'
+import Loader from 'react-loader-spinner'
 import { usePromiseTracker } from "react-promise-tracker"
 
 export const MapLoadingIndicator = props => {
@@ -8,7 +9,12 @@ export const MapLoadingIndicator = props => {
     <React.Fragment>
       {console.log(promiseInProgress)}
       { promiseInProgress === true ? 
-      <h1>Hey some async call in progress !</h1> : null
+      <Loader 
+        type="MutatingDots"
+        color="#E67E22"
+        height={100}
+        width={100}
+        /> : null
     }
     </React.Fragment>
   )
